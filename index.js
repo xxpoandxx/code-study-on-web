@@ -25,53 +25,121 @@ app.use(session({
 
 const DB_USER = "./user.db";
 
-app.get('/', (req,res) => {
+app.get('/', async (req,res) => {
     if(req.session.login) {
-        // ログイン日検索
+        const uid = req.session.uid;
         const db = new sqlite3.Database(DB_USER);
-        db.all("SELECT * from login_dates WHERE uid = ?", 
-        [req.session.uid], (err, rows) => {
-            console.log("rows: ", rows);
-            if (err) console.error(err);
-            else {
-                // データ
-                let login_dates = [];
-                for (let i = 0; i < rows.length; i++) {
-                    // 
-                    console.log("rows[i]: ", i,  rows[i]);
-                    login_dates[i] = rows[i].date;
-                }
-                console.log("login_dates: ", login_dates);
-                res.render("main/main.ejs", {
-                    name: req.session.name,
-                    loginDates: login_dates
+        
+        try {
+            // ログイン日検索
+            const login_dates = await (() => {
+                return new Promise((resolve, reject) => {
+                    db.all("SELECT * from login_dates WHERE uid = ?", 
+                    [uid], (err, rows) => {
+                        if (err) {
+                            console.error(err);
+                            reject(err);
+                        } else {
+                            // データ
+                            let login_dates = [];
+                            for (let i = 0; i < rows.length; i++) {
+                                login_dates[i] = rows[i].date;
+                            }
+                            resolve(login_dates);
+                        }
+                    });
                 });
+            })();
 
+            // 進捗取得
+            const COURSE_CONTENT_AMOUNT = {
+                "css": 8,
+                "html": 9,
+                "js": 0
             }
-            
-        });
+
+            const study_progress = await (() => {
+                return new Promise((resolve, reject) => {
+                    db.all("SELECT course_type, count(course_id) AS completed from study_record WHERE uid = ? GROUP BY course_type", 
+                    [uid], (err, rows) => {
+                        if (err) {
+                            console.error(err);
+                            reject(err);
+                        } else {
+                            const row_including_amount = rows.map(row => {
+                                row.amount = COURSE_CONTENT_AMOUNT[row.course_type];
+                                return row
+                            });
+                            resolve(row_including_amount);
+                        }
+                    });
+                });
+            })();
+
+            db.close();
+
+            console.log("@top page render > ", {
+                name: req.session.name,
+                loginDates: login_dates,
+                studyProgress: study_progress,
+            });
+    
+            res.render("main/main.ejs", {
+                name: req.session.name,
+                loginDates: login_dates,
+                studyProgress: study_progress,
+            });
+
+        } catch (error) {
+
+            db.close();
+            console.error(error);
+            res.render("main/index.ejs");
+
+        }
+
     } else {
+
         res.render("main/index.ejs");
+
     }
 });     //req,res→無名関数。もともとfunction(){}だったのが() => {}となっている()
 // end→もうかえしませんよという意味。
 
 app.get('/contents/:type/:course', (req,res) => {
-    if(req.session.login){
-        const types = {
-            html: "HTML_course",
-            css: "CSS_course",
-            js: "JS_course",
-            main: "main"
+
+    // ↓URL変数とフォルダ名の変換用テーブル
+    const TYPES = {
+        html: "HTML_course",
+        css: "CSS_course",
+        js: "JS_course",
+        main: "main"
+    }
+
+    // ↓ログイン中 かつ req.params.typeが適切 の場合
+    if(req.session.login && TYPES.hasOwnProperty(req.params.type)){
+
+        const course_type_dir = TYPES[req.params.type]; // ←フォルダ名
+
+        // ↓req.params.course から末尾の数字を取り出す
+        let matchResult = req.params.course.match(/\d+$/);
+
+        // ↓マッチがあればその数字を、なければ req.params.course をそのまま、idとする
+        const course_id = (matchResult) ? matchResult[0] : req.params.course;
+
+        const course_id_black_list = ["0"]; // ←記録除外id リスト
+
+        if (!course_id_black_list.includes(course_id)) {
+             // ↓学習記録 書き込み
+            const db = new sqlite3.Database(DB_USER);
+            db.run(
+                "INSERT INTO study_record (uid, course_type, course_id) VALUES(?, ?, ?)",
+                [req.session.uid, req.params.type, course_id],
+                (err) => {db.close();}
+            );
         }
 
-        const filepath = types[req.params.type] + "/" + req.params.course;
-        console.log("filepath: ", filepath);
-
-        const db = new sqlite3.Database(DB_USER);
-        db.run(
-            "INSERT INTO study_record (uid, course_type, course_id) VALUES(?, ?, ?)",
-            [req.session.uid, types[req.params.type], ])
+        const filepath = course_type_dir + "/" + req.params.course;
 
         res.render(filepath, {name: req.session.name});
     } else {
@@ -97,8 +165,7 @@ app.post('/login', (req,res) => {
             req.session.uid = row.uid;
 
             // ログイン日記録
-            db.run("INSERT INTO login_dates VALUES (?, date())", [row.uid], (err)=>{});
-            db.close();
+            db.run("INSERT INTO login_dates VALUES (?, date())", [row.uid], (err)=>{db.close();});
 
             // リダイレクト
             res.redirect("/"); //正しいパスワードを入力した時にmain pageに戻る
