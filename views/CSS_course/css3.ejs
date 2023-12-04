@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/contents.css">
+    <title>4. 要素の横幅・縦幅を指定しよう！《width・height》</title>
+</head>
+
+<body>
+    <header>
+        <h1>4. 要素の横幅・縦幅を指定しよう！《width・height》</h1>
+    </header>
+
+    <div class="home">
+        <a href="css0">CSSコース一覧へ戻る</a>
+    </div>
+
+    <div class="talk">
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>うーん。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>どうしたの。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <div class="preview">
+
+                    <div class=“wrapper”>
+                        <h1 style="background-color: yellow;">Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>もっと<span>幅を広くして、見やすく</span>したいです。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今から幅のCSSについて学ぼうと思っていたので、ちょうど良かった。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>やった。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>横幅、縦幅を指定するCSSはそれぞれ<span>width・height</span>というよ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>このとき、幅の大きさを<span>px（ピクセル）</span>という値で指定します。<br>
+                    pxは、他のプロパティでも幅や大きさを指定するときに使うので、覚えておいてください。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>わかりました。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="css-code">
+.wrapper{
+                width: 700px;
+                height: 500px;
+                background-color: yellow;
+                }
+                </pre>
+                <p>わかりやすいように背景色も変えてみましょう。<br>こうすると…</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper” style="width:700px; height:500px; background-color: yellow;">
+                        <h1>Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>こんな感じ。<br>
+                    背景色が黄色になっている部分は、横幅が700px、縦幅が300pxというサイズに定められました。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>うーん。pxなんて使ったことないから、<span>適切な数字がわかりにくい</span>なあ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>確かにね。使っていけば慣れるものですが、サイズの指定方法は他にもあります。<br>
+                    pxと同じくらい使われるのが<span>%(パーセント)</span>です。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><span>%</span>は、<span>親要素に対する割合</span>でサイズが決まります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>どういうことですか。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>先ほど、wrapperというクラスのdivタグにheight・weightを指定しましたね。
+                <br>わかりやすくするために、指定先のプロパティをbodyタグに変更します。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="css-code">
+ body{
+                width: 700px;
+                height: 500px;
+                background-color: yellow;
+                }
+                </pre>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div style="width:700px; height:500px; background-color: yellow;">
+                        <div class=“wrapper”>
+                            <h1>Hello, World!</h1>
+                            <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                        </div>
+                        <div class=“main”>
+                            <h1>HTMLを学ぼう！</h1>
+                            <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>全部が黄色になった。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>では、この状態でwrapper_divタグの横幅・縦幅を％で指定してみましょう。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="css-code">
+ body{
+                width: 700px;
+                height: 500px;
+                background-color: yellow;
+                }
+
+ .wrapper{
+               width: <span>50%</span>;
+               background-color: green;
+                }
+                </pre>
+                <p>今回も背景色を変えます。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div style="width:700px; height:500px; background-color: yellow;">
+                        <div class=“wrapper” style="width: 50%; background-color: green;">
+                            <h1>Hello, World!</h1>
+                            <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                        </div>
+                        <div class=“main”>
+                            <h1>HTMLを学ぼう！</h1>
+                            <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>あ！緑の横幅が、<span>黄色の横幅の部分の半分</span>になった。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうです。こんな感じで、<span>親要素に対する割合(%)が反映</span>されるのです。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>でもこれって、親要素に具体的な指定がされている時しか使えないってことですか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>親要素に対する指定がなくても使えますよ。<br>
+                   その場合は、作っているHTMLページの横幅いっぱいが100%の扱いにまります。<br>
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほどです！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>他にも、画像の大きさを指定するときにheight・widthはよく使用されます。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>例えばこれ。
+                     <img src="/images/piyo.png" style="width:100px; height:100px;">
+                     <br>せんせいのブロマイドです。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>…わあ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="css-code">
+.bromide{
+          width: 200px;
+          height; 300px;
+             }
+                </pre>
+                <p>こんな感じで幅を指定すると…</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <img src="/images/piyo.png" style="width:200px; height:300px;">
+                     <p>スリムにすることもできるのです！！
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>…すごくよくわかりました〜。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うふふ。
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <a href="css2" class="back">もどる</a>
+        <a href="css4" class="next">次へ</a>
+    </footer>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>1. 要素・タグ・属性を学ぼう！</title>
+</head>
+
+<body>
+    <header>
+        <h2>1. 要素・タグ・属性を学ぼう！</h2>
+    </header>
+    <div class="home">
+        <a href="html0">HTMLコース一覧へ戻る</a>
+    </div>
+    <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>HTMLを学ぶにあたって、「<span>要素</span>」「<span>属性</span>」「<span>タグ</span>」という言葉の意味を<br>理解する必要があります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>単語自体は聞いたことある。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうでしょ。<br>要素とは、<span>Webページの構造を作るためのコード</span>を指します。<br>
+                    どんな文章を表示させるかとか、見出し段落の部分に使われます。<br>
+                    属性とは、<span>要素に情報をつけるもの</span>のこと。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>属性や要素の構成は下図のようになっています。</p>
+                <img src="/images/export2.png" alt="要素の説明" style="width:700px;height:300px;">
+                <p>
+                    <>で囲まれたものが<span>タグ</span>と言います。<br>
+                        図にある通り、<span>開始タグ</span>と<span>終了タグ</span>はセットで使われます。
+                </p>
+            </div>
+        </div>
+
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>うしろの<>の中にはスラッシュがはいっていますね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そう。終了タグにはスラッシュ（/）が要素名の前につくよ。<br>
+                    この終了タグがないと<span>画面に反映されない</span>ので、気をつけてください。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>わかりました。</p>
+            </div>
+        </div>
+
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>図の<span class="blue">要素名</span>のところを見てください。<br>
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><span class="blue">要素</span>とは、図で示しているように<>で囲まれたものから&lt;/&gt;で囲まれたものまで全てを指しますが、<br>
+                    <span class="blue">要素名</span>は<>の中身を指します。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>見出しを表示するためのh1、画像を指定するためのimgなどは、そのままでは<span class="blue">要素名</span>といい、<br>
+                   <>がついて&lt;h1&gt;、&lt;img&gt;となると<span>タグ</span>と名前を変えるのです。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>そうなんだ。ちょっとやっかいだ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今説明しているのは、暗記して言えるようにしなければいけないというわけではないから、<br>
+                    ふ〜ん程度に聞いておいても大丈夫です。覚えるに越したことはないけどね。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ふ〜ん。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>図の<span class="green">属性</span>のところを見てください。<br>
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>これは、<span>その要素の内容や、動作を調整するために追加するもの</span>です。<br>
+                    リンク先を指定する<span>href属性</span>、imgタグの代替テキストを指定する<span>alt属性</span>など…。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>要素の内容を追加…？なにがなんだかさっぱり。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>ですよね。順を追って説明していくので、その都度覚えていくことにしましょう。<br>
+                    今は、言葉の意味を理解してもらいたいです。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>そうしたいです。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今回学んだことをまとめてみました。<br>
+                    <span class="img">タグ</span>：&lt;head&gt;や&lt;html&gt;など、<span><>で囲まれた</span>もの<br>
+                    <span class="img">終了タグ</span>：&lt;/head&gt;や&lt;/html&gt;など、<span>タグに/(スラッシュ)</span>がついているもの<br>
+                    <span class="img">要素</span>：<span>タグと終了タグで囲まれている</span>行のこと<br>
+                    <span class="img">属性</span>：その要素の<span>細かい内容</span>を追加するもの
+                <span></span></p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ふむふむ。つかみはバッチリです。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今回お教えした要素やタグについて、大前提として覚えてほしいことがあります。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>な、なんだろう。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>それは………
+                    <span style="border-bottom: double 5px red;">半角で入力</span>してほしいということ！
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>は、半角…</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>半角です。<br>
+                    　⭕️ &lt;p&gt;こんにちは&lt;/p&gt;<br>
+                    　↑これは正しいものですが、以下が悪い例になります。</p>
+                <p>
+                    　⭕️ &lt;p&gt;こんにちは&lt;/p&gt;<br>
+                    　❌ ＜p＞こんにちは＜/p＞→<span class="img">カッコが全角</span><br>
+                    　❌ &lt;p&gt;こんにちは&lt;／p&gt;→<span class="img">終了タグのスラッシュが全角</span><br>
+                    こんな感じで、全角が混ざってしまうと、表示されなくなってしまうよ。<br>
+                    HTMLを扱っていて、入力しているのにコード通りに表示されないときは、<br>
+                    <span>何らかのスペルミスまたは全角で入力してしまっている</span>可能性があるからね。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>そうなんだ。今まであんまり半角とか全角とか気にしてなかった…</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うんうん。最初のうちは、正しく表示されるだけでもよしとしましょう。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>このことを念頭においてね。次のセクションでは早速HTMLを書いていくよ！
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>お手柔らかに。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <a href="html1" class="back">もどる</a>
+
+        <a href="html3" class="next">次へ</a>
+    </footer>
+
+    <style>
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
+</body>
+
+</html>

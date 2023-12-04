@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/contents.css">
+    <title>8. リストをレイアウトしよう！《list-style》</title>
+</head>
+
+<body>
+    <header>
+        <h1>8. リストをレイアウトしよう！《list-style》</h1>
+    </header>
+
+    <div class="home">
+        <a href="css0">CSSコース一覧へ戻る</a>
+    </div>
+
+    <div class="talk">
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>HTMLの方で、リストを作成しましたね？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>しました。だけど…<br>
+                   もうちょっと自分なりにレイアウトしたいというか。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うんうん。今回は、リストのためのCSSを学んでいくよ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>わーい。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>リストのためのCSSはいくつかあるけど、その中でその中で多く使われているものを紹介します。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><span>・list-style</span>：リストの先頭に表示するマーカーのスタイルを決めるプロパティです<br>
+                   これが指定されていないときの状態は、先頭に・(黒丸)がついていますね。<br></p>             
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class="body">
+                        <div class="wrapper">
+                            <h4>list-style: <span>circle;</span>の場合</h4>
+                            <ul class="list1">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div class=“wrapper”>
+                            <h4>list-style: <span>square;</span>の場合</h4>
+                            <ul class="list2">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div class=“main”>
+                            <h4>list-style: <span>none;</span>の場合</h4>
+                            <ul class="list3">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>こんな感じになります。</p>             
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>すごい。特にマーカーが必要ないときは、noneを値にすればいいんですね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>リストというくらいだから、縦並びになるのはわかるのですが…。<br>
+                   横並びになったりしませんか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いい着眼点です。もちろんできますよ。</p>             
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><span>・dispaly: flex;</span>：リストを横並びにしたいときに使用するセレクタです。<br>   
+                   <pre class="css-code">
+.list1{
+        list-style: circle;
+        display: flex;
+        padding-left: 20px;
+         }
+                   </pre>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class="body">
+                        <div class="wrapper">
+                            <h3>list-style: <span>circle;</span>の場合</h3>
+                            <ul class="list1" style="display:flex;">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div class=“wrapper”>
+                            <h3>list-style: <span>square;</span>の場合</h3>
+                            <ul class="list2">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>Javascript</li>
+                            </ul>
+                        </div>
+                        <div class=“main”>
+                            <h3>list-style: <span>none;</span>の場合</h3>
+                            <ul class="list3">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="balloon">
+    <figure class="balloon-image-right">
+        <img src="/images/pen.png" alt="せいとくん">
+        <figcaption class="balloon-image-description">せいとくん</figcaption>
+    </figure>
+    <div class="balloon-text-left">
+        <p>横並びになった！</p>
+    </div>
+</div>
+
+<div class="balloon">
+    <figure class="balloon-image-left">
+        <img src="/images/piyo.png" alt="せんせい">
+        <figcaption class="balloon-image-description">せんせい</figcaption>
+    </figure>
+    <div class="balloon-text-right">
+        <p>いい感じにリストのレイアウト方法を学べてきましたね。</p>             
+    </div>
+</div>
+
+
+<footer>
+    <a href="css6" class="back">もどる</a>
+    <a href="css8" class="next">次へ</a>
+</footer>
+
+<style>
+    .list1{
+        list-style: circle;
+    }
+    .list2{
+        list-style: square;
+    }
+     .list3{
+        list-style: none;
+     }
+     li{
+        margin-right: 30px;
+     }
+
+</style>

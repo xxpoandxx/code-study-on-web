@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/contents.css">
+    <title>7. 要素に余白を入れよう！《padding・margin》</title>
+</head>
+
+<body>
+    <header>
+        <h1>7. 要素に余白を入れよう！《padding・margin》</h1>
+    </header>
+
+    <div class="home">
+        <a href="css0">CSSコース一覧へ戻る</a>
+    </div>
+
+    <div class="talk">
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>突然ですが、要素に<span>空白を入れ</span>たくないですか？
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>入れたいです。<br>
+                左上に詰められているのをどうにかしたいです！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>そうですよね。<br>
+                        空白には、大きく分けて種類が2つあります。次の図を見てください。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <img src="/images/padding.png" alt="空白の説明" style="width:600px;height:500px;">
+            </div>
+        </div>
+
+
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ふむ。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>基本的に空白はコンテンツの外側にできるのですが、<span>border</span>を境目に2段階の外側に分かれます。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>borderの外側にできる空白か、内側にでくる空白かで呼び方が変わってくるんですね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>そうです。borderの内側を<span>padding</span>、外側を<span>margin</span>と言います。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>どちらもサイズの指定は主にpxを使います。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>また出てきた！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>paddingとmarginは、borderと同じように一定の方向のみのができます。<br>
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>上下左右の指定の仕方はborderと一緒ということですね。<br>
+                    <a href="css5">方向指定を復習する</a></p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>その通り。<br>
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>あ、widthとheightも書いてありますね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>そうです。widthとheightが適用されるのは<span>その要素の中のみ</span>で、<br>
+                        要素の外側から空白が適用されることを示しています。<br>
+                        背景色がつくのはwidth・heightが適用されるところまでということも併せて覚えておきましょう！
+                   </p>
+            </div>
+        </div>
+
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="code">
+&lt;html&gt;
+ &lt;body&gt;
+  &lt;div class=&quot;wrapper&quot;&gt;
+    &lt;h1&gt;Hello,World!&lt;/h1&gt;
+     &lt;p&gt;Webサイト制作にチャレンジしよう！&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;main&quot;&gt;
+   &lt;h1&gt;HTMLを学ぼう&lt;/h1&gt;
+    &lt;p&gt;まず初めに、HTMLの基礎知識から学んでいきましょう&lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;html&gt;</pre>
+                <p>今までの使い回しです。</p>
+            </div>
+        </div>
+
+
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper”>
+                        <h1>Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>こちらの、mainタグのh1に、paddingを設定してみます。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <pre class="code">
+.main h1{
+            <span>padding: 30px;</span>
+                  }
+                     </pre>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper”>
+                        <h1>Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1 style="padding: 30px;">HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>空白ができた！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <p>paddingは、<span>指定したプロパティの上下左右に、<br>指定したpx分の空白ができる</span>というものです。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                     <img src="/images/ex.png" style="width:600px;height:400px;">
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>上の画像のように、黄色の部分がpaddingというセレクタが適用され、<br>
+                    <span>30px分の余白ができた</span>ことになります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど！</p>
+            </div>
+        </div>
+        
+
+</div>
+
+
+<footer>
+    <a href="css5" class="back">もどる</a>
+    <a href="css7" class="next">次へ</a>
+</footer>

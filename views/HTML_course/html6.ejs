@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>5. 要素をグループ化しよう！《divタグ・class属性》</title>
+</head>
+
+<body>
+    <header>
+        <h2>5. 要素をグループ化しよう！《divタグ・class属性》</h2>
+    </header>
+    <div class="home">
+        <a href="html0">HTMLコース一覧へ戻る</a>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>ここで、HTMLのレイアウトの構成のお話をしましょう。</p>
+        </div>
+    </div>
+
+    <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>構成かあ。また最初の用語説明みたいな感じなのかな。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いやいや、ちゃんと要素の説明がありますからね。</p>
+            </div>
+        </div>
+
+        <div class="talk">
+            <div class="balloon">
+                <figure class="balloon-image-right">
+                    <img src="/images/pen.png" alt="せいとくん">
+                    <figcaption class="balloon-image-description">せいとくん</figcaption>
+                </figure>
+                <div class="balloon-text-left">
+                    <p>そうなのか。</p>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>HTMLのレイアウトは、いくつかある<span>グループ</span>によって構成されています。<br>
+                        このとき使われる要素は<span>div要素</span>といい、"div"は"division"の略で、<san>分割</san>を意味します。</p>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>ここで！またまた<span>属性</span>がつきます。<br>
+                        ここで使うのは<span>class属性</span>といって、名の通り分割したグループに<span>クラスをつけることができる</span>のです。<br>
+                        クラスをつけないと、たくさんのdivができてしまって<span class="img">区別がつかない</span>という欠点があります。<br>
+                        <span>div要素を使うときは、class属性が必須</span>と言って良いでしょう。
+                    </p>
+                </div>
+            </div>
+
+            <div class="talk">
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>うーん。グループってどういうことですか？わざわざグループ化しなくても…。</p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>まあまあ。まずは下のコードを見てください。</p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <pre class="code">
+<span>&lt;div class=&quot;head-logo&quot;&gt;</span>
+ &lt;h1&gt;Hello,World!&lt;/h1&gt;
+ <span>&lt;/div&gt;</span>
+ <span>&lt;div class=&quot;main&quot;&gt;</span>
+ &lt;h2&gt;Webページ制作にチャレンジしよう！&lt;/h2&gt;
+  &lt;p&gt;HTMLの基礎からCSS、簡単なJavascriptまで学んで、
+            自作のWebページを完成させましょう。&lt;/p&gt;
+<span>&lt;/div&gt;</span></pre>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>class属性のついたdiv要素を2つ、追加してみました。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <div class="preview">
+                            <h1>Hello,World!</h1>
+                            <h2>Webサイト制作にチャレンジしよう！</h2>
+                            <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="talk">
+                    <div class="balloon">
+                        <figure class="balloon-image-right">
+                            <img src="/images/pen.png" alt="せいとくん">
+                            <figcaption class="balloon-image-description">せいとくん</figcaption>
+                        </figure>
+                        <div class="balloon-text-left">
+                            <p>何も変わってないですね…。</p>
+                        </div>
+                    </div>
+
+                    <div class="balloon">
+                        <figure class="balloon-image-left">
+                            <img src="/images/piyo.png" alt="せんせい">
+                            <figcaption class="balloon-image-description">せんせい</figcaption>
+                        </figure>
+                        <div class="balloon-text-right">
+                            <p>そうだね。視覚的には、何も変わっていません。<br>
+                                でも、div要素を追加したことで、h1要素は<span>header-logoというクラスのグループに所属</span>し、<br>
+                                h2要素、p要素は<span>mainというクラスのグループに所属する</span>ということが決まったのです。</p>
+                        </div>
+                    </div>
+
+                    <div class="balloon">
+                        <figure class="balloon-image-left">
+                            <img src="/images/piyo.png" alt="せんせい">
+                            <figcaption class="balloon-image-description">せんせい</figcaption>
+                        </figure>
+                        <div class="balloon-text-right">
+                            <div class="preview">
+                                <div style="border:dashed 2px red; margin-bottom: 2px; display: flex; justify-content: space-between;">
+                                    <h1>Hello,World!</h1>
+                                    <p style="color:red; font-weight: bold;">header-logoというグループ</p>
+                                </div>
+                                <div style="border:dashed 2px red;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                    <h2>Webサイト制作にチャレンジしよう！</h2>
+                                    <p style="color:red; font-weight: bold;">mainというグループ</p>
+                                </div>
+                                <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="talk">
+                    <div class="balloon">
+                        <figure class="balloon-image-right">
+                            <img src="/images/pen.png" alt="せいとくん">
+                            <figcaption class="balloon-image-description">せいとくん</figcaption>
+                        </figure>
+                        <div class="balloon-text-left">
+                            <p>div要素の目的は、<span>コンテンツを一括化する</span>ことにあるのかな。</p>
+                        </div>
+                    </div>
+
+                    <div class="balloon">
+                        <figure class="balloon-image-left">
+                            <img src="/images/piyo.png" alt="せんせい">
+                            <figcaption class="balloon-image-description">せんせい</figcaption>
+                        </figure>
+                        <div class="balloon-text-right">
+                            <p>その通り。div要素、class属性を知ってて良かった〜というタイミングがのちのちきますよ。</p>
+                        </div>
+                    </div>
+
+                    <div class="talk">
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <p>楽しみに待ってよう。</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <footer>
+                        <a href="html5" class="back">もどる</a>
+                        <a href="html7" class="next">次へ</a>
+                    </footer>
+</body>
+
+</html>

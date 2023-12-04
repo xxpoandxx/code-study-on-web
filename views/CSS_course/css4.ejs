@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>5. 背景を変えてみよう！《background》</title>
+</head>
+
+<body>
+    <header>
+        <h1>5. 背景を変えてみよう！《background》</h1>
+    </header>
+
+    <div class="home">
+        <a href="css0">CSSコース一覧へ戻る</a>
+    </div>
+
+    <div class="talk">
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>では次に、背景を変えてみましょう。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はーい。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>背景を変えるといっても、色だけを変えたり、画像を挿入するという方法があったりします。<br>
+                    <span>・background-color</span>：背景色を変更するプロパティ<br>
+                    </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>背景に画像を入れることができるんですね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="code">
+&lt;html&gt;
+ &lt;body&gt;
+  &lt;div class=&quot;wrapper&quot;&gt;
+    &lt;h1&gt;Hello,World!&lt;/h1&gt;
+     &lt;p&gt;Webサイト制作にチャレンジしよう！&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;main&quot;&gt;
+    &lt;h1&gt;HTMLを学ぼう&lt;/h1&gt;
+     &lt;p&gt;まず初めに、HTMLの基礎知識から学んでいきましょう&lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;html&gt;</pre>
+                <p>ページ上に表すと、次のようになります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper”>
+                        <h1>Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>これの、<span>wrapperタグのh1の背景色を黄色</span>にしてみましょう。できますか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>任せてください！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <pre class="css-code">
+.wrapper h1{
+    background-color: yellow;
+         }</pre>
+                <p>を適用させると…</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <div class="preview">
+
+                    <div class=“wrapper”>
+                        <h1 style="background-color: yellow;">Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>大正解です！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>やったー。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>背景画像の挿入は、HTMLの方でやったimgタグをいじるんですか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いいえ。背景画像のためのセレクタがあります。<br>
+                    <span>・background-image</span>：指定した画像を背景にするプロパティ<br>
+                注意点は、画像指定の時src属性に入力するのと同じように、<br>
+                <span class="img">url（）内に画像の名前を入力する必要がある</span>ところです。<br>
+                また、<span>background-size: cover;</span>を指定すると、<br>
+                <span class="img">指定した画像1枚で表示画面を埋め尽くす</span>ことができます。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="css-code">
+.main{
+         <span>background-image</span>: url(background.png);
+         <span>background-size: cover;</span>
+         }
+</pre>
+        
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <div class="preview">
+                <div class=“wrapper”>
+                    <h1>Hello, World!</h1>
+                    <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                </div>
+                <div class=“main” style="background-image: url(/images/background.jpeg); background-size: cover;">
+                    <h1>HTMLを学ぼう！</h1>
+                    <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>こんな感じでね。</p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-right">
+            <img src="/images/pen.png" alt="せいとくん">
+            <figcaption class="balloon-image-description">せいとくん</figcaption>
+        </figure>
+        <div class="balloon-text-left">
+            <p>なるほど。</p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-right">
+            <img src="/images/pen.png" alt="せいとくん">
+            <figcaption class="balloon-image-description">せいとくん</figcaption>
+        </figure>
+        <div class="balloon-text-left">
+            <p>背景画像って、もしかして…1つ前で学んだwidth・heightを使って幅をしてすることもできますか？</p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>鋭いね。その通りです。</p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>もちろんpxで指定することもできますが、<span>背景画像は横幅いっぱいに使われる</span>ことが多いので、<br>
+                pxより％を使用するほうが良いと思います。
+            </p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-right">
+            <img src="/images/pen.png" alt="せいとくん">
+            <figcaption class="balloon-image-description">せいとくん</figcaption>
+        </figure>
+        <div class="balloon-text-left">
+            <p>こういう時に使うんですね。</p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>そう。こんな感じで学んだことを応用させるタイミングがあるので、
+                <br>その都度覚えていきましょう！
+            </p>
+        </div>
+    </div>
+
+    <div class="balloon">
+        <figure class="balloon-image-right">
+            <img src="/images/pen.png" alt="せいとくん">
+            <figcaption class="balloon-image-description">せいとくん</figcaption>
+        </figure>
+        <div class="balloon-text-left">
+            <p>はーい。</p>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <a href="css3" class="back">もどる</a>
+        <a href="css5" class="next">次へ</a>
+    </footer>
+
+    <style>
+        .img{
+            color: #2d99bd;
+            font-size: 20px;
+        }
+    </style>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>3. リンクを作成しよう！《aタグ・href属性》</title>
+</head>
+<body>
+    <header>
+        <h2>3. リンクを作成しよう！《aタグ・href属性》</h2>
+    </header>
+    <div class="home">
+        <a href="html0">HTMLコース一覧へ戻る</a>
+    </div>
+    <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>リンクを作成します。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ゼルダ？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>…。<br>
+                   文字をクリックしたら、次のページに飛ぶ、なんて機能は君もよく知っていますね？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>よく見ますね。次のページに…とか。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうだよね。そんなリンクを作成するためには、<span>a要素</span>を使用します。<br>
+                    aタグだけではリンクを作成したことにはならず、そのリンクをクリックしたときに、<br>
+                    <span class="img">どこのページに飛ぶかを指定</span>しなくてはいけませんね。<br>
+                    そのためには、<span>href属性</span>を指定してあげる必要があります。これは、<span>&lt;a href=&quot;<span class="img" style="font-size: 25px;">url</span>&quot;&gt;</span>と<br>
+                    入力することで、飛び先をそのURL上にすることができるのです。
+                   </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>気をつけるポイントは、href属性をつける際に<span>ダブルクォーテーション("")で囲う</span>必要があるということ！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>へえ！やってみたいです。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>どうぞ。前回のセクションの続きを書いていきましょう。<br>
+                    では、飛び先のテスト用のURL<span class="img">link-test.html</span>を入力してください。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <pre class="code">
+&lt;h1&gt;Hello,World!&lt;/h1&gt;
+ &lt;h2&gt;Webページ制作にチャレンジしよう！&lt;/h2&gt;
+ &lt;p&gt;HTMLの基礎からCSS、簡単なJavascriptまで学んで、
+        自作のWebページを完成させましょう。&lt;/p&gt;
+ &lt;<span>a href="link-test.html"</span>&gt;HTMLの学習はこちら&lt;<span>/a</span>&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>どうかな。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <h1>Hello,World!</h1>
+                <h2>Webサイト制作にチャレンジしよう！</h2>
+                <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
+                <a href="html4-test.ejs">HTMLの学習はこちら</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>ちゃんとリンクになっていますね〜。大正解です。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>やった〜！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>では、まとめです。<br>
+                    <span class="img">aタグ</span>：他のページに飛ぶために使う要素<br>
+                    <span class="img">href属性</span>：飛び先を指定するために使う属性
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>HTMLの基礎を学ぶコースでは、どんなタグ(要素)がどんな働きをするのか、という説明が多いです。<br>
+                    実際に使ってみて覚えていきましょう！
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>わかりました。</p>
+            </div>
+        </div>
+
+
+    </div>
+    <footer>
+        <a href="html3" class="back">もどる</a>
+        <a href="html5" class="next">次へ</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>3. プロパティの選び方について</title>
+</head>
+
+<body>
+    <header>
+        <h1>3. プロパティの選び方について</h1>
+    </header>
+
+    <div class="home">
+        <a href="css0">CSSコース一覧へ戻る</a>
+    </div>
+    <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="code">
+&lt;html&gt;
+ &lt;body&gt;
+  &lt;div class=&quot;wrapper&quot;&gt;
+    &lt;h1&gt;Hello,World!&lt;/h1&gt;
+     &lt;p&gt;Webサイト制作にチャレンジしよう！&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;main&quot;&gt;
+   &lt;h1&gt;HTMLを学ぼう&lt;/h1&gt;
+    &lt;p&gt;まず初めに、HTMLの基礎知識から学んでいきましょう&lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/body&gt;
+&lt;html&gt;</pre>
+                <p>上のコードを見てください。</p>
+            </div>
+        </div>
+
+
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper”>
+                        <h1>Hello, World!</h1>
+                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>このように表示されます。<br>
+                    wrapperというクラスがついているdivタグの中身だけを、違う色にしたいのですが。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>うーん。プロパティにdivを選んでしまうと、下のdivタグにも反映してしまいますね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうだね。どうするかというと、<br>
+                    特定のタグだけ色を変えたい場合は、<span>適応させたいタグのクラス</span>をセレクタにするんだ。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>あ！クラスはHTMLの方でやりましたね。<br>これを最初に学んだ時は、いつ使うのかと思ってましたけど…。ここで使うんだ。</p>
+                <a class="review" href="/contents/html/html7">classについて復習する</a>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>ここ以外でも使うけどね笑。だけど、さっきまでの指定の仕方と一つ異なる点があるんだ。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なんですか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p> クラスをセレクタに用いるときは、<span>セレクタ前に.（ドット）を入力する</span>必要があるということ。<br>
+                    こうしないと、要素が呼び出されているとエディタが思ってしまい、<br>適用されなくなってしまうので注意が必要だよ。
+                </p>
+                <p>CSSファイルの方には、</p>
+                <pre class="css-code">
+  <span>.</span>wrapper{
+            color: red;
+                } </pre>
+                <p>こんなふうに書きます。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>あ、先頭に<span>.</span>がついてる。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>はい。こうすることで、<span>プロパティに要素名だけでなく、クラス名も適用できる</span>ようになりました。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper” style="color:red;">
+                        <h1>Hello, World!</h1>
+                        <p style="color:red;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+                <p>こうなります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>やりやすいですね！</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>また、今学んだことを活かして、次のやり方もやってみましょう。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>まだあったか。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><span>wrapperタグの中にあるh1だけにCSSを適用</span>させたい時もあるね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>h1タグは2つあるから、ただ単にプロパティにh1を選んでしまうとどちらにも適用してしまうね。</p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>適用させたいpタグにクラスをつけたらいいんでしょうか？</p>
+            </div>
+        </div>
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p> 確かに、それも一つの手だね。
+                    <br>だけど、もしCSSに適用したいタグにいちいちclassをつけていると、見にくいコードになってしまうし、
+                    <br>自分でもわかりづらくなってしまうよ。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>えー。どうしたらいいんですか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p> まず、先ほどと同じように、プロパティにwrapperというclass名を選択します。
+                    <br><span>その後ろに、半角スペースを入力してpと入力</span>するんだ。
+                </p>
+                <pre class="css-code">.wrapper p{
+              color: red;
+              }
+</pre>
+                <p>そうすると、</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <div class=“wrapper”>
+                        <h1>Hello, World!</h1>
+                        <p style="color:red;">Webサイト制作にチャレンジしよう！</p>
+                    </div>
+                    <div class=“main”>
+                        <h1>HTMLを学ぼう！</h1>
+                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>こうなります。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど。複数ある要素のうち、特定の要素だけCSSを適用ためには、<br><span>親要素のクラスを指定したあとに要素を書き込む</span>ことでも可能なんですね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうです。これを活用してよりわかりやすく簡単にWebページを装飾しましょう！</p>
+            </div>
+        </div>
+        
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はーい。</p>
+            </div>
+        </div>
+
+
+
+    </div>
+    <footer>
+        <a href="css1" class="back">もどる</a>
+        <a href="css3" class="next">次へ</a>
+    </footer>
+    <style>
+        .black {
+            color: black;
+            font-family: Arial, Helvetica, sans-serif
+        }
+    </style>
+</body>
+
+</html>

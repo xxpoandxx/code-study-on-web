@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <title>Welcome!!</title>
+
+</head>
+<body id="body">
+    <div calss="headline">
+       <h1>Welcome!!</h1>
+    </div><!--done-->
+    <div id="login">
+       <form method="POST" action="/login" name='form-login'><!--done-->
+
+          <span class="fontawesome-user"></span>
+           <input type="text" name="uid" id="uid" placeholder="ID"><!--done-->
+
+          <span class="fontawesome-lock"></span>
+           <input type="password" name="passwd" id="passwd" placeholder="PASSWORD" maxlength="15" minlength="8"><!--done-->
+
+          <input type="submit" name="submit" id="submit" value="Login">
+          <!-- pwdがある場合は、絶対にPOATで送る-->
+          <a calss="new-menber" href="/register">新規会員登録はこちら</a> <!--done-->
+
+       </form>
+    </div>
+</body>
+</html>

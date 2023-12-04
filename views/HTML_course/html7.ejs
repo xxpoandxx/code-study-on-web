@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
+    <title>6. リストを作成しよう！《ulタグ・liタグ》</title>
+</head>
+
+<body>
+    <header>
+        <h2>6. リストを作成しよう！《ulタグ・liタグ》</h2>
+    </header>
+    <div class="home">
+        <a href="html0">HTMLコース一覧へ戻る</a>
+    </div>
+    <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今回のセクションで学ぶのは、<span>リストの作り方</span>です。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>リストかあ。まとめサイトなんかでよく見ますね。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうだね。ちょこっとややこしいところがあるので、気をつけてください。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なんだろう。わかりました。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>リストを作成するためには、<span>li要素</span>と、<span>ul要素</span>または<span>ol要素</span>を使います。<br>
+                まず、li要素は<span>ul要素かol要素によって囲まれます</span>。<br>
+                ul要素を使うときは順序をつけないリスト、ol要素を使うときは順序をつけたいリストを作成する時に使います。<br>
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>百聞は一見にしかず…です。コードを見てください。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <pre class="code">
+<span>&lt;ul&gt;</span>
+   &lt;li&gt;HTML&lt;/li&gt;
+   &lt;li&gt;CSS&lt;/li&gt;
+   &lt;li&gt;Javascript&lt;/li&gt;
+<span>&lt;/ul&gt;</span>
+<span>&lt;ol&gt;</span>
+   &lt;li&gt;HTML&lt;/li&gt;
+   &lt;li&gt;CSS&lt;/li&gt;
+   &lt;li&gt;Javascript&lt;/li&gt;
+<span>&lt;/ol&gt;</span>
+                </pre>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <div class="preview">
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                    </ul>
+                    <ol>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                    </ol>
+                    <p>こうなります。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>おぉ〜。li要素をul要素で囲むと黒丸が先頭について、ol要素で囲むと番号がつくんだ。</p>
+            </div>
+        </div>        
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>その通りです。<br>
+                    先ほど言ったちょっとややこしいところは、<br>
+                    リスト作成には<span>li要素だけではなく、ul要素またはol要素で囲む必要がある</span>ということ。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>このとき、囲む要素(ここではulやol)を<span>親要素</span>、囲まれる要素(ここではli)を<span>子要素</span>と呼びます。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど……<br>
+                    あ、もしかして、前回のセクションで学んだdiv要素にも、親要素とか適用されますか？</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>鋭いですね〜！！その通りです。<br>
+                    divを親要素とすると、divの中の要素はdivの子要素になります。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ははーん。</p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>今後の説明でも使われることが多いので、覚えて損はないですよ。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>覚えておこう。</p>
+            </div>
+        </div>
+
+
+    </div>
+    <footer>
+        <a href="html6" class="back">もどる</a>
+        <a href="html8" class="next">次へ</a>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <title>JavaScriptのコース一覧</title>
+</head>
+
+<body>
+    <header>
+        <h1>JavaScriptのコース一覧</h1>
+    </header>
+    <main>
+        <article>
+            <div>
+                <a href="/contents/aboutjavascript">JavaScriptについて</a>
+            </div>
+            <div>
+                <a href="/contents/fonts">文字をいじってみよう！《font》</a>
+            </div>
+            <div>
+                <a href="/contents/background">背景色を変えてみよう！《background》</a>
+            </div>
+            <div>
+                <a href="/contents/class2">特定の要素にだけCSSを適用させよう！《class属性呼び出し》</a>
+            </div>
+            <div>
+                <a href="/contents/width">要素の横幅・縦幅を指定しよう！《width・height》</a>
+            </div>
+        </article>
+        <aside>
+            <div>
+                <a href="/contents/list2">リストをレイアウトしよう！《list-style》</a>
+            </div>
+            <div>
+                <a href="/contents/paddig">要素に余白を入れよう！①《padding》</a>
+            </div>
+            <div>
+                <a href="/contents/margin">要素に余白を入れよう！②《margin》</a>
+            </div>
+            <div>
+                <a href="/contents/border">枠線をつけよう！《border》</a>
+            </div>
+        </aside>
+    </main>
+    <footer>
+
+    </footer>
+
+    <style>
+        h1{
+            text-align: center;
+            color: #9d8e6e;
+            width: 400px;
+            font-size: 40px;
+            border-bottom: 3px solid #9d8e6e;
+            border-left: 7px solid #9d8e6e;
+
+        }
+        body {
+            background-color: #ebebe6;
+            font-family:'Zen Maru Gothic';
+        }
+
+        article {
+            width: calc(45% - 4px);
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 20px;
+        }
+
+        aside {
+            width: calc(45% - 4px);
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        div {
+            border: solid 2px #9d8e6e;
+            background-color: white;
+            margin-bottom: 15px;
+            height: 100px;
+
+        }
+
+        a {
+            display: block;
+            font-size: 25px;
+            text-decoration: none;
+            padding-left: 10px;
+            margin: 25px 0;
+            color: #9d8e6e;
+            font-weight: bold;
+        }
+    </style>
+
+</body>
+
+</html>

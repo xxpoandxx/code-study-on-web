@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規会員登録はこちら|
+    </title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body id="body">
+    <div calss="headline">
+        <h1><span class="fontawesome-user"></span>登録はこちら<span class="fontawesome-user"></span></h1>
+    </div>
+    <div id="login">
+        <form method="POST" action="/new">
+
+            <span class="fontawesome-user"></span>
+            <input type="text" name="uid" id="uid" placeholder="ID"><br />
+
+            <span class="fontawesome-lock"></span>
+            <input type="password" name="password" id="password" placeholder="PASSWORD"><br />
+            <span class="fontawesome-envelope"></span>
+            <input type="email" name="email" id="email" placeholder="MAILADRESS"><br />
+            <input type="submit" name="submit" id="submit">
+            <!-- pwdがある場合は、絶対にPOATで送る-->
+        </form>
+        <a href="/">戻る</a>
+        </form>
+    </div>
+
+</body>
+
+</html>
