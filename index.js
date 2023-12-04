@@ -1,6 +1,6 @@
 const express = require('express'); //2023,07,06 13:51パッケージの読み込み
 const sqlite3 = require('sqlite3'); //sqlite3の読み込み
-const session = require('express-session'); 
+const session = require('express-session');
 const app = express(); //expressの使う準備ができた状態
 app.set("view engine", "ejs"); //テンプレートエンジンの使用
 app.use(express.urlencoded()); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
@@ -11,68 +11,43 @@ app.use(session({
     secret: 'squirearchicalgijbsgo]b93dvnjiyre4e31qqz46n28',
     resave: false,
     saveUninitialized: false,
-    cookie: {maxAge: 60 * 60 * 1000}
+    cookie: { maxAge: 60 * 60 * 1000 }
 }));
 
 //app.get('/main/:userId/books/:bookId', (req, res) => {
-    //res.send(req.params)
- // })
+//res.send(req.params)
+// })
 
 
 // app.get('/html/:course', (req,res) => {
-    //res.render(req.params.course);
+//res.render(req.params.course);
 //}); 
 
 const DB_USER = "./user.db";
 
-app.get('/', async (req,res) => {
-    if(req.session.login) {
+app.get('/', async (req, res) => {
+    if (req.session.login) {
         const uid = req.session.uid;
         const db = new sqlite3.Database(DB_USER);
-        
+
         try {
             // ログイン日検索
             const login_dates = await (() => {
                 return new Promise((resolve, reject) => {
-                    db.all("SELECT * from login_dates WHERE uid = ?", 
-                    [uid], (err, rows) => {
-                        if (err) {
-                            console.error(err);
-                            reject(err);
-                        } else {
-                            // データ
-                            let login_dates = [];
-                            for (let i = 0; i < rows.length; i++) {
-                                login_dates[i] = rows[i].date;
+                    db.all("SELECT * from login_dates WHERE uid = ?",
+                        [uid], (err, rows) => {
+                            if (err) {
+                                console.error(err);
+                                reject(err);
+                            } else {
+                                // データ
+                                let login_dates = [];
+                                for (let i = 0; i < rows.length; i++) {
+                                    login_dates[i] = rows[i].date;
+                                }
+                                resolve(login_dates);
                             }
-                            resolve(login_dates);
-                        }
-                    });
-                });
-            })();
-
-            // 進捗取得
-            const COURSE_CONTENT_AMOUNT = {
-                "css": 8,
-                "html": 9,
-                "js": 0
-            }
-
-            const study_progress = await (() => {
-                return new Promise((resolve, reject) => {
-                    db.all("SELECT course_type, count(course_id) AS completed from study_record WHERE uid = ? GROUP BY course_type", 
-                    [uid], (err, rows) => {
-                        if (err) {
-                            console.error(err);
-                            reject(err);
-                        } else {
-                            const row_including_amount = rows.map(row => {
-                                row.amount = COURSE_CONTENT_AMOUNT[row.course_type];
-                                return row
-                            });
-                            resolve(row_including_amount);
-                        }
-                    });
+                        });
                 });
             })();
 
@@ -80,14 +55,12 @@ app.get('/', async (req,res) => {
 
             console.log("@top page render > ", {
                 name: req.session.name,
-                loginDates: login_dates,
-                studyProgress: study_progress,
+                loginDates: login_dates
             });
-    
+
             res.render("main/main.ejs", {
                 name: req.session.name,
-                loginDates: login_dates,
-                studyProgress: study_progress,
+                loginDates: login_dates
             });
 
         } catch (error) {
@@ -106,7 +79,36 @@ app.get('/', async (req,res) => {
 });     //req,res→無名関数。もともとfunction(){}だったのが() => {}となっている()
 // end→もうかえしませんよという意味。
 
-app.get('/contents/:type/:course', (req,res) => {
+app.get('/userprogress', (req, res) => {
+    const uid = req.session.uid;
+
+    if (uid) {
+        const db = new sqlite3.Database(DB_USER);
+
+        // 進捗取得
+        const COURSE_CONTENT_AMOUNT = {
+            "css": 8,
+            "html": 9,
+            "js": 0
+        }
+
+        db.all("SELECT course_type, count(course_id) AS completed from study_record WHERE uid = ? GROUP BY course_type",
+            [uid], (err, rows) => {
+                if (err) {
+                    console.error(err);
+                    reject(err);
+                } else {
+                    const row_including_amount = rows.map(row => {
+                        row.amount = COURSE_CONTENT_AMOUNT[row.course_type];
+                        return row
+                    });
+                    res.json(row_including_amount);
+                }
+            });
+    }
+})
+
+app.get('/contents/:type/:course', (req, res) => {
 
     // ↓URL変数とフォルダ名の変換用テーブル
     const TYPES = {
@@ -117,7 +119,7 @@ app.get('/contents/:type/:course', (req,res) => {
     }
 
     // ↓ログイン中 かつ req.params.typeが適切 の場合
-    if(req.session.login && TYPES.hasOwnProperty(req.params.type)){
+    if (req.session.login && TYPES.hasOwnProperty(req.params.type)) {
 
         const course_type_dir = TYPES[req.params.type]; // ←フォルダ名
 
@@ -130,18 +132,18 @@ app.get('/contents/:type/:course', (req,res) => {
         const course_id_black_list = ["0"]; // ←記録除外id リスト
 
         if (!course_id_black_list.includes(course_id)) {
-             // ↓学習記録 書き込み
+            // ↓学習記録 書き込み
             const db = new sqlite3.Database(DB_USER);
             db.run(
                 "INSERT INTO study_record (uid, course_type, course_id) VALUES(?, ?, ?)",
                 [req.session.uid, req.params.type, course_id],
-                (err) => {db.close();}
+                (err) => { db.close(); }
             );
         }
 
         const filepath = course_type_dir + "/" + req.params.course;
 
-        res.render(filepath, {name: req.session.name});
+        res.render(filepath, { name: req.session.name });
     } else {
         res.redirect("/");
     }
@@ -149,32 +151,32 @@ app.get('/contents/:type/:course', (req,res) => {
 // ↑hrefで呼び出す際、<a href="/contents/(ejsのファイル名)">とする　2023.08.30
 
 // ↓ログインする時にうごく
-app.post('/login', (req,res) => {
+app.post('/login', (req, res) => {
     console.log(req.body.uid, req.body.passwd);
     const db = new sqlite3.Database('./user.db');
-    db.get("SELECT * FROM users WHERE name = ? AND passwd = ?", 
-    [req.body.uid, req.body.passwd], (err,row) =>{
-        if(!row){
-            // ↓失敗
-            console.log(err);
-            res.redirect("/register");
-        } else {
-            // ↓成功
-            req.session.login = true;
-            req.session.name = req.body.uid;
-            req.session.uid = row.uid;
+    db.get("SELECT * FROM users WHERE name = ? AND passwd = ?",
+        [req.body.uid, req.body.passwd], (err, row) => {
+            if (!row) {
+                // ↓失敗
+                console.log(err);
+                res.redirect("/register");
+            } else {
+                // ↓成功
+                req.session.login = true;
+                req.session.name = req.body.uid;
+                req.session.uid = row.uid;
 
-            // ログイン日記録
-            db.run("INSERT INTO login_dates VALUES (?, date())", [row.uid], (err)=>{db.close();});
+                // ログイン日記録
+                db.run("INSERT INTO login_dates VALUES (?, date())", [row.uid], (err) => { db.close(); });
 
-            // リダイレクト
-            res.redirect("/"); //正しいパスワードを入力した時にmain pageに戻る
-            console.log(row);
-        }
-    });
+                // リダイレクト
+                res.redirect("/"); //正しいパスワードを入力した時にmain pageに戻る
+                console.log(row);
+            }
+        });
 });
 
-app.get('/logout',(req,res) =>{
+app.get('/logout', (req, res) => {
     req.session.login = false;
     req.session.name = "";
     res.redirect("/");
@@ -182,30 +184,30 @@ app.get('/logout',(req,res) =>{
 
 
 //bodyのうしろはhtmlで指定したnameの名前
-app.get('/register',(req,res) => {
+app.get('/register', (req, res) => {
     res.render("main/register.ejs");
 });
 
-app.post('/new',(req,res) => {
-    
+app.post('/new', (req, res) => {
+
     const db = new sqlite3.Database('./user.db'); //データベースを開くやつ
-    db.get("SELECT count(*) FROM users", (err,count) =>{
+    db.get("SELECT count(*) FROM users", (err, count) => {
         console.log(count["count(*)"]);
         db.run("INSERT INTO users VALUES(?,?,?)",
-        count["count(*)"], req.body.uid, req.body.password
+            count["count(*)"], req.body.uid, req.body.password
         );
-});
-db.close();
-res.redirect('/');
+    });
+    db.close();
+    res.redirect('/');
 });
 //↑新規会員登録で、送信ボタンを押した時にそれがデータベースとして登録される。
 
-app.post('/api/update',(req,res) =>{
-    if(req.session.login) {
+app.post('/api/update', (req, res) => {
+    if (req.session.login) {
     }
 }); //ログインしないと使えない機能を使おうとしていた時、loginのsessionを確認しようね、というもの。
 
-app.get('/users', (req,res) =>{
+app.get('/users', (req, res) => {
     res.end("Hello,Users");
 });
 
