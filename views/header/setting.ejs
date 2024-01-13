@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>コーディングエディタ</title>
+</head>
+<body>
+  <div class="editor-container">
+    <div class="editor-pane">
+      <h3>HTML</h3>
+      <a href="setting2">こっち</a>
+      <textarea id="html-input" rows="5" cols="50"></textarea>
+      <h3>CSS</h3>
+      <textarea id="css-input" rows="5" cols="50"></textarea>
+      <h3>JavaScript</h3>
+      <textarea id="js-input" rows="5" cols="50"></textarea>
+    </div>
+    <iframe id="preview"></iframe>
+  </div>
+
+  <style>
+    .editor-container {
+      display: flex;
+      height: 300px;
+    }
+
+    .editor-pane {
+      width: 40%;
+    }
+
+    textarea {
+      width: 100%;
+      height: calc(100% - 10px);
+      resize: none;
+    }
+
+    #preview {
+      height: 100vh;
+      width: calc(40% - 2px);
+      margin-left: 10%;
+    }
+  </style>
+
+  <script>
+    const htmlInput = document.getElementById('html-input');
+    const cssInput = document.getElementById('css-input');
+    const jsInput = document.getElementById('js-input');
+    const preview = document.getElementById('preview');
+
+    function updatePreview() {
+      const htmlCode = htmlInput.value;
+      const cssCode = `<style>${cssInput.value}</style>`;
+      const jsCode = `<script>${jsInput.value}</scr${'ipt'}>`; // エスケープ処理
+
+      const combinedCode = `
+        <html>
+        <head>${cssCode}</head>
+        <body>${htmlCode}${jsCode}</body>
+        </html>
+      `;
+
+      preview.srcdoc = combinedCode;
+    }
+
+    htmlInput.addEventListener('input', updatePreview);
+    cssInput.addEventListener('input', updatePreview);
+    jsInput.addEventListener('input', updatePreview);
+
+    // 初期プレビュー更新
+    updatePreview();
+
+  </script>
+</body>
+</html> 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リアルタイムエディタだよ〜</title>
+</head>
+<style>
+    #preview{
+         width: 50%;
+         height: 100vh;
+    }
+    #html-editor{
+        width: 50%;
+    }
+    .containor{
+        display: flex;
+    }
+</style>
+
+<body>
+    <h1>CM6</h1>
+    <div class="containor">
+    <div id="html-editor"></div>
+    <iframe id="preview"></iframe>
+    </div>
+
+    <script type="importmap">
+	{
+		"imports": {
+			"codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
+		}
+	}
+</script>
+    <script async type="module">
+        import { basicSetup, EditorView} from "codemirror/codemirror/dist/index.js"
+        import { html } from "codemirror/lang-html/dist/index.js";
+
+        const htmlMixedCode = ``;
+
+        const view = new EditorView({
+            doc: htmlMixedCode,
+            extensions: [basicSetup, html()],
+            parent: document.getElementById("html-editor")
+        });
+
+        const previewIframe = document.getElementById("preview");
+        function updatePreview() {
+            const htmlCode = view.state.doc.toString();
+            previewIframe.srcdoc = htmlCode;
+        }
+    </script>
+    
+</body>
+
+</html>
+
+
+
+<!--<script>
+    const htmlInput = document.getElementById('html-editor');
+    const preview = document.getElementById('preview');
+
+    function updatePreview() {
+  const htmlCode = htmlInput.value;
+
+  const combinedCode = `
+    <html>
+    <head>${cssCode}</head>
+    <body>${htmlCode}${jsCode}</body>
+    </html>
+  `;
+
+  preview.srcdoc = combinedCode;
+}
+
+htmlInput.addEventListener('input', updatePreview);
+
+</script> -->

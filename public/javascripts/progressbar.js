@@ -13,4 +13,16 @@ fetch("/userprogress", {method: "GET"})
 
         console.log("data = ", data);
         console.log("course_progress (html, css, js) = ", course_progress);
+
+        const config = [
+            {selecter: ".first", color: "#12a568", rate: course_progress[0]},
+            {selecter: ".second", color: "#c3a40a", rate: course_progress[1]},
+            {selecter: ".third", color: "#d5525f", rate: course_progress[2]}
+        ];
+        
+        for (const obj of config) {
+            document.querySelector(obj.selecter).style.backgroundImage = `radial-gradient(#f2f2f2 60%, transparent 61%), conic-gradient(${obj.color} 0% ${obj.rate}%, #d9d9d9 ${obj.rate}% 100%)`;
+        }
     });
+
+ 

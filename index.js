@@ -115,7 +115,8 @@ app.get('/contents/:type/:course', (req, res) => {
         html: "HTML_course",
         css: "CSS_course",
         js: "JS_course",
-        main: "main"
+        main: "main",
+        header: "header"
     }
 
     // ↓ログイン中 かつ req.params.typeが適切 の場合
@@ -193,8 +194,8 @@ app.post('/new', (req, res) => {
     const db = new sqlite3.Database('./user.db'); //データベースを開くやつ
     db.get("SELECT count(*) FROM users", (err, count) => {
         console.log(count["count(*)"]);
-        db.run("INSERT INTO users VALUES(?,?,?)",
-            count["count(*)"], req.body.uid, req.body.password
+        db.run("INSERT INTO users VALUES(?,?,?,?)",
+            count["count(*)"], req.body.uid, req.body.password, req.body.email
         );
     });
     db.close();
