@@ -1,13 +1,19 @@
+import { basicSetup } from 'cdm/codemirror/dist/index.js';
+import { html } from 'cdm/lang-html/dist/index.js';
+import { css } from 'cdm/lang-css/dist/index.js';
+import { javascript } from 'cdm/lang-javascript/dist/index.js';
+import { EditorState } from 'cdm/state/dist/index.js';
+import { EditorView, keymap } from 'cdm/view/dist/index.js';
 
-import { basicSetup } from "codemirror/codemirror/dist/index.js"
-import { html } from "codemirror/lang-html/dist/index.js";
-import { css } from "codemirror/lang-css/dist/index.js";
-import { javascript } from "codemirror/lang-javascript/dist/index.js";
-import { EditorState } from "codemirror/state/dist/index.js";
-import { EditorView, keymap } from 'codemirror/view/dist/index.js'
+document.addEventListener('DOMContentLoaded', () => {
+    // Preview の伸び縮み
+    viewer();
+    // Editor セットアップ
+    editor();
+});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const target = document.getElementById("preview");
+function viewer() {
+    const target = document.getElementById('preview');
 
     // (1)ページ読み込み時に一度だけスクロール量を出力
     let scroll_y = window.scrollY;
@@ -17,49 +23,36 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('scroll', (event) => {
         let scroll_y = window.scrollY;
         if (scroll_y > 165) {
-            target.classList.add("fullsize");
-            target.style.height = `calc(100vh - 18px)`
+            // ページ見出しがないとき、高さいっぱい表示
+            target.classList.add('fullsize');
+            target.style.height = `calc(100vh - 18px)`;
         } else {
-            target.classList.remove("fullsize");
-            target.style.height = `calc(100vh - 18px - 165px + ${scroll_y}px)`
+            // ページ見出し分、上方に余白
+            target.classList.remove('fullsize');
+            // 100vh - preview's margin - ページ見出し分 + スクロール分
+            target.style.height = `calc(100vh - 18px - 165px + ${scroll_y}px)`;
         }
     });
+}
 
-    console.log('Hello')
-    editor()
-})
+function editor() {
+    // placeholderCodes 定義忘れ対策
+    if (typeof placeholderCodes === undefined) {
+        console.error('placeholderCodes is undefined');
+        return;
+    }
 
-async function editor() {
-    console.log('Hello')
+    const _placeholderCodes = placeholderCodes;
     const htmlEditor = document.getElementById('html-editor');
     const cssEditor = document.getElementById('css-editor');
     const javascriptEditor = document.getElementById('javascript-editor');
     const previewIframe = document.getElementById('preview');
 
-
-    const placeholderCodes = {
-        html: `<!-- ここにhtmlコードを書いてください -->
-        
-        
-
-        `,
-        css: `// ここにcssコードを書いてください //
-        
-        
-        
-        `,
-        javascript: ` //ここにjavascriptコードを書いてください 
-        
-        
-
-        `
-    }
-
     // Code Mirror セットアップ
     const htmlView = new EditorView({
         parent: htmlEditor,
         state: EditorState.create({
-            doc: placeholderCodes.html,
+            doc: _placeholderCodes.html,
             extensions: [basicSetup, html()]
         })
     });
@@ -68,7 +61,7 @@ async function editor() {
         extensions: [basicSetup, css()],
         parent: cssEditor,
         state: EditorState.create({
-            doc: placeholderCodes.css,
+            doc: _placeholderCodes.css,
             extensions: [basicSetup, css()]
         })
     });
@@ -76,7 +69,7 @@ async function editor() {
     const javascriptView = new EditorView({
         parent: javascriptEditor,
         state: EditorState.create({
-            doc: placeholderCodes.javascript,
+            doc: _placeholderCodes.javascript,
             extensions: [basicSetup, javascript()]
         })
     });
@@ -88,7 +81,7 @@ async function editor() {
         const javascriptCode = javascriptView.state.doc.toString();
 
         const coveredCssCode = `<style>${cssCode}</style>`;
-        const coveredJavascriptCode = `<script type="text/javascript">${javascriptCode}</scr${'ipt'}>`; // エスケープ処理
+        const coveredJavascriptCode = `<script type='text/javascript'>${javascriptCode}</scr${'ipt'}>`; // エスケープ処理
 
         const combinedCode = `
             <html>
@@ -98,9 +91,8 @@ async function editor() {
         `;
 
         previewIframe.srcdoc = combinedCode;
-        // document.createElement
     }
 
-    // window.setInterval(updatePreview, 100);
-    document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
+    // UPDATEボタンに updatePreview を登録
+    document.getElementById('doPreviewUpdate').addEventListener('click', updatePreview);
 }
