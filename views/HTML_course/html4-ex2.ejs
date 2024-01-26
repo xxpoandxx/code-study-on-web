@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
     <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
+            }
+        }
+    </script>
+    <script type="module" async src="/javascripts/codemirror.js"></script>
     <title>3. [演習ページ]リンクを作成しよう！《aタグ・href属性》</title>
 </head>
 
@@ -40,7 +48,7 @@
         <div class="column-sub">
             <iframe id="preview" style="background-color:#fff; position:fixed;"></iframe>
         </div>
-        <script>
+        <!--<script>
             document.addEventListener("DOMContentLoaded", () => {
                 const target = document.getElementById("preview");
 
@@ -60,18 +68,12 @@
                     }
                 });
             })
-        </script>
+        </script>-->
     </div>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
-            }
-        }
-    </script>
+    
     <script async type="module">
-        import { basicSetup } from "codemirror/codemirror/dist/index.js"
+        /*import { basicSetup } from "codemirror/codemirror/dist/index.js"
         import { html } from "codemirror/lang-html/dist/index.js";
         import { css } from "codemirror/lang-css/dist/index.js";
         import { javascript } from "codemirror/lang-javascript/dist/index.js";
@@ -81,7 +83,7 @@
         const htmlEditor = document.getElementById('html-editor');
         const cssEditor = document.getElementById('css-editor');
         const javascriptEditor = document.getElementById('javascript-editor');
-        const previewIframe = document.getElementById('preview');
+        const previewIframe = document.getElementById('preview'); */
 
         // 各エディタのプレースホルダー
         const placeholderCodes = {
@@ -103,7 +105,7 @@
         }
 
         // Code Mirror セットアップ
-        const htmlView = new EditorView({
+        /*const htmlView = new EditorView({
             parent: htmlEditor,
             state: EditorState.create({
                 doc: placeholderCodes.html,
@@ -149,7 +151,7 @@
         }
 
        // window.setInterval(updatePreview, 100);
-        document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
+        document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);*/
 
     </script>
     
