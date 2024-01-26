@@ -12,7 +12,7 @@ body {
   /* color: #ffffff; */
   color: black; /* テスト用 */
   font: 87.5%/1.5em 'Open Sans', sans-serif;
-  margin: 0;
+  margin: 0 !important;
 }
 h1{
   font-size: 100px;

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
+    <title>2.[演習ページ]文章を書いてみよう！《pタグ・hタグ》</title>
+</head>
+
+<body>
+    <h1>2. [演習ページ] 文章を書いてみよう！《pタグ・hタグ》</h1>
+    <div class="column-main">
+        <div class="talk">
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p><span style="font-size:20px;font-weight:bold;">[演習1]</span><br>HTMLファイルに、<br>h1タグを使って「<span
+                            style="color:red">ぴよぴよ</span>」と入力してください。</p>
+                </div>
+            </div>
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p><span style="font-size:20px;font-weight:bold;">[演習2]</span><br>HTMLファイルに、<br>pタグを使って「<span
+                            style="color:red">ひよこの豆知識を教えます</span>」と入力してください。</p>
+                </div>
+            </div>
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>完成したら、"UPDATE!"ボタンを押してください。</p>
+                </div>
+            </div>
+        </div>
+        <h2>HTML</h2>
+        <div id="html-editor" style="background-color: #fff;"></div>
+
+        <h2>CSS</h2>
+        <div id="css-editor" style="background-color: #fff;"></div>
+
+        <h2>JavaScript</h2>
+        <div id="javascript-editor" style="background-color: #fff;"></div>
+
+        <div class="talk">
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>UPDATE!ボタンを押すのを忘れないでね〜。</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="doPreviewUpdate" type="button" class="course-button"
+            style="margin-top:10px;display:block;margin:auto;">UPDATE!
+        </button>
+        <a href="html3#ex1" class="course-button" style="margin:auto;">トークに戻る</a>
+    </div>
+    <div class="column-sub">
+        <iframe id="preview" style="background-color:#fff; position:fixed;"></iframe>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const target = document.getElementById("preview");
+
+            // (1)ページ読み込み時に一度だけスクロール量を出力
+            let scroll_y = window.scrollY;
+            console.log(scroll_y);
+
+            // (2)スクロールするたびにスクロール量を出力
+            window.addEventListener('scroll', (event) => {
+                let scroll_y = window.scrollY;
+                if (scroll_y > 165) {
+                    target.classList.add("fullsize");
+                    target.style.height = `calc(100vh - 18px)`
+                } else {
+                    target.classList.remove("fullsize");
+                    target.style.height = `calc(100vh - 18px - 165px + ${scroll_y}px)`
+                }
+            });
+        })
+    </script>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
+            }
+        }
+    </script>
+    <script async type="module">
+        import { basicSetup } from "codemirror/codemirror/dist/index.js"
+        import { html } from "codemirror/lang-html/dist/index.js";
+        import { css } from "codemirror/lang-css/dist/index.js";
+        import { javascript } from "codemirror/lang-javascript/dist/index.js";
+        import { EditorState } from "codemirror/state/dist/index.js";
+        import { EditorView, keymap } from 'codemirror/view/dist/index.js'
+
+        const htmlEditor = document.getElementById('html-editor');
+        const cssEditor = document.getElementById('css-editor');
+        const javascriptEditor = document.getElementById('javascript-editor');
+        const previewIframe = document.getElementById('preview');
+
+        // 各エディタのプレースホルダー
+        const placeholderCodes = {
+            html: `<!-- ここにhtmlコードを書いてください -->
+            
+            
+
+            `,
+            css: `// ここにcssコードを書いてください //
+            
+            
+            
+            `,
+            javascript: ` //ここにjavascriptコードを書いてください 
+            
+            
+
+            `
+        }
+
+        // Code Mirror セットアップ
+        const htmlView = new EditorView({
+            parent: htmlEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.html,
+                extensions: [basicSetup, html()]
+            })
+        });
+
+        const cssView = new EditorView({
+            extensions: [basicSetup, css()],
+            parent: cssEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.css,
+                extensions: [basicSetup, css()]
+            })
+        });
+
+        const javascriptView = new EditorView({
+            parent: javascriptEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.javascript,
+                extensions: [basicSetup, javascript()]
+            })
+        });
+
+        // プレビュー
+        function updatePreview() {
+            const htmlCode = htmlView.state.doc.toString();
+            const cssCode = cssView.state.doc.toString();
+            const javascriptCode = javascriptView.state.doc.toString();
+
+            const coveredCssCode = `<style>${cssCode}</style>`;
+            const coveredJavascriptCode = `<script type="text/javascript">${javascriptCode}</scr${'ipt'}>`; // エスケープ処理
+
+            const combinedCode = `
+                <html>
+                <head>${coveredCssCode}</head>
+                <body>${htmlCode}${coveredJavascriptCode}</body>
+                </html>
+            `;
+
+            previewIframe.srcdoc = combinedCode;
+            // document.createElement
+        }
+
+        // window.setInterval(updatePreview, 100);
+        document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
+
+    </script>
+
+</body>
+
+</html>

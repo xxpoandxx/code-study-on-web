@@ -4,40 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>リアルタイムエディタだよ〜</title>
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
+    <title>3. [演習ページ]リンクを作成しよう！《aタグ・href属性》</title>
 </head>
-<style>
-    .containor{
-        display: flex;
-    }
-    .containor-column {
-        width: 50%;
-    }
-    #preview{
-        width: 100%;
-        height: 80vh;
-        border: 1px solid black;
-    }
-</style>
 
 <body>
-    <h1>CM6</h1>
-    <div class="containor">
-        <div class="containor-column">
-            <h2>html</h2>
-            <div id="html-editor"></div>
+    <h1>2. [演習ページ] リンクを作成しよう！《aタグ・href属性》</h1>
+        <div class="column-main">
+            <div class="talk">
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>ちゃんとリンクになっていますね〜。大正解です。</p>
+                    </div>
+                </div>
+                
+                </div>
+            <h2>HTML</h2>
+            <div id="html-editor" style="background-color: #fff;"></div>
 
-            <h2>css</h2>
-            <div id="css-editor"></div>
+            <h2>CSS</h2>
+            <div id="css-editor" style="background-color: #fff;"></div>
 
-            <h2>javascript</h2>
-            <div id="javascript-editor"></div>
+            <h2>JavaScript</h2>
+            <div id="javascript-editor" style="background-color: #fff;"></div>
 
-            <button id="doPreviewUpdate" type="button">Update</button>
+            <button id="doPreviewUpdate" type="button" class="course-button"style="margin-top:10px;display:block;margin:auto;">UPDATE!
+            </button>
+            <a href="html4#ex1" class="course-button" style="margin:auto;">トークに戻る</a>
         </div>
-        <div class="containor-column">
-            <iframe id="preview"></iframe>
+        <div class="column-sub">
+            <iframe id="preview" style="background-color:#fff; position:fixed;"></iframe>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const target = document.getElementById("preview");
+
+                // (1)ページ読み込み時に一度だけスクロール量を出力
+                let scroll_y = window.scrollY;
+                console.log(scroll_y);
+
+                // (2)スクロールするたびにスクロール量を出力
+                window.addEventListener('scroll', (event) => {
+                    let scroll_y = window.scrollY;
+                    if (scroll_y > 165) {
+                        target.classList.add("fullsize");
+                        target.style.height = `calc(100vh - 18px)`
+                    } else {
+                        target.classList.remove("fullsize");
+                        target.style.height = `calc(100vh - 18px - 165px + ${scroll_y}px)`
+                    }
+                });
+            })
+        </script>
     </div>
 
     <script type="importmap">
@@ -62,12 +85,21 @@
 
         // 各エディタのプレースホルダー
         const placeholderCodes = {
-            html: `<h1>Hello,World!</h1>`,
-            css: `h1{
-                font-size: 30px;
-                color: #9d8e6e;
-            }`,
-            javascript: ``
+            html: `<!-- ここにhtmlコードを書いてください -->
+            
+            
+
+            `,
+            css: `// ここにcssコードを書いてください //
+            
+            
+            
+            `,
+            javascript: ` //ここにjavascriptコードを書いてください 
+            
+            
+
+            `
         }
 
         // Code Mirror セットアップ
@@ -124,3 +156,5 @@
 </body>
 
 </html>
+
+

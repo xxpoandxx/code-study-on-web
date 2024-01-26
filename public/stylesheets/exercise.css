@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css?family=Zen Maru Gothic");
+body{
+    background-color: #ebebe6;
+}
+h1 {
+    font-family: 'Zen Maru Gothic';
+    display: inline-block;
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    border-bottom: 3px solid black;
+    border-left: 7px solid black;
+    padding: 0 30px;
+}
+.course-button{
+    font-family: 'Zen Maru Gothic';
+    font-size: 20px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    color: white;
+    background-color: #9d8e6e;
+    border-radius: 4px;
+    text-decoration: none;
+    width: 150px;
+}
+
+
+.container {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.column-main {
+    vertical-align: top;
+    width: 50%;
+}
+.column-sub {
+    vertical-align: top;
+    width: 50%;
+    min-height: 100px;
+}
+
+#preview{
+    width: calc(50% - 16px);
+    height: 75vh;
+    right: 9px;
+    bottom: 9px;
+
+    border: 1px solid black;
+    background-color:#fff;
+    position: fixed;
+}
+
+#preview.fullsize {
+    height: calc(100vh - 18px);
+}
+
+/*会話文*/
+
+.balloon {
+    margin-bottom: 2em;
+    position: relative;
+    margin: 10px 10px;
+}
+
+.balloon:before,
+.balloon:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.balloon figure {
+    width: 60px;
+    height: 60px;
+
+}
+
+.balloon-image-left {
+    float: left;
+    margin-right: 20px;
+
+}
+
+.balloon-image-right {
+    float: right;
+    margin-left: 20px;
+}
+
+.balloon figure img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    margin: 0;
+}
+
+.balloon-image-description {
+    padding: 5px 0 0;
+    font-size: 10px;
+    text-align: center;
+}
+
+.balloon-text-right,
+.balloon-text-left {
+    background-color: #fff;
+    position: relative;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 10px;
+    max-width: -webkit-calc(100% - 200px);
+    max-width: calc(100% - 200px);
+    display: inline-block;
+}
+
+.balloon-text-right:has(.preview),
+.balloon-text-left:has(.preview) {
+    background-color: #fff;
+    position: relative;
+    padding: 10px;
+    margin-bottom: 40px;
+    border: 1px solid;
+    border-radius: 10px;
+    max-width: -webkit-calc(100% - 120px);
+    max-width: calc(100% - 120px);
+    display: inline-block;
+    width: calc(100% - 180px);
+}
+
+.balloon-text-right {
+    border-color: #aaa;
+}
+
+.balloon-text-left {
+    border-color: #aaa;
+}
+.balloon-text-right {
+    float: left;
+}
+
+.balloon-text-left {
+    float: right;
+}
+
+.balloon p {
+    margin: 0 0 20px;
+}
+
+.balloon p:last-child {
+    margin-bottom: 0;
+}
+
+/* 三角部分 */
+.balloon-text-right:before {
+    position: absolute;
+    content: '';
+    border: 10px solid transparent;
+    border-right: 10px solid #aaa;
+    top: 15px;
+    left: -20px;
+}
+
+.balloon-text-right:after {
+    position: absolute;
+    content: '';
+    border: 10px solid transparent;
+    border-right: 10px solid #fff;
+    top: 15px;
+    left: -19px;
+}
+
+.balloon-text-left:before {
+    position: absolute;
+    content: '';
+    border: 10px solid transparent;
+    border-left: 10px solid #aaa;
+    top: 15px;
+    right: -20px;
+}
+
+.balloon-text-left:after {
+    position: absolute;
+    content: '';
+    border: 10px solid transparent;
+    border-left: 10px solid #fff;
+    top: 15px;
+    right: -19px;
+}
+
+.talk {
+    margin: 20px 0;
+
+}

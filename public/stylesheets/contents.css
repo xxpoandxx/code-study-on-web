@@ -293,6 +293,17 @@ span{
     margin: 20px 0;
 }
 
+.exercise {
+    font-size: 20px;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    color: white;
+    background-color: #9d8e6e;
+    border-radius: 4px;
+    text-decoration: none;
+    width: 150px;
+}
 
 /* フッター */
 /* ボタンの親要素 */
