@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>5. 要素をグループ化しよう！《divタグ・class属性》</title>
-</head>
-
+<% name = "html6" %>
+<%- include("head", {name}) %>
 <body>
     <header>
-        <h2>5. 要素をグループ化しよう！《divタグ・class属性》</h2>
+        <h2><%= title[name] %></h2>
     </header>
     <div class="home">
         <a href="html0">HTMLコース一覧へ戻る</a>
@@ -238,10 +233,9 @@
 
                     </div>
 
-                    <footer>
-                        <a href="html5" class="back">もどる</a>
-                        <a href="html7" class="next">次へ</a>
-                    </footer>
+                    <% name="html6" %>
+                    <%- include("footer", {name}) %>
+                
 </body>
 
 </html>

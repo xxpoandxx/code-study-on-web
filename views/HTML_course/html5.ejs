@@ -1,216 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>4. 画像の指定をしよう！《imgタグ・src属性》</title>
-</head>
-<body>
-    <header>
-        <h2>4. 画像の指定をしよう！《imgタグ・src属性》</h2>
-    </header>
-    <div class="home">
-        <a href="html0">HTMLコース一覧へ戻る</a>
-    </div>
-    <div class="talk">
+<% name="html5" %>
+    <%- include("head", {name}) %>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>今回のセクションでは、画像の表示方法を学びますよ。
-                </p>
+        <body>
+            <header>
+                <h2>
+                    <%= title[name] %>
+                </h2>
+            </header>
+            <div class="home">
+                <a href="html0">HTMLコース一覧へ戻る</a>
             </div>
-        </div>
+            <div class="talk">
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>文字じゃないのキタ！</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>今回のセクションでは、画像の表示方法を学びますよ。
+                        </p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>画像の表示には、<span>img要素</span>を使用します。<br>
-                    これは、前回のリンクと同様、<span class="img">URL</span>を入力する必要があります。
-                </p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>文字じゃないのキタ！</p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>画像にURLなんてあるんですか？</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>画像の表示には、<span>img要素</span>を使用します。<br>
+                            これは、前回のリンクと同様、<span class="img">URL</span>を入力する必要があります。
+                        </p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>Webから持ってくる場合はね。でも、<span class="img">フォルダの中にある画像の名前</span>でもいいのです。
-                </p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>画像にURLなんてあるんですか？</p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>HTMLのコースに入るより前にやった、フォルダの分け方で入れた画像ですね。</p>
-                <a href="beginners">フォルダの分け方を復習する</a>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>Webから持ってくる場合はね。でも、<span class="img">フォルダの中にある画像の名前</span>でもいいのです。
+                        </p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうです。それから、気をつけるところとして、<br>
-                    <span>画像の名前だけを入れるのではダメ</span>というところ。
-                </p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>HTMLのコースに入るより前にやった、フォルダの分け方で入れた画像ですね。</p>
+                        <a href="beginners">フォルダの分け方を復習する</a>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>画像の名前(URL)以外に情報が必要なのか。</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>そうです。それから、気をつけるところとして、<br>
+                            <span>画像の名前だけを入れるのではダメ</span>というところ。
+                        </p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうなんです。""(ダブルクォーテーション)の中には、画像の名前(URL)の前に<br>
-                その画像が入っているフォルダの名前も入力する必要があります。 </p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>画像の名前(URL)以外に情報が必要なのか。</p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p><span>呼び出す画像が今書き込んでいるHTMLファイルと同じ階層にいないから</span>ですか？</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>そうなんです。""(ダブルクォーテーション)の中には、画像の名前(URL)の前に<br>
+                            その画像が入っているフォルダの名前も入力する必要があります。 </p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>するどいですね〜！その通りです。階層が同じならば、必要はありません。</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p><span>呼び出す画像が今書き込んでいるHTMLファイルと同じ階層にいないから</span>ですか？</p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>また、フォルダの名前、画像の名前の前にはそれぞれ/(スラッシュ)を入力しましょう。<br>
-                こうすることで、適切に画像を呼び出すことができます。</p>
-            </div>
-        </div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>するどいですね〜！その通りです。階層が同じならば、必要はありません。</p>
+                    </div>
+                </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <pre class="code">
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>また、フォルダの名前、画像の名前の前にはそれぞれ/(スラッシュ)を入力しましょう。<br>
+                            こうすることで、適切に画像を呼び出すことができます。</p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <pre class="code">
 &lt;h1&gt;Hello,World!&lt;/h1&gt;
  &lt;h2&gt;Webページ制作にチャレンジしよう！&lt;/h2&gt;
  &lt;p&gt;HTMLの基礎からCSS、簡単なJavascriptまで学んで、
         自作のWebページを完成させましょう。&lt;/p&gt;
    &lt;<span>img src="/images/teacher.png"</span>&gt;
                 </pre>
-            </div>
-        </div>
-
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                    <h1>Hello,World!</h1>
-                <h2>Webサイト制作にチャレンジしよう！</h2>
-                <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
-                <img src="/images/piyo.png" style="width:500px;height:400px;">
+                    </div>
                 </div>
+
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <div class="preview">
+                            <h1>Hello,World!</h1>
+                            <h2>Webサイト制作にチャレンジしよう！</h2>
+                            <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
+                            <img src="/images/piyo.png" style="width:500px;height:400px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>せんせいだ。</p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>これで、画像を表示させることができるようになりました。</p>
+                    </div>
+                </div>
+
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p>前回のように演習問題を用意しましたよ。<a href="html5-ex3" id="ex1" class="exercise">[演習へ進む]</a></p>
+                    </div>
+                </div>
+
+
             </div>
-        </div>
+            <% name="html5" %>
+            <%- include("footer", {name}) %>
+        
+        </body>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>せんせいだ。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>これで、画像を表示させることができるようになりました。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>前回のように演習問題を用意しましたよ。<a href="html5-ex3" id="ex1" class="exercise">[演習へ進む]</a></p>
-            </div>
-        </div>
-
-
-    </div>
-    <footer>
-        <a href="html4" class="back">もどる</a>
-        <a href="html6" class="next">次へ</a>
-    </footer>
-</body>
 </html>
