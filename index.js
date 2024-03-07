@@ -1,6 +1,7 @@
 const express = require('express'); //2023,07,06 13:51パッケージの読み込み
 const sqlite3 = require('sqlite3'); //sqlite3の読み込み
 const session = require('express-session');
+const crypto = require('crypto'); // ハッシュ用
 const app = express(); //expressの使う準備ができた状態
 app.set("view engine", "ejs"); //テンプレートエンジンの使用
 app.use(express.urlencoded()); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
@@ -160,10 +161,18 @@ app.get('/contents/:type/:course', (req, res) => {
 
 // ↓ログインする時にうごく
 app.post('/login', (req, res) => {
-    console.log(req.body.uid, req.body.passwd);
+    console.log('login data:', req.body.uid, req.body.passwd);
+
+    // パスワードのハッシュ処理
+    const hashedPWD = crypto.createHash('sha256')
+        .update(req.body.passwd)
+        .digest('hex');
+
+    console.log('login data:', req.body.uid, hashedPWD);
+
     const db = new sqlite3.Database('./user.db');
     db.get("SELECT * FROM users WHERE name = ? AND passwd = ?",
-        [req.body.uid, req.body.passwd], (err, row) => {
+        [req.body.uid, hashedPWD], (err, row) => {
             if (!row) {
                 // ↓失敗
                 console.log(err);
@@ -198,11 +207,17 @@ app.get('/register', (req, res) => {
 
 app.post('/new', (req, res) => {
 
+    // パスワードのハッシュ処理
+    const hashedPWD = crypto.createHash('sha256')
+        .update(req.body.passwd)
+        .digest('hex');
+
     const db = new sqlite3.Database('./user.db'); //データベースを開くやつ
     db.get("SELECT count(*) FROM users", (err, count) => {
         console.log(count["count(*)"]);
         db.run("INSERT INTO users VALUES(?,?,?,?)",
-            count["count(*)"], req.body.uid, req.body.password, req.body.email
+            Number(count["count(*)"])+2, // uid は count+2
+            req.body.uid, hashedPWD, req.body.email
         );
     });
     db.close();
