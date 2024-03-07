@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<% name="html5" %>
-    <%- include("head", {name}) %>
+
+    <%- include("_head") %>
 
         <body>
-            <header>
-                <h2>
-                    <%= title[name] %>
-                </h2>
-            </header>
+            <%- include("_header") %>
             <div class="home">
                 <a href="html0">HTMLコース一覧へ戻る</a>
             </div>
@@ -207,8 +203,8 @@
 
 
             </div>
-            <% name="html5" %>
-            <%- include("footer", {name}) %>
+
+            <%- include("_footer") %>
         
         </body>
 

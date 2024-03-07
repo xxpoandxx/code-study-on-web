@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>1. 要素・タグ・属性を学ぼう！</title>
-</head>
+<%- include("_head") %>
 
 <body>
-    <header>
-        <h2>1. 要素・タグ・属性を学ぼう！</h2>
-    </header>
+    <%- include("_header") %>
     <div class="home">
         <a href="html0">HTMLコース一覧へ戻る</a>
     </div>
@@ -351,8 +343,7 @@
 
     </div>
 
-    <% name="html2" %>
-    <%- include("footer", {name}) %>
+    <%- include("_footer") %>
 
     <style>
         .bold {

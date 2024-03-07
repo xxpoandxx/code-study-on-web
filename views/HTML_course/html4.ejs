@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<% name = "html4" %>
-<%- include("head", {name}) %>
+
+<%- include("_head") %>
+
 <body>
-    <header>
-        <h2><%= title[name] %></h2>
-    </header>
+    <%- include("_header") %>
     <div class="home">
         <a href="html0">HTMLコース一覧へ戻る</a>
     </div>
@@ -72,7 +71,7 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>気をつけるポイントは、href属性をつける際に<span>ダブルクォーテーション("")で囲う</span>必要があるということ！</p>
+                <p>気をつけるポイントは、<br>href属性をつける際に<span>ダブルクォーテーション("")で囲う</span>必要があるということ！</p>
             </div>
         </div>
 
@@ -206,8 +205,8 @@
 
 
     </div>
-    <% name="html4" %>
-    <%- include("footer", {name}) %>
+
+    <%- include("_footer") %>
 
 </body>
 </html>

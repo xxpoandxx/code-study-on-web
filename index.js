@@ -110,6 +110,9 @@ app.get('/userprogress', (req, res) => {
 
 app.get('/contents/:type/:course', (req, res) => {
 
+    // ↓course-list.jsonを展開
+    const courseMeta = require('./course-list.json');
+    
     // ↓URL変数とフォルダ名の変換用テーブル
     const TYPES = {
         html: "HTML_course",
@@ -144,7 +147,11 @@ app.get('/contents/:type/:course', (req, res) => {
 
         const filepath = course_type_dir + "/" + req.params.course;
 
-        res.render(filepath, { name: req.session.name });
+        res.render(filepath, {
+            name: req.session.name,
+            courseName: req.params.course, // コースID
+            courseMeta, // コースタイトル
+        });
     } else {
         res.redirect("/");
     }
