@@ -16,14 +16,22 @@
     <div id="login">
         <form method="POST" action="/new">
 
-            <span class="fontawesome-user"></span>
+            <div class="spanu">
+                <i class="fa-solid fa-user"></i>
+             </div>
             <input type="text" name="uid" id="uid" placeholder="ID"><br />
 
-            <span class="fontawesome-lock"></span>
+            <div class="spanu">
+                <i class="fa-solid fa-lock"></i>
+               </div>
             <input type="password" name="passwd" id="passwd" placeholder="PASSWORD"><br />
-            <span class="fontawesome-envelope"></span>
-            <input type="email" name="email" id="email" placeholder="MAILADRESS"><br />
+            <!---
+            <div class="spanu">
+                <i class="fa-solid fa-envelope"></i>
+               </div>
+            <input type="email" name="email" id="email" placeholder="MAILADRESS"><br /> -->
             <input type="submit" name="submit" id="submit">
+
             <!-- pwdがある場合は、絶対にPOATで送る-->
         </form>
         <a href="/">戻る</a>

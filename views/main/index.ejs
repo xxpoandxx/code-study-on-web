@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/style.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
     <title>Welcome!!</title>
 
 </head>
@@ -15,10 +16,16 @@
     <div id="login">
        <form method="POST" action="/login" name='form-login'><!--done-->
 
-          <span class="fontawesome-user"></span>
-           <input type="text" name="uid" id="uid" placeholder="ID"><!--done-->
+         <div class="spanu">
+            <i class="fa-solid fa-user"></i>
+         </div>
 
-          <span class="fontawesome-lock"></span>
+            <input type="text" name="uid" id="uid" placeholder="ID"><!--done-->
+
+           <div class="spanu">
+          <i class="fa-solid fa-lock"></i>
+         </div>
+
            <input type="password" name="passwd" id="passwd" placeholder="PASSWORD" maxlength="15" minlength="4"><!--done-->
 
           <input type="submit" name="submit" id="submit" value="Login">
