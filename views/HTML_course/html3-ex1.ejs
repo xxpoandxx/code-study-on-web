@@ -52,6 +52,11 @@
         <div id="javascript-editor" style="background-color: #fff;"></div>
 
 
+        <button id="downloadButton">
+            <i class="fa-solid fa-download"></i>
+        </button>
+        <a href="#" id="alternativeDlownloadLink" style="display: none;" download="">Download</a>
+
         <button id="doPreviewUpdate" type="button" class="course-button"
             style="margin:30px 280px;display:block;">REFRESH!
         </button>
@@ -90,7 +95,7 @@
             }
         }
     </script>
-    <script async type="module">
+    <script async type="module" inline>
         import { basicSetup } from "codemirror/codemirror/dist/index.js"
         import { html } from "codemirror/lang-html/dist/index.js";
         import { css } from "codemirror/lang-css/dist/index.js";
@@ -110,12 +115,12 @@
             
 
             `,
-            css: `// ここにcssコードを書いてください //
+            css: `/* ここにcssコードを書いてください */
             
             
             
             `,
-            javascript: ` //ここにjavascriptコードを書いてください 
+            javascript: ` // ここにjavascriptコードを書いてください 
             
             
 
@@ -148,31 +153,63 @@
             })
         });
 
+        // State 取得用
+        function getCodes() {
+            const html = htmlView.state.doc.toString();
+            const css = cssView.state.doc.toString();
+            const javascript= javascriptView.state.doc.toString();
+            
+            return {
+                html, css, javascript,
+                doc: `<!DOCTYPE html>
+<html>\n<head>\n<meta charset="UTF-8">
+<style>\n${css}\n</style>\n</head>
+<body>\n${html}\n<body>\n</html>`,
+            };
+        }
+
         // プレビュー
         function updatePreview() {
-            const htmlCode = htmlView.state.doc.toString();
-            const cssCode = cssView.state.doc.toString();
-            const javascriptCode = javascriptView.state.doc.toString();
-
-            const coveredCssCode = `<style>${cssCode}</style>`;
-            const coveredJavascriptCode = `<script type="text/javascript">${javascriptCode}</scr${'ipt'}>`; // エスケープ処理
-
-            const combinedCode = `
-                <html>
-                <head>${coveredCssCode}</head>
-                <body>${htmlCode}${coveredJavascriptCode}</body>
-                </html>
-            `;
-
-            previewIframe.srcdoc = combinedCode;
-            // document.createElement
+            const codes = getCodes();
+            previewIframe.srcdoc = codes.doc;
         }
 
         // window.setInterval(updatePreview, 100);
         document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
 
-    </script>
+        // ダウンロードボタンが押されたら起動
+        function downloadFile() {
+            console.log('file dlownloading');
 
+            const codes = getCodes();
+
+            const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]); // UTF-8だと示すためのバイトオーダーマーク
+            const blob = new Blob([ bom, codes.doc ], { "type" : "text/html" });
+
+            const filename = `mycode-${Math.floor(Date.now() / 1000)}.html`;
+
+            if (window.navigator.msSaveBlob) { 
+                window.navigator.msSaveBlob(blob, filename); 
+
+                // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+                window.navigator.msSaveOrOpenBlob(blob, filename); 
+            } else {
+                const altLink = document.getElementById("alternativeDlownloadLink");
+                altLink.href = window.URL.createObjectURL(blob);
+                altLink.download = filename;
+                altLink.style.display = "inline-block";
+            }
+        }
+
+        // ダウンロードリンクが押されたら起動
+        function onDownload(e) {
+            console.log('file downloaded');
+            e.target.style.display = "none";
+        }
+
+        document.getElementById("downloadButton").addEventListener("click", downloadFile);
+        document.getElementById("alternativeDlownloadLink").addEventListener("click", onDownload);
+    </script>
 </body>
 
 </html>
