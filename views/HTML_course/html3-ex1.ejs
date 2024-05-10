@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
+    <script src="/javascripts/localstorage.js"></script>
     <title>2.[演習ページ]文章を書いてみよう！《pタグ・hタグ》</title>
 </head>
 
@@ -22,6 +23,7 @@
                             style="color:red">ぴよぴよ</span>」と入力してください。</p>
                 </div>
             </div>
+            
             <div class="balloon">
                 <figure class="balloon-image-left">
                     <img src="/images/piyo.png" alt="せんせい">
@@ -52,14 +54,17 @@
         <div id="javascript-editor" style="background-color: #fff;"></div>
 
 
-        <button id="downloadButton">
+        <button id="downloadButton" class="course-button">
             <i class="fa-solid fa-download"></i>
         </button>
-        <a href="#" id="alternativeDlownloadLink" style="display: none;" download="">Download</a>
+        <input type="file" accept="image/png, image/jpeg" id="uploadButton">
+
 
         <button id="doPreviewUpdate" type="button" class="course-button"
             style="margin:30px 280px;display:block;">REFRESH!
         </button>
+        <button id="doPreviewSave" type="button" class="course-button" style="margin:30px 280px;display:block;" >SAVE!</button>
+
         <a href="html3#ex1" class="course-button" style="margin:auto;">トークに戻る</a>
     </div>
     <div class="column-sub">
@@ -85,6 +90,25 @@
                 }
             });
         })
+
+         // 画像をアップロードする関数
+         //change(状態が変わったら) click→クリックしただけで反応
+        document.addEventListener('change',uploadImage);
+        
+        let file;
+        let uri;
+
+        function uploadImage(e) {   
+            console.log(e.target)  
+            file = e.target.files[0]
+            var reader = new FileReader()
+            reader.onload = function (e) {
+                uri = e.target.result
+                hogehoge(file, uri)
+            }
+            reader.readAsDataURL(file)
+            console.log(file, uri)
+                }
     </script>
     </div>
 
@@ -95,13 +119,19 @@
             }
         }
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" inline>
+    </script>
+
     <script async type="module" inline>
         import { basicSetup } from "codemirror/codemirror/dist/index.js"
         import { html } from "codemirror/lang-html/dist/index.js";
         import { css } from "codemirror/lang-css/dist/index.js";
         import { javascript } from "codemirror/lang-javascript/dist/index.js";
         import { EditorState } from "codemirror/state/dist/index.js";
-        import { EditorView, keymap } from 'codemirror/view/dist/index.js'
+        import { EditorView, keymap } from 'codemirror/view/dist/index.js';
+
+        //import 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js';
 
         const htmlEditor = document.getElementById('html-editor');
         const cssEditor = document.getElementById('css-editor');
@@ -109,39 +139,63 @@
         const previewIframe = document.getElementById('preview');
 
         // 各エディタのプレースホルダー
+        let savedCodes = hugahuga('html3-ex1');
         const placeholderCodes = {
-            html: `<!-- ここにhtmlコードを書いてください -->
-            
-            
-
-            `,
-            css: `/* ここにcssコードを書いてください */
-            
+            html: savedCodes.html??`<!-- ここにhtmlコードを書いてください -->
             
             
             `,
-            javascript: ` // ここにjavascriptコードを書いてください 
+            css: savedCodes.css??`/* ここにcssコードを書いてください */
             
             
-
+            
+            `,
+            javascript: savedCodes.js??`// ここにjavascriptコードを書いてください
+            
+            
+            
             `
-        }
+        };
+
+
+        let reList = [];
+        const eventHandlers = EditorView.domEventHandlers({
+            blur(event, view){
+                doPreviewSave();
+                updatePreview();
+            },
+            input(event, view){
+                console.log('input!', event, view);
+                if (reList.length > 0) {
+                    for (let i = 0; i < reList.length; i++) {
+                        clearTimeout(reList[i]);
+                    }
+                    reList = [];
+                }
+                const nextRe =setTimeout(() => {
+                    doPreviewSave();
+                    updatePreview();
+                },1000)
+                reList.push(nextRe);
+            }
+        });
+
+
 
         // Code Mirror セットアップ
         const htmlView = new EditorView({
             parent: htmlEditor,
             state: EditorState.create({
                 doc: placeholderCodes.html,
-                extensions: [basicSetup, html()]
+                extensions: [basicSetup, html(), eventHandlers]
             })
         });
 
         const cssView = new EditorView({
-            extensions: [basicSetup, css()],
             parent: cssEditor,
             state: EditorState.create({
                 doc: placeholderCodes.css,
-                extensions: [basicSetup, css()]
+                extensions: [basicSetup, css(), eventHandlers]
             })
         });
 
@@ -149,9 +203,12 @@
             parent: javascriptEditor,
             state: EditorState.create({
                 doc: placeholderCodes.javascript,
-                extensions: [basicSetup, javascript()]
+                extensions: [basicSetup, javascript(), eventHandlers]
             })
         });
+
+        // ブラウザに戻ってきた時にすぐ、元書いてあるコードがプレビューに表示させる
+        updatePreview();
 
         // State 取得用
         function getCodes() {
@@ -174,41 +231,52 @@
             previewIframe.srcdoc = codes.doc;
         }
 
+        function doPreviewSave() {
+            const codes = getCodes();
+            setCode(`html3-ex1`, codes.html, codes.css, codes.javascript);
+        }
+
+        document.getElementById("doPreviewSave").addEventListener("click", doPreviewSave);
+
         // window.setInterval(updatePreview, 100);
         document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
 
         // ダウンロードボタンが押されたら起動
         function downloadFile() {
+            // const blobx = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+            // saveAs(blobx, "hello world.txt");  
             console.log('file dlownloading');
 
             const codes = getCodes();
 
+            const date = new Date()
+            const y = date.getFullYear()
+            const m = date.getMonth() +1
+            const d = date.getDate()
+
+            const filename = `mycode-${y}${m}${d}.html`;
+
             const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]); // UTF-8だと示すためのバイトオーダーマーク
             const blob = new Blob([ bom, codes.doc ], { "type" : "text/html" });
+            saveAs(blob, filename);   
+            // blobx→blobというプロジェクト。バイナリーデータ（コンピュータが読めるデータのこと）。         
 
-            const filename = `mycode-${Math.floor(Date.now() / 1000)}.html`;
 
-            if (window.navigator.msSaveBlob) { 
-                window.navigator.msSaveBlob(blob, filename); 
+            // if (window.navigator.msSaveBlob) { 
+            //     window.navigator.msSaveBlob(blob, filename); 
 
-                // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
-                window.navigator.msSaveOrOpenBlob(blob, filename); 
-            } else {
-                const altLink = document.getElementById("alternativeDlownloadLink");
-                altLink.href = window.URL.createObjectURL(blob);
-                altLink.download = filename;
-                altLink.style.display = "inline-block";
-            }
+            //     // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+            //     window.navigator.msSaveOrOpenBlob(blob, filename); 
+            // } else {
+            //     const altLink = document.getElementById("alternativeDlownloadLink");
+            //     altLink.href = window.URL.createObjectURL(blob);
+            //     altLink.download = filename;
+            //     altLink.style.display = "inline-block";
+            // } 
         }
 
         // ダウンロードリンクが押されたら起動
-        function onDownload(e) {
-            console.log('file downloaded');
-            e.target.style.display = "none";
-        }
-
         document.getElementById("downloadButton").addEventListener("click", downloadFile);
-        document.getElementById("alternativeDlownloadLink").addEventListener("click", onDownload);
     </script>
 </body>
 

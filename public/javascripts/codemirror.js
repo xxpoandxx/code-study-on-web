@@ -49,7 +49,7 @@ function editor() {
     const previewIframe = document.getElementById('preview');
 
     // Code Mirror セットアップ
-    const htmlView = new EditorView({
+    const htmlView =  EditorView({
         parent: htmlEditor,
         state: EditorState.create({
             doc: _placeholderCodes.html,

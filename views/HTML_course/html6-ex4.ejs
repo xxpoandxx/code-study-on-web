@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input Content Persistence</title>
+</head>
+<body>
+<input type="text" id="textbox">
+
+<script>
+// ページ読み込み時に保存された内容を入力
+window.onload = function() {
+    var savedContent = sessionStorage.getItem('inputContent');
+    if (savedContent) {
+        document.getElementById('textbox').value = savedContent;
+    }
+};
+
+// 入力内容が変更されるたびに保存
+document.getElementById('textbox').addEventListener('input', function() {
+    sessionStorage.setItem('inputContent', this.value);
+});
+</script>
+</body>
+</html>

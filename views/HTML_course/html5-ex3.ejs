@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
+    <script src="/javascripts/localstorage.js"></script>
+    <title>2.[演習ページ]文章を書いてみよう！《pタグ・hタグ》</title>
+</head>
+
+<body>
+    <h1>2. [演習ページ] 文章を書いてみよう！《pタグ・hタグ》</h1>
+    <div class="column-main">
+        <div class="talk">
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p><span style="font-size:20px;font-weight:bold;">[演習1]</span><br>HTMLファイルに、<br>h1タグを使って「<span
+                            style="color:red">ぴよぴよ</span>」と入力してください。</p>
+                </div>
+            </div>
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p><span style="font-size:20px;font-weight:bold;">[演習2]</span><br>HTMLファイルに、<br>pタグを使って「<span
+                            style="color:red">ひよこの豆知識を教えます</span>」と入力してください。</p>
+                </div>
+            </div>
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>完成したら、"REFRESH!"ボタンを押してください。</p>
+                </div>
+            </div>
+        </div>
+        <h2>HTML</h2>
+        <div id="html-editor" style="background-color: #fff;"></div>
+
+        <h2>CSS</h2>
+        <div id="css-editor" style="background-color: #fff;"></div>
+
+        <h2>JavaScript</h2>
+        <div id="javascript-editor" style="background-color: #fff;"></div>
+
+
+        <button id="downloadButton">
+            <i class="fa-solid fa-download"></i>
+        </button>
+
+        <button id="doPreviewUpdate" type="button" class="course-button"
+            style="margin:30px 280px;display:block;">REFRESH!
+        </button>
+        <button type="button" id="doPreviewSave" style="margin:30px 280px;display:block;" >SAVE!</button>
+
+        <a href="html3#ex1" class="course-button" style="margin:auto;">トークに戻る</a>
+    </div>
+    <div class="column-sub">
+        <iframe id="preview" style="background-color:#fff; position:fixed;"></iframe>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const target = document.getElementById("preview");
+
+            // (1)ページ読み込み時に一度だけスクロール量を出力
+            let scroll_y = window.scrollY;
+            console.log(scroll_y);
+
+            // (2)スクロールするたびにスクロール量を出力
+            window.addEventListener('scroll', (event) => {
+                let scroll_y = window.scrollY;
+                if (scroll_y > 165) {
+                    target.classList.add("fullsize");
+                    target.style.height = `calc(100vh - 18px)`
+                } else {
+                    target.classList.remove("fullsize");
+                    target.style.height = `calc(100vh - 18px - 165px + ${scroll_y}px)`
+                }
+            });
+        })
+    </script>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" inline>
+
+    </script>
+    <script async type="module" inline>
+        import { basicSetup } from "codemirror/codemirror/dist/index.js"
+        import { html } from "codemirror/lang-html/dist/index.js";
+        import { css } from "codemirror/lang-css/dist/index.js";
+        import { javascript } from "codemirror/lang-javascript/dist/index.js";
+        import { EditorState } from "codemirror/state/dist/index.js";
+        import { EditorView, keymap } from 'codemirror/view/dist/index.js';
+
+        //import 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js';
+
+        const htmlEditor = document.getElementById('html-editor');
+        const cssEditor = document.getElementById('css-editor');
+        const javascriptEditor = document.getElementById('javascript-editor');
+        const previewIframe = document.getElementById('preview');
+
+        // 各エディタのプレースホルダー
+        let savedCodes = hugahuga('html3-ex1');
+        const placeholderCodes = {
+            html: savedCodes.html??`<!-- ここにhtmlコードを書いてください -->
+            
+            
+            `,
+            css: savedCodes.css??`/* ここにcssコードを書いてください */
+            
+            
+            
+            `,
+            javascript: savedCodes.js??`// ここにjavascriptコードを書いてください
+            
+            
+            
+            `
+        };
+        // const placeholderCodes = {
+        //     html: `<!-- ここにhtmlコードを書いてください -->
+            
+            
+
+        //     `,
+        //     css: `/* ここにcssコードを書いてください */
+            
+            
+            
+        //     `,
+        //     javascript: ` // ここにjavascriptコードを書いてください 
+            
+            
+
+        //     `
+        // }
+
+        // Code Mirror セットアップ
+        const htmlView = new EditorView({
+            parent: htmlEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.html,
+                extensions: [basicSetup, html()]
+            })
+        });
+
+        const cssView = new EditorView({
+            extensions: [basicSetup, css()],
+            parent: cssEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.css,
+                extensions: [basicSetup, css()]
+            })
+        });
+
+        const javascriptView = new EditorView({
+            parent: javascriptEditor,
+            state: EditorState.create({
+                doc: placeholderCodes.javascript,
+                extensions: [basicSetup, javascript()]
+            })
+        });
+
+        // State 取得用
+        function getCodes() {
+            const html = htmlView.state.doc.toString();
+            const css = cssView.state.doc.toString();
+            const javascript= javascriptView.state.doc.toString();
+            
+            return {
+                html, css, javascript,
+                doc: `<!DOCTYPE html>
+<html>\n<head>\n<meta charset="UTF-8">
+<style>\n${css}\n</style>\n</head>
+<body>\n${html}\n<body>\n</html>`,
+            };
+        }
+
+        // プレビュー
+        function updatePreview() {
+            const codes = getCodes();
+            previewIframe.srcdoc = codes.doc;
+        }
+
+        function doPreviewSave() {
+            const codes = getCodes();
+            setCode(`html3-ex1`, codes.html, codes.css, codes.javascript);
+        }
+
+        document.getElementById("doPreviewSave").addEventListener("click", doPreviewSave);
+
+        // window.setInterval(updatePreview, 100);
+        document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
+
+        // ダウンロードボタンが押されたら起動
+        function downloadFile() {
+            // const blobx = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+            // saveAs(blobx, "hello world.txt");  
+            console.log('file dlownloading');
+
+            const codes = getCodes();
+
+            const date = new Date()
+            const y = date.getFullYear()
+            const m = date.getMonth() +1
+            const d = date.getDate()
+
+            const filename = `mycode-${y}${m}${d}.html`;
+
+            const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]); // UTF-8だと示すためのバイトオーダーマーク
+            const blob = new Blob([ bom, codes.doc ], { "type" : "text/html" });
+            saveAs(blob, filename);   
+            // blobx→blobというプロジェクト。バイナリーデータ（コンピュータが読めるデータのこと）。         
+
+
+            // if (window.navigator.msSaveBlob) { 
+            //     window.navigator.msSaveBlob(blob, filename); 
+
+            //     // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+            //     window.navigator.msSaveOrOpenBlob(blob, filename); 
+            // } else {
+            //     const altLink = document.getElementById("alternativeDlownloadLink");
+            //     altLink.href = window.URL.createObjectURL(blob);
+            //     altLink.download = filename;
+            //     altLink.style.display = "inline-block";
+            // } 
+        }
+
+        // ダウンロードリンクが押されたら起動
+        document.getElementById("downloadButton").addEventListener("click", downloadFile);
+    </script>
+</body>
+
+</html>
