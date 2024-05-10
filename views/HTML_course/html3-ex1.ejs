@@ -165,7 +165,6 @@
                 updatePreview();
             },
             input(event, view){
-                console.log('input!', event, view);
                 if (reList.length > 0) {
                     for (let i = 0; i < reList.length; i++) {
                         clearTimeout(reList[i]);
@@ -228,7 +227,17 @@
         // プレビュー
         function updatePreview() {
             const codes = getCodes();
-            previewIframe.srcdoc = codes.doc;
+
+            const file = getHogehoge(); // LS から保存したファイルを取得
+            // file データがなければ、ただ表示するだけ
+            if (file === null) {
+                previewIframe.srcdoc = codes.doc;
+                return;
+            }
+            
+            // file データありなら、IMG タグ置き換え
+            const replaced = codes.doc.replaceAll(file.name, file.uri);
+            previewIframe.srcdoc = replaced;
         }
 
         function doPreviewSave() {
@@ -249,6 +258,7 @@
 
             const codes = getCodes();
 
+            // HTML ファイルダウンロード
             const date = new Date()
             const y = date.getFullYear()
             const m = date.getMonth() +1
@@ -259,20 +269,10 @@
             const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]); // UTF-8だと示すためのバイトオーダーマーク
             const blob = new Blob([ bom, codes.doc ], { "type" : "text/html" });
             saveAs(blob, filename);   
-            // blobx→blobというプロジェクト。バイナリーデータ（コンピュータが読めるデータのこと）。         
+            // blobx→blobというプロジェクト。バイナリーデータ（コンピュータが読めるデータのこと）。
 
-
-            // if (window.navigator.msSaveBlob) { 
-            //     window.navigator.msSaveBlob(blob, filename); 
-
-            //     // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
-            //     window.navigator.msSaveOrOpenBlob(blob, filename); 
-            // } else {
-            //     const altLink = document.getElementById("alternativeDlownloadLink");
-            //     altLink.href = window.URL.createObjectURL(blob);
-            //     altLink.download = filename;
-            //     altLink.style.display = "inline-block";
-            // } 
+            // IMG ファイルダウンロード
+            // 考え中
         }
 
         // ダウンロードリンクが押されたら起動

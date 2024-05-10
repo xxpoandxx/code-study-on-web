@@ -20,23 +20,13 @@ function hogehoge(file, uri) {
     localStorage.setItem('uri', uri)
 }
 
-function hogahoga() {
-    // この変数にアップロードファイルの情報を復元することにする
-    var file = null
-    // この変数にアップロードファイルをデータURI化した情報を復元することにする
-    var uri = localStorage.getItem('uri')
-
-    // アップロードファイルを復元する。
-    var binary = atob(
-        uri.slice(value.answer.file.indexOf(',') + 1)
-    )
-    var bytes = new Uint8Array(binary.length)
-    for (var i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i)
+function getHogehoge() {
+    const fileName = localStorage.getItem('name'); // アップロードファイル名
+    if (fileName == null) return null;   // データがなければ null を返す
+    const file = {
+        name:   fileName,
+        type:   localStorage.getItem('type'),    // ファイル種別
+        uri:    localStorage.getItem('uri'),           // ファイルのデータURI
     }
-    file = new Blob([bytes], {
-        type: localStorage.getItem('type'),
-    })
-    file.name = localStorage.getItem('name')
-    return file
+    return file; // データがあればオブジェクトを返す
 }
