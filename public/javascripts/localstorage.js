@@ -11,13 +11,23 @@ function hugahuga(id) {
     return { html: html, css: css, js: js }
 }
 
-function hogehoge(fileName,fileType,uri) {
-    // アップロードファイル名
-    localStorage.setItem(`name/uploadImage/${fileName}`, fileName)
-    // ファイル種別
-    localStorage.setItem(`type/uploadImage/${fileName}`, fileType)
-    // ファイルのデータURI
-    localStorage.setItem(`uri/uploadImage/${fileName}`, uri)
+function hogehoge(fileName, fileType, uri) {
+    try {
+        // ファイルのデータURI
+        localStorage.setItem(`uri/uploadImage/${fileName}`, uri);
+        // アップロードファイル名
+        localStorage.setItem(`name/uploadImage/${fileName}`, fileName);
+        // ファイル種別
+        localStorage.setItem(`type/uploadImage/${fileName}`, fileType);
+    } catch (error) {
+        console.error(error);
+        /**
+         * DOMException: Failed to execute 'setItem' on 'Storage':
+         * Setting the value of 'uri/uploadImage/DSC_1089.JPG' exceeded the quota
+         * => QuotaExceededError ; ストレージの容量超過
+         * https://developer.mozilla.org/ja/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria
+         */
+    }
 }
 
 function getHogehoge(fileName) {

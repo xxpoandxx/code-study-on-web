@@ -60,8 +60,8 @@
         <button id="imagePlus"><i class="fa-solid fa-plus"></i></button>
         <button id="imageMinus"><i class="fa-solid fa-minus"></i></button>
         <div id="imagebox">
-        <input type="file" class="uploadButton" accept="image/png, image/jpeg" id="initialUploadButton" multiple>
-     </div>
+            <input type="file" class="uploadButton" accept="image/png, image/jpeg" id="initialUploadButton" multiple>
+        </div>
 
 
         <button id="doPreviewUpdate" type="button" class="course-button"
@@ -112,9 +112,28 @@
         //     }
         //     reader.readAsDataURL(file)
         //     console.log(file, uri)
-        //         }
+        // }
 
-        const imagePlus = ()=>{
+
+        // ファイルが大きすぎるとエラー
+        const imageboxonChange = (changeEvent) => {
+            const files = changeEvent.target.files;
+            for (let i = 0; i< files.length; i++) {
+                const file = files[i];
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const uri = e.target.result;
+                    const fileName = file.name;
+                    const fileType = file.type;
+                    hogehoge(fileName, fileType, uri);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+        document.getElementById('initialUploadButton').addEventListener('change',imageboxonChange);
+
+        const imagePlus = () => {
             const box = document.getElementById('imagebox');
             const input = document.createElement('input');
             input.classList.add('uploadButton');
@@ -124,7 +143,6 @@
             input.addEventListener('change',imageboxonChange);
             box.appendChild(input);
         } 
-
         document.getElementById('imagePlus').addEventListener('click',imagePlus);
 
         const imageMinus =()=>{
@@ -134,21 +152,6 @@
             // inputList[inputList.length-1].remove();
         }
         document.getElementById('imageMinus').addEventListener('click',imageMinus);
-
-        const imageboxonChange =(e)=>{
-            const files = e.target.files
-            for (let i = 0; i< files.length; i++) {
-                const file = files[i];
-                const reader = new FileReader()
-                reader.onload = (x)=>{
-                    const uri = x.target.result
-                    const fileName = file.name
-                    const fileType = file.type
-                    hogehoge(fileName,fileType,uri);
-                }
-            }
-        }
-        document.getElementById('initialUploadButton').addEventListener('change',imageboxonChange);
     </script>
     </div>
 
