@@ -11,22 +11,22 @@ function hugahuga(id) {
     return { html: html, css: css, js: js }
 }
 
-function hogehoge(file, uri) {
+function hogehoge(fileName,fileType,uri) {
     // アップロードファイル名
-    localStorage.setItem('name', file.name)
+    localStorage.setItem(`name/uploadImage/${fileName}`, fileName)
     // ファイル種別
-    localStorage.setItem('type', file.type)
+    localStorage.setItem(`type/uploadImage/${fileName}`, fileType)
     // ファイルのデータURI
-    localStorage.setItem('uri', uri)
+    localStorage.setItem(`uri/uploadImage/${fileName}`, uri)
 }
 
-function getHogehoge() {
-    const fileName = localStorage.getItem('name'); // アップロードファイル名
-    if (fileName == null) return null;   // データがなければ null を返す
+function getHogehoge(fileName) {
+    const getFileName = localStorage.getItem(`name/uploadImage/${fileName}`); // アップロードファイル名
+    if (getFileName == null) return null;   // データがなければ null を返す
     const file = {
-        name:   fileName,
-        type:   localStorage.getItem('type'),    // ファイル種別
-        uri:    localStorage.getItem('uri'),           // ファイルのデータURI
+        name:   getFileName,
+        type:   localStorage.getItem(`type/uploadImage/${fileName}`),    // ファイル種別
+        uri:    localStorage.getItem(`uri/uploadImage/${fileName}`),    // ファイルのデータURI
     }
     return file; // データがあればオブジェクトを返す
 }

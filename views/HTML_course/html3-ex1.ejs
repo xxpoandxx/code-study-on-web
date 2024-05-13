@@ -57,7 +57,11 @@
         <button id="downloadButton" class="course-button">
             <i class="fa-solid fa-download"></i>
         </button>
-        <input type="file" accept="image/png, image/jpeg" id="uploadButton">
+        <button id="imagePlus"><i class="fa-solid fa-plus"></i></button>
+        <button id="imageMinus"><i class="fa-solid fa-minus"></i></button>
+        <div id="imagebox">
+        <input type="file" class="uploadButton" accept="image/png, image/jpeg" id="initialUploadButton" multiple>
+     </div>
 
 
         <button id="doPreviewUpdate" type="button" class="course-button"
@@ -93,22 +97,58 @@
 
          // 画像をアップロードする関数
          //change(状態が変わったら) click→クリックしただけで反応
-        document.addEventListener('change',uploadImage);
+        // document.addEventListener('change',uploadImage);
         
-        let file;
-        let uri;
+        // let file;
+        // let uri;
 
-        function uploadImage(e) {   
-            console.log(e.target)  
-            file = e.target.files[0]
-            var reader = new FileReader()
-            reader.onload = function (e) {
-                uri = e.target.result
-                hogehoge(file, uri)
-            }
-            reader.readAsDataURL(file)
-            console.log(file, uri)
+        // function uploadImage(e) {   
+        //     console.log(e.target)  
+        //     file = e.target.files[0]
+        //     var reader = new FileReader()
+        //     reader.onload = function (e) {
+        //         uri = e.target.result
+        //         hogehoge(file, uri)
+        //     }
+        //     reader.readAsDataURL(file)
+        //     console.log(file, uri)
+        //         }
+
+        const imagePlus = ()=>{
+            const box = document.getElementById('imagebox');
+            const input = document.createElement('input');
+            input.classList.add('uploadButton');
+            input.accept="image/png, image/jpeg";
+            input.type='file';
+            input.multiple=true;
+            input.addEventListener('change',imageboxonChange);
+            box.appendChild(input);
+        } 
+
+        document.getElementById('imagePlus').addEventListener('click',imagePlus);
+
+        const imageMinus =()=>{
+            const box = document.getElementById('imagebox');
+            box.lastElementChild.remove();
+            // const inputList = box.getElementsByClassName('uploadButton');
+            // inputList[inputList.length-1].remove();
+        }
+        document.getElementById('imageMinus').addEventListener('click',imageMinus);
+
+        const imageboxonChange =(e)=>{
+            const files = e.target.files
+            for (let i = 0; i< files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader()
+                reader.onload = (x)=>{
+                    const uri = x.target.result
+                    const fileName = file.name
+                    const fileType = file.type
+                    hogehoge(fileName,fileType,uri);
                 }
+            }
+        }
+        document.getElementById('initialUploadButton').addEventListener('change',imageboxonChange);
     </script>
     </div>
 
