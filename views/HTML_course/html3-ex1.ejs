@@ -54,18 +54,31 @@
         <div id="javascript-editor" style="background-color: #fff;"></div>
 
 
-        <button id="downloadButton" class="course-button">
-            <i class="fa-solid fa-download"></i>
-        </button>
         <button id="imagePlus"><i class="fa-solid fa-plus"></i></button>
         <button id="imageMinus"><i class="fa-solid fa-minus"></i></button>
         <div id="imagebox">
+            <p>ここに画像をドラッグ＆ドロップしてください</p>
+            <template id="file-names-template">
+                <div class="file-names-i">
+                    <img class="test" src="/images/structure.png">
+                    <i class="fa-solid fa-xmark"></i>
+                    <input type="hidden" value="">
+                </div>
+            </template>
+            <div id="file-names">
+
+            </div>
             <input type="file" class="uploadButton" accept="image/png, image/jpeg" id="initialUploadButton" multiple>
+            </div>
         </div>
+        <div id="gallery"></div>
 
 
-        <button id="doPreviewUpdate" type="button" class="course-button"
-            style="margin:30px 280px;display:block;">REFRESH!
+
+        <button id="downloadButton" class="course-button">
+            <i class="fa-solid fa-download"></i>
+        </button>
+        <button id="doPreviewUpdate" type="button" class="course-button" style="margin:30px 280px;display:block;">REFRESH!
         </button>
         <button id="doPreviewSave" type="button" class="course-button" style="margin:30px 280px;display:block;" >SAVE!</button>
 
@@ -147,11 +160,47 @@
 
         const imageMinus =()=>{
             const box = document.getElementById('imagebox');
+            const target = box.lastElementChild;
+            // console.log(target.files,target.files.length);
+            if(target.files !== 0){
+            for(let i = 0; i < target.files.length; i++){
+                const file = target.files[i];
+                deleteImage(file.name);
+            }
+        }
             box.lastElementChild.remove();
             // const inputList = box.getElementsByClassName('uploadButton');
             // inputList[inputList.length-1].remove();
         }
         document.getElementById('imageMinus').addEventListener('click',imageMinus);
+
+
+        function appendFileName(uri,name){
+            const fileNamesElement = document.getElementById('file-names');
+            const thisIndex = fileNamesElement.getElementsByClassName('file-names-i').length;
+            const template = document.getElementById('file-names-template');
+            const clone = template.content.cloneNode(true); //クローンの作成。これに対して、idやclassをあてられる
+            console.log(clone, clone.getElementsByClassName('test'));
+            const imageElement = clone.getElementsByClassName('test')[0];
+            imageElement.src = uri;
+            const inputElement = clone.getElementsByTagName('input')[0];
+            inputElement.value = name;
+            const iElement =  clone.getElementsByTagName('i')[0];
+            iElement.addEventListener('click',()=>{
+                removeFileName(thisIndex);
+            });
+         }
+
+
+         function removeFileName(index){
+            const fileNamesElement = document.getElementById('file-names');
+            const targetElement = fileNamesElement.getElementsByClassName('file-names-i')[index];
+            const targetFileName = targetElement.getElementsByTagName('input')[0].value;
+            deleteImage(targetFileName);
+            targetElement.remove();
+         }
+
+
     </script>
     </div>
 
@@ -267,20 +316,44 @@
             };
         }
 
+        function replaceImage(doc){
+            let str = doc;
+            const match = str.match(/<img[^<>]*>/g);
+            console.log(match);
+            if(match !== null){
+            for (let i = 0; i < match.length; i++) {
+                const img = match[i];
+                // console.log('original img:', img);
+                
+                const imgsrc = img.match(/(?<=src=").+(?=")/);
+                const file = getHogehoge(imgsrc);
+                if(file === null){
+                    continue;
+                }
+                const filledImg = img.replace(/(?<=src=").+(?=")/, file.uri);
+                // console.log('filledImg:', filledImg);
+                
+                str = str.replace(img, filledImg);
+                };
+            }
+            return str;
+        }
+
+
         // プレビュー
         function updatePreview() {
             const codes = getCodes();
-
-            const file = getHogehoge(); // LS から保存したファイルを取得
-            // file データがなければ、ただ表示するだけ
-            if (file === null) {
-                previewIframe.srcdoc = codes.doc;
-                return;
-            }
+            // 05.17
+            // const file = getHogehoge(); // LS から保存したファイルを取得
+            // // file データがない→ただ表示するだけ
+            // if (file === null) {
+            //     previewIframe.srcdoc = codes.doc;
+            //     return;
+            // }
             
-            // file データありなら、IMG タグ置き換え
-            const replaced = codes.doc.replaceAll(file.name, file.uri);
-            previewIframe.srcdoc = replaced;
+            // // file データあり→imgタグ置き換え
+            // const replaced = codes.doc.replaceAll(file.name, file.uri);
+            previewIframe.srcdoc = replaceImage(codes.doc);
         }
 
         function doPreviewSave() {
@@ -294,7 +367,7 @@
         document.getElementById("doPreviewUpdate").addEventListener("click", updatePreview);
 
         // ダウンロードボタンが押されたら起動
-        function downloadFile() {
+        function downloadFile(){
             // const blobx = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
             // saveAs(blobx, "hello world.txt");  
             console.log('file dlownloading');
@@ -320,7 +393,108 @@
 
         // ダウンロードリンクが押されたら起動
         document.getElementById("downloadButton").addEventListener("click", downloadFile);
+
+        // ドラックアンドドロップ
+        let dropArea = document.getElementById('imagebox');
+        let fileNamesDiv = document.getElementById('file-names');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight(e) {
+            dropArea.classList.add('highlight');
+        }
+
+        function unhighlight(e) {
+            dropArea.classList.remove('highlight');
+        }
+
+        // Handle dropped files
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        const files = changeEvent.target.files;
+            for (let i = 0; i< files.length; i++) {
+                const file = files[i];
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const uri = e.target.result;
+                    const fileName = file.name;
+                    const fileType = file.type;
+                    hogehoge(fileName, fileType, uri);
+                }
+                reader.readAsDataURL(file);
+            }
+
+        function handleDrop(e) {
+            let dt = e.dataTransfer;
+            let files = dt.files;
+
+            // Clear previous file names
+            // fileNamesDiv.innerHTML = '';
+
+            // Display file names
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let fileName = document.createElement('p');
+                fileName.textContent = file.name;
+                fileNamesDiv.appendChild(fileName);
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const uri = e.target.result;
+                    const fileName = file.name;
+                    const fileType = file.type;
+                    hogehoge(fileName, fileType, uri);
+                    appendFileName(uri,fileName);
+            }
+            reader.readAsDataURL(file);
+            }
+        }
     </script>
+    <style>
+        #imagebox{
+            width: calc(100% - 40px - 4px); /*paddingとborderの分を引いてます*/
+        }
+        .file-names{
+            width: 100%;
+        }
+        .file-names-i{
+            position: relative;
+            display: inline-block;
+            width: 100px;
+
+        }
+        .file-names-i img{
+            object-fit: cover;
+            display: block;
+            width:  100px;
+            height: 100px;
+        }
+        .file-names-i i{
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
 </body>
 
 </html>

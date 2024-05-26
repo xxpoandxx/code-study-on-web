@@ -197,3 +197,52 @@ h1 {
     margin: 20px 0;
 
 }
+
+
+#imagebox {
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+#imagebox.highlight {
+    border-color: purple;
+}
+
+#imagebox p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+#gallery {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#gallery img {
+    width: 150px;
+    margin: 10px;
+    border: 2px solid #cccccc;
+    border-radius: 5px;
+}
+

@@ -40,3 +40,24 @@ function getHogehoge(fileName) {
     }
     return file; // データがあればオブジェクトを返す
 }
+
+// function imageData(){
+//     for(let i = 0; i < localStorage.length; i++ ){
+//       const key = localStorage.key(i);
+//       if (key.match(/.*\/uploadImage\/.*/) !== null) {
+//         localStorage.removeItem(key);
+//       }
+//     }
+//   }
+
+function deleteImage(fileName){
+    const key = {
+        name: `name/uploadImage/${fileName}`,
+        type: `type/uploadImage/${fileName}`,
+        uri: `uri/uploadImage/${fileName}`
+    }
+    localStorage.removeItem(key.name)
+    localStorage.removeItem(key.type)
+    localStorage.removeItem(key.uri)
+
+}
