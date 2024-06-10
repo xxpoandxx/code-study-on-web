@@ -113,6 +113,11 @@ app.get('/userprogress', (req, res) => {
     }
 })
 
+// 一時的な　テンプレ作り用
+app.get('/template', (req, res) => {
+    res.render('HTML_course/layout-ex.ejs');
+});
+
 app.get('/contents/:type/:course', (req, res) => {
 
     // ↓course-list.jsonを展開
