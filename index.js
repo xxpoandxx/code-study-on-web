@@ -1,12 +1,15 @@
 const express = require('express'); //2023,07,06 13:51パッケージの読み込み
 const sqlite3 = require('sqlite3'); //sqlite3の読み込み
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const crypto = require('crypto'); // ハッシュ用
 const app = express(); //expressの使う準備ができた状態
 app.set("view engine", "ejs"); //テンプレートエンジンの使用
-app.use(express.urlencoded()); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
-
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true })); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
+app.use(bodyParser.json());
+
+app.use('/apiuse', require('./apiuse.js')) //api利用　2024.06.01
 
 app.use(session({
     secret: 'squirearchicalgijbsgo]b93dvnjiyre4e31qqz46n28',
@@ -80,6 +83,7 @@ app.get('/', async (req, res) => {
 });     //req,res→無名関数。もともとfunction(){}だったのが() => {}となっている()
 // end→もうかえしませんよという意味。
 
+//↓カレンダー下円形グラフ
 app.get('/userprogress', (req, res) => {
     const uid = req.session.uid;
 
@@ -233,6 +237,7 @@ app.post('/api/update', (req, res) => {
 app.get('/users', (req, res) => {
     res.end("Hello,Users");
 });
+
 
 
 app.listen(8080, () => { //8080はポート番号
