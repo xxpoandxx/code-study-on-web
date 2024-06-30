@@ -317,7 +317,7 @@
             const targetFileName = targetElement.getElementsByTagName('input')[0].value;
             deleteImage(targetFileName);
             targetElement.remove();
-         }
+        }
 
 
     </script>
@@ -341,9 +341,9 @@
         import { EditorState } from "codemirror/state/dist/index.js";
         import { EditorView, keymap } from 'codemirror/view/dist/index.js';
         import {
-        // lintGutter,
-        setDiagnostics,
-        lintKeymap,
+            // lintGutter,
+            setDiagnostics,
+            lintKeymap,
         } from "codemirror/lint/dist/index.js"
 
         //import 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js';
@@ -412,7 +412,6 @@
             state: EditorState.create({
                 doc: placeholderCodes.html,
                 extensions: [basicSetup, html(), eventHandlers, keymap.of(lintKeymap)]
-                
             })
         });
 
@@ -432,25 +431,41 @@
             })
         });
 
-        //const diagnostics = [{ from: 0, to: 500, severity: 'error', message: 'まちがっているよー。' }] sample
-
-
         // ブラウザに戻ってきた時にすぐ、元書いてあるコードがプレビューに表示させる
         updatePreview();
 
+        // HTMLの構文検査をする
         function validateHTML() {
-      const code = getCodes();
-      const results = HTMLHint.HTMLHint.verify(code.html);
+            const code = getCodes();
+            // 検査
+            const results = HTMLHint.HTMLHint.verify(code.html);
+            console.log('code.html.length', code.html.length)
 
-      if (results.length === 0) {
-      console.log("error not found!");
-      } else {
-        results.forEach(result => {
-          const message = `Line ${result.line}, Col ${result.col}: ${result.message}`;
-          console.log(message)
-        });
-      }
-    }
+            if (results.length > 0) {
+                const rows = code.html.split('\n'); // 改行文字でHTMLコードを line に分割
+                const strLengthInRow = rows.map((row) => row.length); // 1 line ごとの文字数
+                console.log('strLengthInRow', strLengthInRow)
+                // diagnostics = CodeMirrorにエラー部分を指示するためのオブジェクトが入る
+                const diagnostics = results.map((res, idx) => {
+                    console.log(`HTMLHintによるHTML構文検査結果 (${idx})`, res);
+                    const beforeRows = strLengthInRow.slice(0, res.line-1); // 先頭から、該当 line までの文字数配列
+                    const beforeRowsSum = beforeRows.reduce((sum, elem) => sum + elem); // 先頭から、該当 line までの文字数合計
+                    const rowStart = beforeRowsSum + 1; // HTMLコード先頭から、該当 line の先頭までの文字数
+                    const from = rowStart + res.col; // rowStart を踏まえた、コード先頭から該当 col までの文字数
+                    const to = from + (res.evidence).length; // res.evidence は該当の文字列。それの文字数を足すことで該当 col の最後尾までの文字数がわかる
+                    const message = res.message; // エラーメッセージ
+                    return { from, to, severity: 'error', message };
+                    // const diagnostics = [{ from: 0, to: 500, severity: 'error', message: 'まちがっているよー。' }];
+                    // cssView.dispatch(setDiagnostics(cssView.state, diagnostics));
+                    // javascriptView.dispatch(setDiagnostics(javascriptView.state, diagnostics));
+                });
+                console.log('diagnostics', diagnostics);
+                htmlView.dispatch(setDiagnostics(htmlView.state, diagnostics));
+            } else {
+                // エラーなしのとき初期化
+                htmlView.dispatch(setDiagnostics(htmlView.state, []));
+            }
+        }
         
 
         // State 取得用
@@ -489,8 +504,8 @@
             }).catch((error)=>{
                 console.log(error);
             })
-         }
-         document.getElementById('doJudgement').addEventListener('click',doJudgement);
+        }
+        document.getElementById('doJudgement').addEventListener('click',doJudgement);
         //GeminiAPIの使用
 
 //         function doJudgement() {
@@ -553,13 +568,10 @@
 
         // プレビュー
         function updatePreview() {
-            // htmlView.dispatch(setDiagnostics(htmlView.state, diagnostics))
-            // cssView.dispatch(setDiagnostics(cssView.state, diagnostics))
-            // javascriptView.dispatch(setDiagnostics(javascriptView.state, diagnostics))
             const codes = getCodes();
             // 05.17
             // const file = getHogehoge(); // LS から保存したファイルを取得
-            // // file データがない→ただ表示するだけ
+            // // file データがない → ただ表示するだけ
             // if (file === null) {
             //     previewIframe.srcdoc = codes.doc;
             //     return;
