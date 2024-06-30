@@ -9,6 +9,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
 app.use(bodyParser.json());
 
+
 app.use('/apiuse', require('./apiuse.js')) //api利用　2024.06.01
 
 app.use(session({
@@ -115,14 +116,19 @@ app.get('/userprogress', (req, res) => {
 
 // 一時的な　テンプレ作り用
 app.get('/template', (req, res) => {
-    res.render('HTML_course/layout-ex.ejs');
+    const courseMeta = require('./course-list.json');
+    const data = courseMeta['html']['html3-ex1'];
+    
+    res.render('HTML_course/layout-ex.ejs', {
+        title: data.title,
+        talks: data.talks,
+    });
 });
 
 app.get('/contents/:type/:course', (req, res) => {
+    const courseType = req.params.type;
+    const courseId = req.params.course;
 
-    // ↓course-list.jsonを展開
-    const courseMeta = require('./course-list.json');
-    
     // ↓URL変数とフォルダ名の変換用テーブル
     const TYPES = {
         html: "HTML_course",
@@ -131,17 +137,43 @@ app.get('/contents/:type/:course', (req, res) => {
         main: "main",
         header: "header"
     }
+    
+    // コースタイプの分岐
+    if (/.+-ex/.test(courseId)) {
+        const exlist = require('./excercise.json');
+        const db = new sqlite3.Database('editor_page.db');
+        db.get("SELECT * FROM exercise WHERE course_id = ?",courseId,(err,row)=>{
+            const title = row.title
+            const next = row.next
+            const back = row.back
+            const ai_prompt = row.ai_prompt
+            db.all("SELECT * FROM talks WHERE course_id = ?",courseId,(err,rows)=>{
+                const talks = rows
+                res.render(`${TYPES[courseType]}/layout-ex.ejs`, {
+                    courseId,
+                    relations: {next,back},
+                    aiPrompt: ai_prompt.replaceAll('`','^'),
+                    title,
+                    talks
+                });
+            })
+        })
+        return;
+    }
+
+    // ↓course-list.jsonを展開
+    const courseMeta = require('./course-list.json');
 
     // ↓ログイン中 かつ req.params.typeが適切 の場合
-    if (req.session.login && TYPES.hasOwnProperty(req.params.type)) {
+    if (req.session.login && TYPES.hasOwnProperty(courseType)) {
 
-        const course_type_dir = TYPES[req.params.type]; // ←フォルダ名
+        const course_type_dir = TYPES[courseType]; // ←フォルダ名
 
         // ↓req.params.course から末尾の数字を取り出す
-        let matchResult = req.params.course.match(/\d+$/);
+        let matchResult = courseId.match(/\d+$/);
 
         // ↓マッチがあればその数字を、なければ req.params.course をそのまま、idとする
-        const course_id = (matchResult) ? matchResult[0] : req.params.course;
+        const course_id = (matchResult) ? matchResult[0] : courseId;
 
         const course_id_black_list = ["0"]; // ←記録除外id リスト
 
@@ -150,16 +182,16 @@ app.get('/contents/:type/:course', (req, res) => {
             const db = new sqlite3.Database(DB_USER);
             db.run(
                 "INSERT INTO study_record (uid, course_type, course_id) VALUES(?, ?, ?)",
-                [req.session.uid, req.params.type, course_id],
+                [req.session.uid, courseType, course_id],
                 (err) => { db.close(); }
             );
         }
 
-        const filepath = course_type_dir + "/" + req.params.course;
+        const filepath = course_type_dir + "/" + courseId;
 
         res.render(filepath, {
             name: req.session.name,
-            courseName: req.params.course, // コースID
+            courseName: courseId, // コースID
             courseMeta, // コースタイトル
         });
     } else {
@@ -242,8 +274,6 @@ app.post('/api/update', (req, res) => {
 app.get('/users', (req, res) => {
     res.end("Hello,Users");
 });
-
-
 
 app.listen(8080, () => { //8080はポート番号
     console.log("Server Start");

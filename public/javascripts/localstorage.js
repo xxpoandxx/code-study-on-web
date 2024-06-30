@@ -1,13 +1,13 @@
 function setCode(id, html, css, js) {
-    localStorage.setItem(`exCode-${id}-html`, html);
-    localStorage.setItem(`exCode-${id}-css`, css);
-    localStorage.setItem(`exCode-${id}-js`, js);
+    localStorage.setItem(`exCode/${id}/html`, html);
+    localStorage.setItem(`exCode/${id}/css`, css);
+    localStorage.setItem(`exCode/${id}/js`, js);
 }
 
 function hugahuga(id) {
-    const html = localStorage.getItem(`exCode-${id}-html`);
-    const css = localStorage.getItem(`exCode-${id}-css`);
-    const js = localStorage.getItem(`exCode-${id}-js`);
+    const html = localStorage.getItem(`exCode/${id}/html`);
+    const css = localStorage.getItem(`exCode/${id}/css`);
+    const js = localStorage.getItem(`exCode/${id}/js`);
     return { html: html, css: css, js: js }
 }
 

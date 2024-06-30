@@ -2,6 +2,12 @@
     # パラメータ
     title: サイトタイトル
     talks: <トークのオブジェクト>[]
+    courseId: コース ID (例: "html3")
+    aiPrompt: AI 用のプロンプト
+    relations: {
+        back: もどるボタンのパス
+        next: 次ボタンのパス
+    }
     # <トークのオブジェクト>
     {
         speaker: トークしてる人(teacher|student)
@@ -9,19 +15,6 @@
         htext: トークのテキスト(ハイパーテキスト)
     }
 -->
-<!-- 例として html3-ex1.ejs を書いてみるよ -->
-<% const title = '2.[演習ページ]文章を書いてみよう！《pタグ・hタグ》'; %>
-<% const talks = [
-    {
-        type: 'assignment', speaker: 'teacher', htext: 'HTMLファイルに、<br>h1タグを使って「<span style="color:red">ぴよぴよ</span>」と入力してください。'
-    },
-    {
-        type: 'assignment', speaker: 'teacher', htext: 'HTMLファイルに、<br>pタグを使って「<span style="color:red">ひよこの豆知識を教えます</span>」と入力してください。'
-    },
-    {
-        type: 'speech', speaker: 'teacher', htext: '完成したら、"REFRESH!"ボタンを押してください。'
-    }
-]; %>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -30,6 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../../stylesheets/exercise.css">
     <script src="/javascripts/localstorage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmlhint@1.1.4/dist/htmlhint.min.js"></script>
     <title><%= title %></title>
 </head>
 
@@ -37,42 +31,55 @@
     <h1><%= title %></h1>
     <div class="column-main">
         <div class="talk">
-            <% let asgmt = 0; %>
-            <% talks.forEach((talk) => { %>
-                <div class="balloon">
-                    <% if (talk.speaker == 'teacher') { %>
-                        <!-- speaker の分岐 / teacher -->
-                        <figure class="balloon-image-left">
-                            <img src="/images/piyo.png" alt="せんせい">
-                            <figcaption class="balloon-image-description">せんせい</figcaption>
-                        </figure>
-                        <div class="balloon-text-right">
-                    <% } else if (talk.speaker == 'student') { %>
-                        <!-- speaker の分岐 / student -->
-                        <figure class="balloon-image-right">
-                            <img src="/images/pen.png" alt="せいとくん">
-                            <figcaption class="balloon-image-description">せいとくん</figcaption>
-                        </figure>
-                        <div class="balloon-text-left">
-                    <% } %>
 
-                    <% if (talk.type == 'assignment') { %>
-                        <!-- type の分岐 / assignment -->
-                        <% asgmt = asgmt + 1; %>
-                        <p>
-                            <span style="font-size:20px;font-weight:bold;">[演習<%= asgmt %>]</span><br>
-                            <%- talk.htext %>
-                        </p>
-                    <% } else if (talk.type == 'speech') { %>
-                        <!-- type の分岐 / speech -->
-                        <p>
-                            <%- talk.htext %>
-                        </p>
-                    <% } %>
+        <% let asgmt = 0; %>
+        <% console.log(talks)%>
+        <% talks.forEach((talk) => { %>
+            <div class="balloon">
 
-                        </div><!-- End of <div class="balloon-text-right|balloon-text-left"> -->
-                </div><!-- End of <div class="balloon"> -->
-            <% }); %>
+            <% if (talk.speaker == 'teacher') { %>
+
+                <!-- speaker の分岐 / teacher -->
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+
+            <% } else if (talk.speaker == 'student') { %>
+
+                <!-- speaker の分岐 / student -->
+                <figure class="balloon-image-right">
+                    <img src="/images/pen.png" alt="せいとくん">
+                    <figcaption class="balloon-image-description">せいとくん</figcaption>
+                </figure>
+                <div class="balloon-text-left">
+
+            <% } %>
+
+                <% if (talk.type == 'assignment') { %>
+
+                    <!-- type の分岐 / assignment -->
+                    <% asgmt = asgmt + 1; %>
+                    <p>
+                        <span style="font-size:20px;font-weight:bold;">[演習<%= asgmt %>]</span><br>
+                        <%- talk.htext %>
+                    </p>
+
+                <% } else if (talk.type == 'speech') { %>
+
+                    <!-- type の分岐 / speech -->
+                    <p>
+                        <%- talk.htext %>
+                    </p>
+
+                <% } %>
+
+                </div><!-- End of <div class="balloon-text-right|balloon-text-left"> -->
+            </div><!-- End of <div class="balloon"> -->
+
+        <% }); %>
+
         </div><!-- End of <div class="talk"> -->
         <h2>HTML</h2>
         <div id="html-editor" style="background-color: #fff;"></div>
@@ -83,8 +90,6 @@
         <h2>JavaScript</h2>
         <div id="javascript-editor" style="background-color: #fff;"></div>
 
-
-        
         <div id="imagebox">
             <p>ここに画像をドラッグ＆ドロップしてください</p>
             <template id="file-names-template">
@@ -102,22 +107,26 @@
         </div>
         <div id="gallery"></div>
 
-
-
         <button id="downloadButton" class="course-button">
             <i class="fa-solid fa-download"></i>
         </button>
         <button id="doJudgement" type="button" class="course-button" style="margin:30px 280px;display:block;">評価する
             </button>
+        <div id="api-response"></div>
         <!--<button id="doPreviewUpdate" type="button" class="course-button" style="margin:30px 280px;display:block;">REFRESH!
         </button> -->
         <button id="doPreviewSave" type="button" class="course-button" style="margin:30px 280px;display:block;" >SAVE!</button>
 
         <a href="html3#ex1" class="course-button" style="margin:auto;">トークに戻る</a>
-    </div>
+        </div>
     <div class="column-sub">
         <iframe id="preview" style="background-color:#fff; position:fixed;"></iframe>
     </div>
+    </div>
+    <footer>
+        <a class="back" href="<%= relations.back %>">もどる</a>
+        <a class="back" href="<%= relations.next %>">次へ</a>
+    </footer>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const target = document.getElementById("preview");
@@ -310,11 +319,8 @@
             targetElement.remove();
          }
 
-        
-
 
     </script>
-    </div>
 
     <script type="importmap">
         {
@@ -334,6 +340,11 @@
         import { javascript } from "codemirror/lang-javascript/dist/index.js";
         import { EditorState } from "codemirror/state/dist/index.js";
         import { EditorView, keymap } from 'codemirror/view/dist/index.js';
+        import {
+        // lintGutter,
+        setDiagnostics,
+        lintKeymap,
+        } from "codemirror/lint/dist/index.js"
 
         //import 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js';
 
@@ -343,7 +354,7 @@
         const previewIframe = document.getElementById('preview');
 
         // 各エディタのプレースホルダー
-        let savedCodes = hugahuga('html3-ex1');
+        let savedCodes = hugahuga("<%= courseId %>");
         const placeholderCodes = {
             html: savedCodes.html??`<!-- ここにhtmlコードを書いてください -->
             
@@ -374,6 +385,7 @@
             blur(event, view){
                 doPreviewSave();
                 updatePreview();
+                validateHTML();
             },
             input(event, view){
                 if (reList.length > 0) {
@@ -385,6 +397,8 @@
                 const nextRe =setTimeout(() => {
                     doPreviewSave();
                     updatePreview();
+                    validateHTML();
+
                 },1000)
                 reList.push(nextRe);
             }
@@ -397,7 +411,8 @@
             parent: htmlEditor,
             state: EditorState.create({
                 doc: placeholderCodes.html,
-                extensions: [basicSetup, html(), eventHandlers]
+                extensions: [basicSetup, html(), eventHandlers, keymap.of(lintKeymap)]
+                
             })
         });
 
@@ -405,7 +420,7 @@
             parent: cssEditor,
             state: EditorState.create({
                 doc: placeholderCodes.css,
-                extensions: [basicSetup, css(), eventHandlers]
+                extensions: [basicSetup, css(), eventHandlers, keymap.of(lintKeymap)]
             })
         });
 
@@ -413,12 +428,30 @@
             parent: javascriptEditor,
             state: EditorState.create({
                 doc: placeholderCodes.javascript,
-                extensions: [basicSetup, javascript(), eventHandlers]
+                extensions: [basicSetup, javascript(), eventHandlers, keymap.of(lintKeymap)]
             })
         });
 
+        //const diagnostics = [{ from: 0, to: 500, severity: 'error', message: 'まちがっているよー。' }] sample
+
+
         // ブラウザに戻ってきた時にすぐ、元書いてあるコードがプレビューに表示させる
         updatePreview();
+
+        function validateHTML() {
+      const code = getCodes();
+      const results = HTMLHint.HTMLHint.verify(code.html);
+
+      if (results.length === 0) {
+      console.log("error not found!");
+      } else {
+        results.forEach(result => {
+          const message = `Line ${result.line}, Col ${result.col}: ${result.message}`;
+          console.log(message)
+        });
+      }
+    }
+        
 
         // State 取得用
         function getCodes() {
@@ -442,7 +475,13 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(codes),
+                body: JSON.stringify({
+                    html: codes.html,
+                    css: codes.css,
+                    javascript: codes.javascript,
+                    doc: codes.doc,
+                    aiprompt: `<%= aiPrompt %>`
+                }),
             }).then((response)=>{
                 return response.text();
             }).then((text)=>{
@@ -451,8 +490,41 @@
                 console.log(error);
             })
          }
-         document.getElementById('doJudgement').addEventListener('click',doJudgement)
-         //GeminiAPIの使用
+         document.getElementById('doJudgement').addEventListener('click',doJudgement);
+        //GeminiAPIの使用
+
+//         function doJudgement() {
+//     const codes = getCodes();
+//     fetch('/apiuse/codereview', {
+//         method: 'post',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({
+//             html: codes.html,
+//             css: codes.css,
+//             javascript: codes.javascript,
+//             doc: codes.doc,
+//             aiprompt: ``
+//         }),
+//     })
+//     .then(response => {
+//         return response.json();
+//     })
+//     .then(data => {
+//         // コンソールに表示する代わりにWebページに表示
+//         const apiResponseElement = document.getElementById('api-response');
+//         apiResponseElement.innerText = data.message; // GeminiAPIの回答を表示
+//     })
+//     .catch(error => {
+//         console.log(error);
+//         document.getElementById('api-response').innerText = '';
+//     });
+// }
+
+// document.getElementById('doJudgement').addEventListener('click', doJudgement);
+
+
 
 
         function replaceImage(doc){
@@ -481,6 +553,9 @@
 
         // プレビュー
         function updatePreview() {
+            // htmlView.dispatch(setDiagnostics(htmlView.state, diagnostics))
+            // cssView.dispatch(setDiagnostics(cssView.state, diagnostics))
+            // javascriptView.dispatch(setDiagnostics(javascriptView.state, diagnostics))
             const codes = getCodes();
             // 05.17
             // const file = getHogehoge(); // LS から保存したファイルを取得
@@ -497,7 +572,7 @@
 
         function doPreviewSave() {
             const codes = getCodes();
-            setCode(`html3-ex1`, codes.html, codes.css, codes.javascript);
+            setCode("<%= courseId %>", codes.html, codes.css, codes.javascript);
         }
 
         document.getElementById("doPreviewSave").addEventListener("click", doPreviewSave);
@@ -533,80 +608,8 @@
         // ダウンロードリンクが押されたら起動
         document.getElementById("downloadButton").addEventListener("click", downloadFile);
 
-        // ドラックアンドドロップ
-        // let dropArea = document.getElementById('imagebox');
-        // let fileNamesDiv = document.getElementById('file-names');
-
-        // // Prevent default drag behaviors
-        // ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
-        //     dropArea.addEventListener(eventName, preventDefaults, false);
-        //     document.body.addEventListener(eventName, preventDefaults, false);
-        // });
-
-        // function preventDefaults(e) {
-        //     e.preventDefault();
-        //     e.stopPropagation();
-        // }
-
-        // // Highlight drop area when item is dragged over it
-        // ['dragenter', 'dragover'].forEach(eventName => {
-        //     dropArea.addEventListener(eventName, highlight, false);
-        // });
-
-        // ['dragleave', 'drop'].forEach(eventName => {
-        //     dropArea.addEventListener(eventName, unhighlight, false);
-        // });
-
-        // function highlight(e) {
-        //     dropArea.classList.add('highlight');
-        // }
-
-        // function unhighlight(e) {
-        //     dropArea.classList.remove('highlight');
-        // }
-
-        // // Handle dropped files
-        // dropArea.addEventListener('drop', handleDrop, false);
-
-        // const files = changeEvent.target.files;
-        //     for (let i = 0; i< files.length; i++) {
-        //         const file = files[i];
-
-        //         const reader = new FileReader();
-        //         reader.onload = (e) => {
-        //             const uri = e.target.result;
-        //             const fileName = file.name;
-        //             const fileType = file.type;
-        //             hogehoge(fileName, fileType, uri);
-        //         }
-        //         reader.readAsDataURL(file);
-        //     }
-
-        // function handleDrop(e) {
-        //     let dt = e.dataTransfer;
-        //     let files = dt.files;
-
-        //     // Clear previous file names
-        //     // fileNamesDiv.innerHTML = '';
-
-        //     // Display file names
-        //     for (let i = 0; i < files.length; i++) {
-        //         let file = files[i];
-        //         let fileName = document.createElement('p');
-        //         fileName.textContent = file.name;
-        //         fileNamesDiv.appendChild(fileName);
-        //         const reader = new FileReader();
-        //         reader.onload = (e) => {
-        //             const uri = e.target.result;
-        //             const fileName = file.name;
-        //             const fileType = file.type;
-        //             hogehoge(fileName, fileType, uri);
-        //             appendFileName(uri,fileName);
-        //     }
-        //     reader.readAsDataURL(file);
-        //     }
-        // }
     </script>
+
     <style>
         #imagebox{
             width: calc(100% - 40px - 4px); /*paddingとborderの分を引いてます*/
