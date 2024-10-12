@@ -25,9 +25,36 @@
     <script src="/javascripts/localstorage.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/htmlhint@1.1.4/dist/htmlhint.min.js"></script>
     <title><%= title %></title>
+    <script type="importmap">
+        {
+            "imports": {
+                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/",
+                "eslint4b/": "https://cdn.jsdelivr.net/npm/eslint4b-prebuilt@6.7.2/dist/"
+            }
+        }
+    </script>
 </head>
 
 <body>
+    <!--<script inline type="module" src= "/javascripts/eslint4b.es.js"></script>-->
+    <!--<script inline type="module" src= "/javascripts/eslint4b.js"></script>-->
+    <script type="module">
+        import Linter from "eslint4b/eslint4b.es.js";
+        const linter = new Linter();
+        // Verify a code.
+        // See the official document of the Linter class.
+        const messages = linter.verify(
+            "var foo = 0 ",
+            {
+                rules: {
+                    semi: "error"
+                }
+            },
+        );
+        console.log(messages);
+
+    </script>
+
     <h1><%= title %></h1>
     <div class="column-main">
         <div class="talk">
@@ -147,26 +174,6 @@
                 }
             });
         })
-
-         // 画像をアップロードする関数
-         //change(状態が変わったら) click→クリックしただけで反応
-        // document.addEventListener('change',uploadImage);
-        
-        // let file;
-        // let uri;
-
-        // function uploadImage(e) {   
-        //     console.log(e.target)  
-        //     file = e.target.files[0]
-        //     var reader = new FileReader()
-        //     reader.onload = function (e) {
-        //         uri = e.target.result
-        //         hogehoge(file, uri)
-        //     }
-        //     reader.readAsDataURL(file)
-        //     console.log(file, uri)
-        // }
-
 
         // ファイルが大きすぎるとエラー
         const imageboxonChange = (changeEvent) => {
@@ -322,16 +329,9 @@
 
     </script>
 
-    <script type="importmap">
-        {
-            "imports": {
-                "codemirror/": "https://deno.land/x/codemirror_esm@v6.0.1/esm/"
-            }
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" inline></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" inline>
-    </script>
+    <script src="/javascripts/csstree-validator.js"></script>
 
     <script async type="module" inline>
         import { basicSetup } from "codemirror/codemirror/dist/index.js"
@@ -345,7 +345,6 @@
             setDiagnostics,
             lintKeymap,
         } from "codemirror/lint/dist/index.js"
-
         //import 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js';
 
         const htmlEditor = document.getElementById('html-editor');
@@ -356,7 +355,8 @@
         // 各エディタのプレースホルダー
         let savedCodes = hugahuga("<%= courseId %>");
         const placeholderCodes = {
-            html: savedCodes.html??`<!-- ここにhtmlコードを書いてください -->
+            html: savedCodes.html??`<!DOCTYPE html>
+            <!-- ここにhtmlコードを書いてください -->
             
 
 
@@ -386,6 +386,7 @@
                 doPreviewSave();
                 updatePreview();
                 validateHTML();
+                validateCSS();
             },
             input(event, view){
                 if (reList.length > 0) {
@@ -398,6 +399,7 @@
                     doPreviewSave();
                     updatePreview();
                     validateHTML();
+                    validateCSS();
 
                 },1000)
                 reList.push(nextRe);
@@ -449,16 +451,19 @@
                 const diagnostics = results.map((res, idx) => {
                     console.log(`HTMLHintによるHTML構文検査結果 (${idx})`, res);
                     const beforeRows = strLengthInRow.slice(0, res.line-1); // 先頭から、該当 line までの文字数配列
-                    const beforeRowsSum = beforeRows.reduce((sum, elem) => sum + elem); // 先頭から、該当 line までの文字数合計
+                    const beforeRowsSum = beforeRows.reduce((sum, elem) => sum + elem, 0); // 先頭から、該当 line までの文字数合計
                     const rowStart = beforeRowsSum + 1; // HTMLコード先頭から、該当 line の先頭までの文字数
                     const from = rowStart + res.col; // rowStart を踏まえた、コード先頭から該当 col までの文字数
                     const to = from + (res.evidence).length; // res.evidence は該当の文字列。それの文字数を足すことで該当 col の最後尾までの文字数がわかる
                     const message = res.message; // エラーメッセージ
-                    return { from, to, severity: 'error', message };
-                    // const diagnostics = [{ from: 0, to: 500, severity: 'error', message: 'まちがっているよー。' }];
-                    // cssView.dispatch(setDiagnostics(cssView.state, diagnostics));
-                    // javascriptView.dispatch(setDiagnostics(javascriptView.state, diagnostics));
+                    const clampedFrom = Math.min(Math.max(0, from), code.html.length - 1);
+                    const clampedTo = Math.min(Math.max(clampedFrom, to), code.html.length);
+
+                    return { from: clampedFrom, to: clampedTo, severity: 'error', message }; 
                 });
+                     //cssView.dispatch(setDiagnostics(cssView.state, diagnostics));
+                    // javascriptView.dispatch(setDiagnostics(javascriptView.state, diagnostics));
+                // });
                 console.log('diagnostics', diagnostics);
                 htmlView.dispatch(setDiagnostics(htmlView.state, diagnostics));
             } else {
@@ -466,6 +471,15 @@
                 htmlView.dispatch(setDiagnostics(htmlView.state, []));
             }
         }
+
+        function validateCSS() {
+            const code = getCodes();
+            const errors = csstreeValidator.validate(code.css);
+            console.log('CSS Tree Validator\nSource: ---\n',
+                code.css, '\n---\nError: ', errors);
+        }
+
+
         
 
         // State 取得用
@@ -477,9 +491,15 @@
             return {
                 html, css, javascript,
                 doc: `<!DOCTYPE html>
-<html>\n<head>\n<meta charset="UTF-8">
-<style>\n${css}\n</style>\n</head>
-<body>\n${html}\n<body>\n</html>`,
+                <html>
+                  <head>
+                    <meta charset="UTF-8">
+                    <style>${css}</style>
+                  </head>
+                    <body>${html}
+                        <script>${javascript}</scr${'ipt'}>
+                    </body>
+                </html>`,
             };
         }
 
@@ -552,7 +572,7 @@
                 // console.log('original img:', img);
                 
                 const imgsrc = img.match(/(?<=src=").+(?=")/);
-                const file = getHogehoge(imgsrc);
+                const file = getHogehoge(imgsrc); //←画像のnameのこと
                 if(file === null){
                     continue;
                 }
@@ -623,8 +643,10 @@
     </script>
 
     <style>
+
         #imagebox{
             width: calc(100% - 40px - 4px); /*paddingとborderの分を引いてます*/
+            margin-top: 30px;
         }
         .file-names{
             width: 100%;

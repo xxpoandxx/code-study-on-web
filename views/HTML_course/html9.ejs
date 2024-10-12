@@ -7,17 +7,233 @@
         <a href="html0">HTMLコース一覧へ戻る</a>
     </div>
 
-    <div class="talk">
         <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
-            <div class="balloon-text-right">
-                <p>テキストボックスを設置していくよ。</p>
+            <div class="balloon-text-left">
+                <p>せんせい、Webページを作ってるとよく「ヘッダー」や「フッター」って言葉を聞くんですけど、<br>
+                    それって何なんですか？</p>
             </div>
         </div>
+
+        <div class="talk">
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <p>「ヘッダー」と「フッター」は、<span class="img">Webページの上部と下部に表示されるエリア</span>のことです。<br>
+                        headerタグはページのヘッダー部分、footerタグはフッター部分を表すために使います。</p>
+                </div>
+            </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-right">
+                    <img src="/images/pen.png" alt="せいとくん">
+                    <figcaption class="balloon-image-description">せいとくん</figcaption>
+                </figure>
+                <div class="balloon-text-left">
+                    <p>それって、ただページの上下を区切るだけですか？他に何か意味があるんですか？</p>
+                </div>
+            </div>
+
+            <div class="talk">
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                    </figure>
+                    <div class="balloon-text-right">
+                        <p> 確かに、上下を区切る役割もありますが、それだけではありません。<br>
+                            headerタグには<span class="img">ページ全体やセクションのタイトル、ナビゲーションメニューなど、<br>重要な情報</span>を置くことが多いです。<br>
+                            footerタグには<span class="img">著作権情報や連絡先、サイトマップなど</span>を配置するのが一般的です。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="balloon">
+                    <figure class="balloon-image-right">
+                        <img src="/images/pen.png" alt="せいとくん">
+                        <figcaption class="balloon-image-description">せいとくん</figcaption>
+                    </figure>
+                    <div class="balloon-text-left">
+                        <p>じゃあ、headerとfooterはどのページにも必要なんですか？</p>
+                    </div>
+                </div>
+
+            <div class="talk">
+                 <div class="balloon">
+                        <figure class="balloon-image-left">
+                            <img src="/images/piyo.png" alt="せんせい">
+                            <figcaption class="balloon-image-description">せんせい</figcaption>
+                        </figure>
+                        <div class="balloon-text-right">
+                            <p>必要というわけではありませんが、ほとんどのWebページには使われています。<br>
+                                ページを分かりやすくするためにheaderとfooterを使用しているのです。<br>
+                                試しに書いてみましょう！
+                            </p>
+                        </div>
+                </div>
+            </div>
+
+            <div class="talk">
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                            </figure>
+                    <div class="balloon-text-right">
+                        <pre class="code">
+<span>&lt;header&gt;</span>
+    &lt;h1&gt;サイトのタイトル&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;ホーム&lt;/li&gt;
+            &lt;li&gt;アバウト&lt;/li&gt;
+             &lt;li&gt;コンタクト&lt;/li&gt;
+        &lt;/ul&gt;
+<span>&lt;/header&gt;</span>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <div class="preview">
+                        <header>
+                            <h1>サイトのタイトル</h1>
+                            <ul>
+                              <li>ホーム</li>
+                              <li>アバウト</li>
+                              <li>コンタクト</li>
+                            </ul>
+                          </header>
+                    </div>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-right">
+                    <img src="/images/pen.png" alt="せいとくん">
+                    <figcaption class="balloon-image-description">せいとくん</figcaption>
+                </figure>
+                <div class="balloon-text-left">
+                    <p>うーん。それじゃあ、footerタグはどんな感じですか？</p>
+                </div>
+            </div>
+
+            <div class="talk"></div>
+                <div class="balloon">
+                    <figure class="balloon-image-left">
+                        <img src="/images/piyo.png" alt="せんせい">
+                        <figcaption class="balloon-image-description">せんせい</figcaption>
+                            </figure>
+                    <div class="balloon-text-right">
+                        <pre class="code">
+<span>&lt;footer&gt;</span>
+  &lt;p&gt;&amp;copy; 2024 piyopiyo All rights reserved.&lt;/p&gt;
+  &lt;p&gt;お問い合わせ: info@example.com&lt;/p&gt;
+<span>&lt;/footer&gt;</span>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-left">
+                    <img src="/images/piyo.png" alt="せんせい">
+                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                </figure>
+                <div class="balloon-text-right">
+                    <div class="preview">
+                        <footer>
+                            <p>&copy; 2024 サイト名. All rights reserved.</p>
+                            <p>お問い合わせ: info@example.com</p>
+                          </footer>                          
+                    </div>
+                </div>
+            </div>
+
+            <div class="balloon">
+                <figure class="balloon-image-right">
+                    <img src="/images/pen.png" alt="せいとくん">
+                    <figcaption class="balloon-image-description">せいとくん</figcaption>
+                </figure>
+                <div class="balloon-text-left">
+                    <p>なるほど、著作権情報や連絡先なんかを入れるんですね。<br>
+                        でも、<span>これらをdivタグで作るのと何が違う</span>んですか？</p>
+                </div>
+            </div>
+
+            <div class="talk">
+                <div class="balloon">
+                       <figure class="balloon-image-left">
+                           <img src="/images/piyo.png" alt="せんせい">
+                           <figcaption class="balloon-image-description">せんせい</figcaption>
+                       </figure>
+                       <div class="balloon-text-right">
+                           <p>いい質問ですね！確かに、divタグを使って同じ見た目にすることもできます。<br>
+                            でも、これらのタグを使うと、「ここはページの頭（ヘッダー）だよ」、<br>
+                            「ここはページの下（フッター）だよ」という情報がブラウザや検索エンジンに伝わります。<br>
+                            それによって、検索結果で見つけやすくなったり、ページを読みやすくする手助けをしてくれるんです。</p>
+                       </div>
+               </div>
+           </div>
+
+           <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>へぇ、それは知らなかった。じゃあ、headerタグやfooterタグを使った方がいいってことですね。</p>
+            </div>
         </div>
+
+        <div class="talk">
+            <div class="balloon">
+                   <figure class="balloon-image-left">
+                       <img src="/images/piyo.png" alt="せんせい">
+                       <figcaption class="balloon-image-description">せんせい</figcaption>
+                   </figure>
+                   <div class="balloon-text-right">
+                       <p>その通りです。見た目にはdivタグとあまり変わらないかもしれませんが、<br>
+                        意味論的に正しいタグを使うことが重要なんです。</p>
+                   </div>
+           </div>
+       </div>
+
+       <div class="talk">
+        <div class="balloon">
+               <figure class="balloon-image-left">
+                   <img src="/images/piyo.png" alt="せんせい">
+                   <figcaption class="balloon-image-description">せんせい</figcaption>
+               </figure>
+               <div class="balloon-text-right">
+                   <p>Webページの構造を整理するのにとても便利なタグなので、ぜひ活用してくださいね。</p>
+               </div>
+       </div>
+   </div>
+
+   <div class="balloon">
+    <figure class="balloon-image-right">
+        <img src="/images/pen.png" alt="せいとくん">
+        <figcaption class="balloon-image-description">せいとくん</figcaption>
+    </figure>
+    <div class="balloon-text-left">
+        <p>さっそく使ってみよう。</p>
+    </div>
+</div>
+
+
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -29,7 +245,7 @@
             </div>
         </div>
     <footer>
-        <a href="html9" class="back">もどる</a>
+        <a href="html8" class="back">もどる</a>
 
         <a href="/contents/css/css0" class="next">次へ</a>
     </footer>

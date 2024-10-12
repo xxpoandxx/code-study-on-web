@@ -32,6 +32,10 @@
                         <%= name %>
                     </h1>
                 </div>
+                <div class="previous">
+                    <p>前回学習したコース</p>
+                    <p><a href="#" class="previous-anchor">1. 要素・属性・タグについて</a></p>
+                </div>
             </div>
             <!-- <div class="coursemenu">
                 <div class="lasttime">
@@ -97,7 +101,7 @@
     </main>
 
     <footer>
-        <div class="foot">
+        <div class="footer-wrap">
             <ul>
                 <li><a href="">お問い合わせ</a></li>
                 <li><a href="">プライバシーポリシー</a></li>
@@ -164,7 +168,7 @@
         }
 
         article {
-            width: 800px;
+            width: 600px;
             display: inline-block;
             vertical-align: top;
             margin-right: 30px;
@@ -179,9 +183,16 @@
 
         .user-info {
             width: 500px;
-            height: 100px;
+            height: 200px;
             background-color: #ebebe6;
             margin-bottom: 40px;
+        }
+        .user-info p{
+            padding-left: 15px;
+        }
+
+        .previous-anchor {
+            font-size: 25px;
         }
 
         .icon {
@@ -227,19 +238,24 @@
         }
 
         .allcourse {
-            height: 1200px;
+            height: 470px;
             background-color: #ebebe6;
         }
 
         footer {
             width: 100%;
-            height: 300px;
             background-color: #ebebe6;
         }
 
-        footer p {
-            text-align: center;
-            padding-top: 200px;
+        footer li{
+            padding: 0px 20px;
+        }
+
+
+        .footer-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         a {
@@ -273,7 +289,7 @@
 
         .friends {
             width: 500px;
-            height: 1000px;
+            height: 100px;
             background-color: #ebebe6;
             margin-top: 150px;
         }

@@ -29,6 +29,7 @@ app.use(session({
 //}); 
 
 const DB_USER = "./user.db";
+const DB_EDITOR = "./editor_page.db";
 
 app.get('/', async (req, res) => {
     if (req.session.login) {
@@ -56,12 +57,23 @@ app.get('/', async (req, res) => {
                 });
             })();
 
-            db.close();
+            // 前回の学習履歴
+            const lastStudy = await (() => {
+                return new Promise((resolve, reject) => {
+                    db.get("SELECT * FROM study_record WHERE uid = ? ORDER BY 'update' DESC",
+                        [uid], (err, row) => {
+                            if (err) {
+                                console.error(err);
+                                reject(err);
+                            } else {
+                                // データ
+                                resolve(row);
+                            }
+                        });
+                });
+            })();
 
-            console.log("@top page render > ", {
-                name: req.session.name,
-                loginDates: login_dates
-            });
+            db.close();
 
             res.render("main/main.ejs", {
                 name: req.session.name,
@@ -98,11 +110,10 @@ app.get('/userprogress', (req, res) => {
             "js": 0
         }
 
-        db.all("SELECT course_type, count(course_id) AS completed from study_record WHERE uid = ? GROUP BY course_type",
+        db.all("SELECT course_type, count(course_sn) AS completed from study_record WHERE uid = ? GROUP BY course_type",
             [uid], (err, rows) => {
                 if (err) {
                     console.error(err);
-                    reject(err);
                 } else {
                     const row_including_amount = rows.map(row => {
                         row.amount = COURSE_CONTENT_AMOUNT[row.course_type];
@@ -116,8 +127,7 @@ app.get('/userprogress', (req, res) => {
 
 // 一時的な　テンプレ作り用
 app.get('/template', (req, res) => {
-    const courseMeta = require('./course-list.json');
-    const data = courseMeta['html']['html3-ex1'];
+    const data = COURSE_LIST['html']['html3-ex1'];
     
     res.render('HTML_course/layout-ex.ejs', {
         title: data.title,
@@ -125,11 +135,41 @@ app.get('/template', (req, res) => {
     });
 });
 
-app.get('/contents/:type/:course', (req, res) => {
-    const courseType = req.params.type;
-    const courseId = req.params.course;
+app.get('/exercise/:id', (req, res) => {
+    const courseId = req.params.id;
 
-    // ↓URL変数とフォルダ名の変換用テーブル
+    const db = new sqlite3.Database(DB_EDITOR);
+    db.get(
+        'SELECT * FROM exercise WHERE course_id = ?',
+        courseId,
+        (err, row) => {
+            const title = row.title
+            const next = row.next
+            const back = row.back
+            const ai_prompt = row.ai_prompt
+            db.all(
+                "SELECT * FROM talks WHERE course_id = ?",
+                courseId,
+                (err, rows) => {
+                    const talks = rows;
+                    res.render(`${TYPES[courseType]}/layout-ex.ejs`, {
+                        courseId,
+                        relations: {next,back},
+                        aiPrompt: ai_prompt.replaceAll('`','^'),
+                        title,
+                        talks
+                    });
+                }
+            );
+        }
+    );
+});
+
+app.get('/contents/:type/:courseIndex', async (req, res) => {
+    const courseType = req.params.type;
+    const courseIdx = req.params.courseIndex;
+
+    // ↓ URL変数とフォルダ名の変換用テーブル
     const TYPES = {
         html: "HTML_course",
         css: "CSS_course",
@@ -137,66 +177,41 @@ app.get('/contents/:type/:course', (req, res) => {
         main: "main",
         header: "header"
     }
+
+    const course = await (() => new Promise((resolve, reject) => {
+        const db = new sqlite3.Database(DB_EDITOR);
+        db.get(
+            "SELECT * FROM course_list WHERE (type, idx) = (?, ?)",
+            [courseType, courseIdx],
+            (err, row) => {
+                if (!err) reject(err);
+                else resolve(row);
+                db.close();
+            }
+        );
+    }))();
+
+    console.log(req.params, course);
+
+    if (!course) return res.redirect("/");
     
-    // コースタイプの分岐
-    if (/.+-ex/.test(courseId)) {
-        const exlist = require('./excercise.json');
-        const db = new sqlite3.Database('editor_page.db');
-        db.get("SELECT * FROM exercise WHERE course_id = ?",courseId,(err,row)=>{
-            const title = row.title
-            const next = row.next
-            const back = row.back
-            const ai_prompt = row.ai_prompt
-            db.all("SELECT * FROM talks WHERE course_id = ?",courseId,(err,rows)=>{
-                const talks = rows
-                res.render(`${TYPES[courseType]}/layout-ex.ejs`, {
-                    courseId,
-                    relations: {next,back},
-                    aiPrompt: ai_prompt.replaceAll('`','^'),
-                    title,
-                    talks
-                });
-            })
-        })
-        return;
-    }
-
-    // ↓course-list.jsonを展開
-    const courseMeta = require('./course-list.json');
-
     // ↓ログイン中 かつ req.params.typeが適切 の場合
-    if (req.session.login && TYPES.hasOwnProperty(courseType)) {
+    if (!req.session.login) return res.redirect("/");
 
-        const course_type_dir = TYPES[courseType]; // ←フォルダ名
+    // ↓学習記録 書き込み
+    (new sqlite3.Database(DB_USER)).run(
+        "INSERT INTO study_record (uid, course_type, course_sn) VALUES(?, ?, ?)",
+        [req.session.uid, courseType, course.sn],
+        (err) => { db.close(); }
+    );
 
-        // ↓req.params.course から末尾の数字を取り出す
-        let matchResult = courseId.match(/\d+$/);
+    const filePath = `${TYPES[courseType]}/${course.file}.ejs`;
 
-        // ↓マッチがあればその数字を、なければ req.params.course をそのまま、idとする
-        const course_id = (matchResult) ? matchResult[0] : courseId;
-
-        const course_id_black_list = ["0"]; // ←記録除外id リスト
-
-        if (!course_id_black_list.includes(course_id)) {
-            // ↓学習記録 書き込み
-            const db = new sqlite3.Database(DB_USER);
-            db.run(
-                "INSERT INTO study_record (uid, course_type, course_id) VALUES(?, ?, ?)",
-                [req.session.uid, courseType, course_id],
-                (err) => { db.close(); }
-            );
-        }
-
-        const filepath = course_type_dir + "/" + courseId;
-
-        res.render(filepath, {
-            name: req.session.name,
-            courseName: courseId, // コースID
-            courseMeta, // コースタイトル
-        });
-    } else {
-        res.redirect("/");
-    }
+    res.render(filePath, {
+        name: req.session.name,
+        courseName: `${course.idx}. ${course.title}`, // コースID
+        courseMeta: COURSE_LIST, // コースタイトル
+    });
 });
 // ↑hrefで呼び出す際、<a href="/contents/(ejsのファイル名)">とする　2023.08.30
 

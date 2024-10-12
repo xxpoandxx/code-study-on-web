@@ -1,12 +1,12 @@
 {
     "html3-ex1": {
-        "title": "2.[演習ページ]文章を書いてみよう！《pタグ・hタグ》",
+        "title": "2.[Exercise page]Let's write a sentence!《p-tag and h-tag》",
         "talks": [
             {
-                "type": "assignment", "speaker": "teacher", "htext": "HTMLファイルに、<br>h1タグを使って「<span style='color:red'>ぴよぴよ</span>」と入力してください。"
+                "type": "assignment", "speaker": "teacher", "htext": "In the HTML file, type “<span style=‘color:red’>PiyoPiyo</span>” using the <br>h1 tag."
             },
             {
-                "type": "assignment", "speaker": "teacher", "htext": "HTMLファイルに、<br>pタグを使って「<span style='color:red'>ひよこの豆知識を教えます</span>」と入力してください。"
+                "type": "assignment", "speaker": "teacher", "htext": "In the HTML file, type “<span style=‘color:red’>I'll give you some chick trivia</span>” using the <br>p tag."
             }
         ],
         "relations": {
@@ -82,7 +82,7 @@
     },
 
     "html8-ex6": {
-        "title": "7.[演習ページ]ボタンを作ろう！《buttonタグ》",
+        "title": "7.[演習ページ]ボタンを作ろう！《buttonタグ・inputタグ/type属性》",
         "talks": [
             {
                 "type": "assignment", "speaker": "teacher", "htext": "HTMLファイルに、<br>href属性のaタグを使って「<span style='color:red'>ひよこの豆知識を知る</span>」と入力してください。"
@@ -99,7 +99,7 @@
     },
 
     "html9-ex7": {
-        "title": "8.[演習ページ]テキストボックスを作ろう！《textboxタグ》",
+        "title": "8.ヘッダーとフッターを作成しよう！《headerタグ・footerタグ》",
         "talks": [
             {
                 "type": "assignment", "speaker": "teacher", "htext": "HTMLファイルに、<br>href属性のaタグを使って「<span style='color:red'>ひよこの豆知識を知る</span>」と入力してください。"
