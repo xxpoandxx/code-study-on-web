@@ -34,7 +34,11 @@
                 </div>
                 <div class="previous">
                     <p>前回学習したコース</p>
-                    <p><a href="#" class="previous-anchor">1. 要素・属性・タグについて</a></p>
+                    <p>
+                        <a class="previous-anchor" href="/contents/<%= LATEST_COURSE.type %>/<%= LATEST_COURSE.idx %>">
+                            <%= LATEST_COURSE.idx %>. <%= LATEST_COURSE.title %>
+                        </a>
+                    </p>
                 </div>
             </div>
             <!-- <div class="coursemenu">
@@ -47,19 +51,19 @@
                     <h1>コース一覧</h1>
                     <div class="course beginner">
                         <h1>はじめに</h1>
-                        <a href="/contents/html/beginners">Webページを作るために知っておくべきこと</a>
+                        <a href="/contents/beginners/0">Webページを作るために知っておくべきこと</a>
                     </div>
                     <div class="course html">
                         <!--<h1>HTML</h1>-->
-                        <a href="/contents/html/html0" style="font-size: 30px;">HTMLのコース</a>
+                        <a href="/contents/html/list" style="font-size: 30px;">HTMLのコース</a>
                     </div>
                     <div class="course css">
                         <!--<h1>CSS</h1>-->
-                        <a href="/contents/css/css0"style="font-size: 30px;">CSSのコース</a>
+                        <a href="/contents/css/list"style="font-size: 30px;">CSSのコース</a>
                     </div>
                     <div class="course javascript">
                         <!--<h1>Javascript</h1>-->
-                        <a href="/contents/js/javascript0"style="font-size: 30px;">Javascriptのコース</a>
+                        <a href="/contents/js/list"style="font-size: 30px;">Javascriptのコース</a>
                     </div>
                 </div>
             </div>

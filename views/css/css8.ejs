@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/styles.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/contents.css">
-    <title>9. リンクをレイアウトしよう！《text-decoration・hover》</title>
-</head>
+<%- include("_head") %>
 
 <body>
-    <header>
-        <h1>9. リンクをレイアウトしよう！《text-decoration・hover》</h1>
-    </header>
+    <%- include("_header") %>
+
 
     <div class="home">
         <a href="css0">CSSコース一覧へ戻る</a>
@@ -100,7 +92,6 @@
                    </p>
                 </div>
             </div>
-        </div>
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -225,15 +216,12 @@ a<span>:hover</span>{
             <p>自分の納得するまで装飾できるから、Webページ制作は楽しいんですよ。</p>
             </div>
         </div>
+    </div>
 
 
 </div>
 
-
-<footer>
-    <a href="css7" class="back">もどる</a>
-    <a href="/contents/js/javascript0" class="next">次へ</a>
-</footer>
+<%- include("_footer") %>
 
 <style>
     #test{
@@ -247,3 +235,6 @@ a<span>:hover</span>{
     }
 
 </style>
+
+</body>
+</html>

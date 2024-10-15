@@ -1,0 +1,30 @@
+<% const idx = Number(COURSE.idx); %>
+<% const backIdx = idx - 1; %>
+<% const nextIdx = idx + 1; %>
+<footer>
+    <div>
+        <% if (backIdx > 0) { %>
+            <!-- 前にコースがあるとき -->
+            <a href="<%= backIdx %>" class="back">もどる</a>
+        <% } else { %>
+            <!-- 前にコースがないとき（今が最初のコースのとき） -->
+            <a href="list" class="back">コース一覧へもどる</a>
+        <% } %>
+    </div>
+    <div>
+        <% if (nextIdx <= COURSE_MAX) { %>
+            <!-- 次にコースがあるとき -->
+            <a href="<%= nextIdx %>" class="next">次へ</a>
+        <% } else { %>
+            <!-- 次にコースがないとき（今が最後のコースのとき） -->
+            <a href="list" class="back">コース一覧へもどる</a>
+        <% } %>
+    </div>
+</footer>
+
+<style>
+    footer div{
+        min-width: 10px;
+        min-height: 10px;
+    }
+</style>

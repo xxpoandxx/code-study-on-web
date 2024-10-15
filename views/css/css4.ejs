@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>5. 背景を変えてみよう！《background》</title>
-</head>
+<%- include("_head") %>
 
 <body>
-    <header>
-        <h1>5. 背景を変えてみよう！《background》</h1>
-    </header>
+    <%- include("_header") %>
+
 
     <div class="home">
         <a href="css0">CSSコース一覧へ戻る</a>
@@ -221,9 +213,6 @@
             </div>
         </div>
 
-
-    </div>
-
     <div class="balloon">
         <figure class="balloon-image-left">
             <img src="/images/piyo.png" alt="せんせい">
@@ -327,14 +316,8 @@
             <p>はーい。</p>
         </div>
     </div>
-
-
-
-
-    <footer>
-        <a href="css3" class="back">もどる</a>
-        <a href="css5" class="next">次へ</a>
-    </footer>
+    </div>
+    <%- include("_footer") %>
 
     <style>
         .img{
@@ -342,3 +325,5 @@
             font-size: 20px;
         }
     </style>
+</body>
+</html>

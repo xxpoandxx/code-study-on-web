@@ -5,50 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
     <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>HTMLのコース一覧</title>
+
+    <title>CSSのコース一覧</title>
 </head>
 
 <body>
     <header>
-        <h2>HTMLのコース一覧</h2>
+        <h2>CSSのコース一覧</h2>
     </header>
     <main>
         <article>
-            <div>
-                <a href="html2">1. 要素・属性・タグについて</a>
-            </div>
-            <div>
-                <a href="html3">2. 文章を書いてみよう！《pタグ・hタグ》</a>
-            </div>
-            <div>
-                <a href="html4">3. リンクを作成しよう！《aタグ/href属性》</a>
-            </div>
-            <div>
-                <a href="html5">4. 画像の指定をしよう！《imgタグ/src属性》</a>
-            </div>
+            <% for (let i=0; i<5; i++) { %>
+                <div>
+                    <a href="<%= COURSES[i].idx %>"><%= COURSES[i].idx %>. <%= COURSES[i].title %></a>
+                </div>
+            <% } %>
         </article>
         <aside>
-            <div>
-                <a href="html6">5. 要素をグループ化しよう！《divタグ/class属性》</a>
-            </div>
-            <div>
-                <a href="html7">6. リストを作成しよう！《ulタグ・liタグ》</a>
-            </div>
-            <div>
-                <a href="html8">7. ボタンを作ろう！《inputタグ・inputタグ/type属性》</a>
-            </div>
-            <div>
-                <a href="html9">8. ヘッダーとフッターを作成しよう！《headerタグ・footerタグ》</a>
-            </div>
+            <% for (let i=4; i<COURSES.length; i++) { %>
+                <div>
+                    <a href="<%= COURSES[i].idx %>"><%= COURSES[i].idx %>. <%= COURSES[i].title %></a>
+                </div>
+            <% } %>
             <a href="/">ホームに戻る</a>
         </aside>
     </main>
-    <footer></footer>
+    <footer>
+
+    </footer>
 
     <style>
-        
-        body {
+         body {
             background-color: #ebebe6;
             font-family:'Zen Maru Gothic';
         }
@@ -84,7 +73,7 @@
             color: #9d8e6e;
             font-weight: bold;
         }
-    </style>
+        </style>
 
 </body>
 

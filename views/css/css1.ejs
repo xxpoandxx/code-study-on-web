@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Zen Maru Gothic' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/styles.css">
-    <link rel="stylesheet" type="text/css" href="../../../stylesheets/contents.css">
-    <title>1. CSSについて|</title>
-</head>
+<%- include("_head") %>
 
 <body>
-    <header>
-        <h1>1. CSSについて</h1>
-    </header>
+    <%- include("_header") %>
 
     <div class="home">
         <a href="css0">CSSコース一覧へ戻る</a>
@@ -80,6 +71,7 @@
                 </p>
             </div>
         </div>
+
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
@@ -95,6 +87,7 @@
                 </p>
             </div>
         </div>
+
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
@@ -105,6 +98,7 @@
                 </p>
             </div>
         </div>
+
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
@@ -114,18 +108,9 @@
                 <p>わかりました。</p>
             </div>
         </div>
+    </div>
 
-     
-     
-</div>
-        <footer>
-            <a href="css0" class="back">もどる</a>
-            <a href="css2" class="next">次へ</a>
-        </footer>
-    <style>
-
- 
-    </style>
+    <%- include("_footer") %>
 </body>
 
 </html>

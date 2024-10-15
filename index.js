@@ -9,7 +9,6 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true })); //formで送ったデータをnodeのなかで扱えるように成形してくれるやつ
 app.use(bodyParser.json());
 
-
 app.use('/apiuse', require('./apiuse.js')) //api利用　2024.06.01
 
 app.use(session({
@@ -28,70 +27,50 @@ app.use(session({
 //res.render(req.params.course);
 //}); 
 
+const database = require('./database.js');
+
 const DB_USER = "./user.db";
 const DB_EDITOR = "./editor_page.db";
 
 app.get('/', async (req, res) => {
     if (req.session.login) {
+        // ログイン済み: トップページ表示
         const uid = req.session.uid;
-        const db = new sqlite3.Database(DB_USER);
-
-        try {
-            // ログイン日検索
-            const login_dates = await (() => {
-                return new Promise((resolve, reject) => {
-                    db.all("SELECT * from login_dates WHERE uid = ?",
-                        [uid], (err, rows) => {
-                            if (err) {
-                                console.error(err);
-                                reject(err);
-                            } else {
-                                // データ
-                                let login_dates = [];
-                                for (let i = 0; i < rows.length; i++) {
-                                    login_dates[i] = rows[i].date;
-                                }
-                                resolve(login_dates);
-                            }
-                        });
-                });
-            })();
-
-            // 前回の学習履歴
-            const lastStudy = await (() => {
-                return new Promise((resolve, reject) => {
-                    db.get("SELECT * FROM study_record WHERE uid = ? ORDER BY 'update' DESC",
-                        [uid], (err, row) => {
-                            if (err) {
-                                console.error(err);
-                                reject(err);
-                            } else {
-                                // データ
-                                resolve(row);
-                            }
-                        });
-                });
-            })();
-
-            db.close();
-
-            res.render("main/main.ejs", {
-                name: req.session.name,
-                loginDates: login_dates
-            });
-
-        } catch (error) {
-
-            db.close();
-            console.error(error);
-            res.render("main/index.ejs");
-
+        const db = new database.User();
+        // ログイン日検索
+        const loginDatesRows = await db.all('SELECT * from login_dates WHERE uid = ?', [uid]);
+        let login_dates = [];
+        for (let i = 0; i < loginDatesRows.length; i++) {
+            login_dates[i] = loginDatesRows[i].date;
         }
 
+        // 前回の学習履歴
+        const latestStudyRecord = await db.get(`
+            SELECT * FROM study_record
+                WHERE uid = ? AND updated = (
+                    SELECT MAX(updated) FROM study_record WHERE uid = ?
+            )`,
+            [uid, uid]
+        );
+
+        let latestCourse;
+        if (latestStudyRecord) {
+            latestCourse = await db.get(
+                'SELECT * FROM course_list WHERE sn = ?',
+                [latestStudyRecord.course_sn]
+            );
+        }
+
+        res.render("main/main.ejs", {
+            name: req.session.name,
+            loginDates: login_dates,
+            LATEST_RECORD: latestStudyRecord,
+            LATEST_COURSE: latestCourse,
+        });
+        db.close();
     } else {
-
+        // 未ログイン: ログインページ表示
         res.render("main/index.ejs");
-
     }
 });     //req,res→無名関数。もともとfunction(){}だったのが() => {}となっている()
 // end→もうかえしませんよという意味。
@@ -135,83 +114,79 @@ app.get('/template', (req, res) => {
     });
 });
 
-app.get('/exercise/:id', (req, res) => {
-    const courseId = req.params.id;
-
-    const db = new sqlite3.Database(DB_EDITOR);
-    db.get(
-        'SELECT * FROM exercise WHERE course_id = ?',
-        courseId,
-        (err, row) => {
-            const title = row.title
-            const next = row.next
-            const back = row.back
-            const ai_prompt = row.ai_prompt
-            db.all(
-                "SELECT * FROM talks WHERE course_id = ?",
-                courseId,
-                (err, rows) => {
-                    const talks = rows;
-                    res.render(`${TYPES[courseType]}/layout-ex.ejs`, {
-                        courseId,
-                        relations: {next,back},
-                        aiPrompt: ai_prompt.replaceAll('`','^'),
-                        title,
-                        talks
-                    });
-                }
-            );
-        }
-    );
+// パスが /contents/... のものはすべて最初にここを通る
+app.use('/contents', (req, res, next) => {
+    // ログインチェック: 未ログインのときトップページへ
+    if (!req.session.login) return res.redirect("/");
+    // ログイン済みのときは処理を続行
+    next();
 });
 
-app.get('/contents/:type/:courseIndex', async (req, res) => {
+// 演習コンテンツ表示
+app.get('/contents/:type/ex/:id', async (req, res) => {
     const courseType = req.params.type;
-    const courseIdx = req.params.courseIndex;
+    const courseId = req.params.id;
 
-    // ↓ URL変数とフォルダ名の変換用テーブル
-    const TYPES = {
-        html: "HTML_course",
-        css: "CSS_course",
-        js: "JS_course",
-        main: "main",
-        header: "header"
-    }
+    const db = new database.EditorPage();
+    const exercise = await db.get('SELECT * FROM exercise WHERE course_id = ?', courseId);
+    const talks = await db.all('SELECT * FROM talks WHERE course_id = ?', courseId);
+    res.render(`${courseType}/layout-ex.ejs`, {
+        courseId,
+        relations: {
+            next: exercise.next,
+            back: exercise.back,
+        },
+        aiPrompt: exercise.ai_prompt.replaceAll('`','^'),
+        title: exercise.title,
+        talks
+    });
+    db.close();
+});
 
-    const course = await (() => new Promise((resolve, reject) => {
-        const db = new sqlite3.Database(DB_EDITOR);
-        db.get(
-            "SELECT * FROM course_list WHERE (type, idx) = (?, ?)",
-            [courseType, courseIdx],
-            (err, row) => {
-                if (!err) reject(err);
-                else resolve(row);
-                db.close();
-            }
-        );
-    }))();
+// コースごとのコンテンツリストを表示
+app.get('/contents/:type/list', async (req, res) => {
+    const type = req.params.type;   // コースタイプ: html/css/js
+    const db = new database.User();
+    // コースのメタデータの配列
+    const courses = await db.all('SELECT * FROM course_list WHERE type = ? ORDER BY idx', type);
+    res.render(`${type}/list.ejs`, {
+        COURSES: courses,
+    });
+    db.close();
+});
 
-    console.log(req.params, course);
-
-    if (!course) return res.redirect("/");
+// コースコンテンツ表示
+app.get('/contents/:type/:index', async (req, res) => {
+    // ログインチェック
+    const type = req.params.type;   // コースタイプ: html/css/js/...
+    const idx = req.params.index;   // コースインデックス: 1/2/3..
+    const db = new database.User();
+    // コースのメタデータ
+    const course = await db.get('SELECT * FROM course_list WHERE (type, idx) = (?, ?)', [ type, idx ]);
+    const max = await db.get('SELECT MAX(idx) AS max FROM course_list WHERE type = ?', type);
+    const courseMaxIdx = Number(max.max);
     
-    // ↓ログイン中 かつ req.params.typeが適切 の場合
-    if (!req.session.login) return res.redirect("/");
-
     // ↓学習記録 書き込み
-    (new sqlite3.Database(DB_USER)).run(
-        "INSERT INTO study_record (uid, course_type, course_sn) VALUES(?, ?, ?)",
-        [req.session.uid, courseType, course.sn],
-        (err) => { db.close(); }
+    db.run(
+        'INSERT INTO study_record(uid, course_type, course_sn) VALUES(?, ?, ?)',
+        [req.session.uid, type, course.sn]
     );
 
-    const filePath = `${TYPES[courseType]}/${course.file}.ejs`;
+    // レンダリングするファイルのパス
+    let filePath = '';
 
+    // コースタイプが html, css, js と、それ以外のとき、DB の file カラムのデータ形式が変わるため分岐
+    if (['html', 'css', 'js'].includes(type)) {
+        filePath = `${type}/${course.file}.ejs`;
+    } else {
+        filePath = `${course.file}.ejs`;
+    }
     res.render(filePath, {
         name: req.session.name,
-        courseName: `${course.idx}. ${course.title}`, // コースID
-        courseMeta: COURSE_LIST, // コースタイトル
+        COURSE: course,
+        COURSE_MAX: courseMaxIdx,
     });
+    db.close();
 });
 // ↑hrefで呼び出す際、<a href="/contents/(ejsのファイル名)">とする　2023.08.30
 
