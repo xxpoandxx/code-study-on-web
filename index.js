@@ -312,7 +312,7 @@ app.get('/users', (req, res) => {
     res.end("Hello,Users");
 });
 
-app.listen(8080, () => { //8080はポート番号
+app.listen(80, () => { //80はポート番号
     console.log("Server Start");
 });
 
