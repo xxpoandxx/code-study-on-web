@@ -37,6 +37,7 @@ app.get('/', async (req, res) => {
         // ログイン済み: トップページ表示
         const uid = req.session.uid;
         const db = new database.User();
+        const edb = new database.EditorPage();
         // ログイン日検索
         const loginDatesRows = await db.all('SELECT * from login_dates WHERE uid = ?', [uid]);
         let login_dates = [];
@@ -49,17 +50,25 @@ app.get('/', async (req, res) => {
             SELECT * FROM study_record
                 WHERE uid = ? AND updated = (
                     SELECT MAX(updated) FROM study_record WHERE uid = ?
-            )`,
-            [uid, uid]
+            )`,[uid, uid]
         );
 
         let latestCourse;
         if (latestStudyRecord) {
-            latestCourse = await db.get(
-                'SELECT * FROM course_list WHERE sn = ?',
-                [latestStudyRecord.course_sn]
-            );
+        if(/^ex.+/.test(latestStudyRecord.course_sn)){
+            latestCourse = await edb.get(`
+                    SELECT * FROM exercise WHERE course_id = ? 
+                    `, [latestStudyRecord.course_sn])
+            } else {
+                latestCourse = await db.get(`
+                    SELECT * FROM course_list WHERE sn = ?`,
+                    [latestStudyRecord.course_sn]
+                );
+            }
         }
+
+        // 演習ページを含めた前回の学習履歴
+
 
         res.render("main/main.ejs", {
             name: req.session.name,
@@ -76,33 +85,94 @@ app.get('/', async (req, res) => {
 // end→もうかえしませんよという意味。
 
 //↓カレンダー下円形グラフ
-app.get('/userprogress', (req, res) => {
+app.get('/userprogress', async (req, res) => {
     const uid = req.session.uid;
 
     if (uid) {
-        const db = new sqlite3.Database(DB_USER);
+        const db = new database.User();
 
         // 進捗取得
-        const COURSE_CONTENT_AMOUNT = {
-            "css": 8,
-            "html": 9,
-            "js": 0
-        }
+        const records = await db.all(`
+            SELECT DISTINCT course_sn, course_type from study_record WHERE uid = ?`, uid);
+        
 
-        db.all("SELECT course_type, count(course_sn) AS completed from study_record WHERE uid = ? GROUP BY course_type",
-            [uid], (err, rows) => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    const row_including_amount = rows.map(row => {
-                        row.amount = COURSE_CONTENT_AMOUNT[row.course_type];
-                        return row
-                    });
-                    res.json(row_including_amount);
-                }
-            });
+        const progress = [
+            {
+                course_type: 'html',
+                completed: records.filter((obj) => obj.course_type === 'html').length,
+                amount: 15
+            },
+            {
+                course_type: 'css',
+                completed: records.filter((obj) => obj.course_type === 'css').length,
+                amount: 9
+            },
+            {
+                course_type: 'js',
+                completed: records.filter((obj) => obj.course_type === 'js').length,
+                amount: 11
+            }
+        ];
+
+        res.json(progress);
     }
 })
+
+//演習ページ
+
+app.get('/contents/:type/ex/:id', async (req, res) => {
+    const courseType = req.params.type;
+    const courseId = req.params.id;
+    const uid = req.session.uid;
+    
+        if (uid) {
+            const db = new database.User();
+    
+            // 新しいページのアクセス記録をstudy_recordに追加
+            await db.run(`
+                INSERT INTO study_record (uid, course_type, course_sn, updated)
+                VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+            `, [uid, courseType, courseId]);
+
+            db.close();
+        }
+
+        if (uid) {
+            const db = new database.EditorPage();
+        
+        const data = await db.get(`
+            SELECT * FROM exercise WHERE course_id = ?
+            `, [courseId])
+
+        const talks = await db.all(`
+            SELECT * FROM talks WHERE course_id = ?
+            `, [courseId])
+    
+            db.close();
+
+        // 新しいページのコンテンツを表示
+        res.render(`${courseType}/layout-ex.ejs`, {
+            title: data.title,
+            talks: talks,
+            courseId: courseId,
+            aiPrompt: data.ai_prompt,
+            relations: {
+                back: data.back,
+                next: data.next,
+                talk_url: data.talk_url
+            }
+        });
+        // 学習記録
+        db.run(
+            'INSERT INTO study_record(uid, course_type, course_sn) VALUES(?, ?, ?)',
+            [req.session.uid, courseType, courseId]
+        );
+
+        return;
+        }
+        res.redirect('/');
+    });
+
 
 // 一時的な　テンプレ作り用
 app.get('/template', (req, res) => {
@@ -122,26 +192,7 @@ app.use('/contents', (req, res, next) => {
     next();
 });
 
-// 演習コンテンツ表示
-app.get('/contents/:type/ex/:id', async (req, res) => {
-    const courseType = req.params.type;
-    const courseId = req.params.id;
 
-    const db = new database.EditorPage();
-    const exercise = await db.get('SELECT * FROM exercise WHERE course_id = ?', courseId);
-    const talks = await db.all('SELECT * FROM talks WHERE course_id = ?', courseId);
-    res.render(`${courseType}/layout-ex.ejs`, {
-        courseId,
-        relations: {
-            next: exercise.next,
-            back: exercise.back,
-        },
-        aiPrompt: exercise.ai_prompt.replaceAll('`','^'),
-        title: exercise.title,
-        talks
-    });
-    db.close();
-});
 
 // コースごとのコンテンツリストを表示
 app.get('/contents/:type/list', async (req, res) => {
@@ -237,20 +288,16 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/new', (req, res) => {
+    const name = req.body.uid;
 
     // パスワードのハッシュ処理
     const hashedPWD = crypto.createHash('sha256')
         .update(req.body.passwd)
         .digest('hex');
+    
+    const db = new database.User();
 
-    const db = new sqlite3.Database('./user.db'); //データベースを開くやつ
-    db.get("SELECT count(*) FROM users", (err, count) => {
-        console.log(count["count(*)"]);
-        db.run("INSERT INTO users VALUES(?,?,?,?)",
-            Number(count["count(*)"])+2, // uid は count+2
-            req.body.uid, hashedPWD, req.body.email
-        );
-    });
+    db.run('INSERT INTO users (name, passwd) VALUES(?,?)', [ name, hashedPWD ]);
     db.close();
     res.redirect('/');
 });

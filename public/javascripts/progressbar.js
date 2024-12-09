@@ -4,6 +4,8 @@ fetch("/userprogress", { method: "GET" })
         return response.json();
     })
     .then(data => {
+        console.log("data = ", data);
+
         let course_progress = [0, 0, 0]; // html, css, js
         for (const obj of data) {
             if (obj.course_type == "html") { course_progress[0] = Math.floor(obj.completed / obj.amount * 100); }
@@ -11,7 +13,6 @@ fetch("/userprogress", { method: "GET" })
             if (obj.course_type == "js") { course_progress[2] = Math.floor(obj.completed / obj.amount * 100); }
         }
 
-        console.log("data = ", data);
         console.log("course_progress (html, css, js) = ", course_progress);
 
         const config = [
@@ -23,5 +24,8 @@ fetch("/userprogress", { method: "GET" })
         for (const obj of config) {
             document.querySelector(obj.selecter).style.backgroundImage = `radial-gradient(#f2f2f2 60%, transparent 61%), conic-gradient(${obj.color} 0% ${obj.rate}%, #d9d9d9 ${obj.rate}% 100%)`;
         }
+    })
+    .catch((err) => {
+        console.error(err);
     });
 

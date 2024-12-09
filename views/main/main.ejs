@@ -35,9 +35,13 @@
                 <div class="previous">
                     <p>前回学習したコース</p>
                     <p>
-                        <a class="previous-anchor" href="/contents/<%= LATEST_COURSE.type %>/<%= LATEST_COURSE.idx %>">
-                            <%= LATEST_COURSE.idx %>. <%= LATEST_COURSE.title %>
-                        </a>
+                        <% if(LATEST_COURSE != undefined){%>
+                            <a class="previous-anchor" href="/contents/<%= LATEST_COURSE.type %>/<%= LATEST_COURSE.idx %>">
+                                <% if(LATEST_COURSE.idx != undefined){%>
+                                    <%=LATEST_COURSE.idx %>.
+                                    <%}%> <%= LATEST_COURSE.title %>
+                            </a>
+                        <%}%>
                     </p>
                 </div>
             </div>
@@ -89,17 +93,17 @@
                     <h1>学習した日：<span class="green">◼︎</span> 今日の日付：<span class="D65E72">◼︎</span></h1>
                 </div>
                 <div class="first pie">
-                    <span>HTML</span>
-                    </div>
-                    <div class="second pie">
-                    <span>CSS</span>
-                    </div>
-                    <div class="third pie">
-                    <span>JS</span>
+                    <div style="line-height:1em;"><span class="language">HTML</span></div>
                 </div>
-                <div class="friends">
+                <div class="second pie">
+                    <div style="line-height:1em;"><span class="language">CSS</span></div>
+                </div>
+                <div class="third pie">
+                    <div style="line-height:1em;"><span class="language">JS</span></div>
+                </div>
+                <!-- <div class="friends">
                     <h1>フレンド一覧</h1>
-                </div>
+                </div> -->
             </div>
         </aside>
     </main>
@@ -124,7 +128,7 @@
             justify-content: center;
             align-items: center;
             margin-right: auto;
-            margin: 30px;
+            margin: 20px;
             width: 100px;
             height: 100px;
             font-size: 26px;
@@ -186,11 +190,12 @@
         }
 
         .user-info {
-            width: 500px;
+            width: 600px;
             height: 200px;
             background-color: #ebebe6;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
+
         .user-info p{
             padding-left: 15px;
         }
@@ -296,6 +301,13 @@
             height: 100px;
             background-color: #ebebe6;
             margin-top: 150px;
+        }
+
+        .learning_page{
+            font-size: 15px;
+        }
+        .language{
+            text-align: center;
         }
 
         /**/

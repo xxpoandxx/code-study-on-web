@@ -1,17 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include("_head") %>
-
+    <%- include("_head") %>
 <body>
     <%- include("_header") %>
-
-
     <div class="home">
-        <a href="list">CSSコース一覧へ戻る</a>
+        <a href="list">Javascriptコース一覧へ戻る</a>
     </div>
 
     <div class="talk">
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>せんせい、前回の「ボタンをクリックして文字を変更する」やつ、<br>
+                    家で復習したらできました。次は何をやりますか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>よかったです！<br>
+                    次は、ボタンをクリックして「画像を切り替える」方法を学びます。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>画像の切り替え！何かスライドショーみたいな感じですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そんな感じ。スライドショーの基本を押さえる第一歩です。<br>
+                    まず、HTMLで準備するものから始めよう。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はい、どんなHTMLを書くんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>シンプルに、画像を表示するための<code>&lt;img&gt;</code>タグと、<br>
+                    画像を切り替えるためのボタンを用意するよ。こんな感じ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                    <pre class="code">
+&lt;img <span>id="mainImage"</span> src="image1.jpg">
+&lt;button <span>id="changeImageButton"</span>&gt;画像を切り替え&lt;/button&gt;
+                    </pre>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>あ、画像を表示するための<code>&lt;img&gt;</code>タグですね！でも、<code>id="mainImage"</code>って何ですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いい質問！<code>id</code>は、<span class="img">そのタグをJavaScriptで操作するときの目印</span>みたいなものだよ。<br>
+                    この場合、「mainImage」って名前で画像を特定できるようにしてるんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど！じゃあ、ボタンの方は<span>id="changeImageButton"</span>で特定するんですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうそう、ばっちり理解していますね。次に、JavaScriptを書いていきます。<br>
+                    ボタンをクリックしたときに画像を切り替えるコードです。</p>
+            </div>
+        </div>
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -19,8 +133,16 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                     <p>強調したいところをより明確にしたり、文字を線で囲ったりして、見やすいWebページを作っていきましょう。<br>
-                   </p>
+                <pre class="js-code">
+document.getElementById("<span>changeImageButton</span>").addEventListener("click", function() {
+    const image = document.getElementById("<span>mainImage</span>");
+    if (image.src.includes("image1.jpg")) {    <span style="color:lightgreen">//←最初に表示したい画像</span>
+        image.src = "image2.jpg";    <span style="color:lightgreen">//←切り替えたい画像</span>
+    } else {
+        image.src = "image1.jpg"; 
+    }
+});
+                </pre>
             </div>
         </div>
 
@@ -30,18 +152,70 @@
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>できることが増えていって嬉しいです。</p>
+                <p>えっと…少し難しそうですけど、これって何をしているんですか？</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                     <p>そうでしょ。今回学ぶセレクタは<span>border</span>です。<br>
-                   </p>
+                <p>順番に説明します。<br>
+                    まず、<span>document.getElementById("changeImageButton")</span>で、ボタンを特定してる。<br>
+                    それから、<span>addEventListener</span>で「ボタンがクリックされたら実行する処理」を指定してるんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど！その中の<code>function</code>の中身が実行されるんですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>その通り！その中で、まず<code>document.getElementById("mainImage")</code>で画像を取得して、<br>
+                    「<span>今の画像がimage1.jpgだったらimage2.jpgに変える</span>」という処理をしてるんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>逆に、<span>じゃない場合は、image1.jpgに戻す</span>んですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うん、仕組みはこれだけ。じゃあ実際に、どう表示されるのか試してみよう。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はい、やってみます！</p>
             </div>
         </div>
 
@@ -51,257 +225,57 @@
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>border？下線を引くセレクタですか？</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <p>その通り！だけど、border単体で使うときは、<br>
-                        プロパティの上下左右に線を引くことができるセレクタとなっています。
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>単体？</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <p>そう。見たほうが早いと思うから、書いていきましょう。
-                   </p>
-            </div>
-        </div>
-
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
                 <div class="preview">
-                    <div class=“wrapper”>
-                        <h1>Hello, World!</h1>
-                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1>HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <p>今学んだborderは、<span>線の種類</span>と<span>その線の太さ</span>の値を指定する必要があります。<br>
-                        種類はいくつかありますが、代表的なものを紹介しましょう。<br>
-                        <span>・solid</span>：1本線<br>
-                        <span>・double</span>：2本線<br>
-                        <span>・dashed</span>：波線<br>
-                        <span>・dotted</span>：点線<br>
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>へー。結構種類があるんですねえ。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <p>あるよ。それから、borderは、<br>
-                        指定するプロパティの<span>上下左右の好きな方向に指定</span>することができます。
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>つまり、下と左だけ、もできるってことですか。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <p>もちろんです。<br>
-                        方向を指定するときの注意点は、<span>borderのうしろに方向を指定する</span>必要があるところです。
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                     <pre class="code">
-.main h1{
-            border<span>-bottom</span>: 3px solid blue;
-            border<span>-left</span>: 3px solid blue;
-                  }
-                     </pre>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-             <p>こうすると…。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                    <div class=“wrapper”>
-                        <h1>Hello, World!</h1>
-                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1 style="border-bottom:3px solid blue; border-left:3px solid blue;">HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>おぉ〜。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>四角く囲いたいときは、方向の指定はしなくても大丈夫。<br>
-                逆に、こっちのほうこうにだけ適用させたい！と言う時のみ、方向指定は行ってね。</p>
-                     <pre class="code">
-.wrapper h1{
-            <span>bouder</span>: 4px double red;
-                  }
-                     </pre>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                    <div class=“wrapper”>
-                        <h1 style="border:4px double red;">Hello, World!</h1>
-                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1 style="border-bottom:3px solid blue; border-left:3px solid blue;">HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
+                    <img id="mainImage" src="/images/pen2.png" style="width:300px; height:300px;">
+                    <button id="changeImageButton">画像を切り替え</button>
                 </div>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>強調したい時とか、見出しの強調としても使えそうですね。</p>
-            </div>
-        </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-             <p>そうですね！基礎を覚えたら、応用していけるかもしれません。</p>
+                <p>すごいね！これで、ボタンを使って画像を切り替える基本はバッチリですね。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>楽しみだこと。</p>
+                <p>本当に簡単なんですね。</p>
             </div>
         </div>
+        
+        
+    </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>それでは、演習問題に取り組んでみましょう！<a href="/contents/css/ex/ex2-4" id="ex1" class="exercise">[演習へ進む]</a></p>
-            </div>
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-1" id="ex1" class="exercise">[演習へ進む]</a></p>
         </div>
-
-
-</div>
-
-<%- include("_footer") %>
-
+    </div>
+    <%- include("_footer") %>
+</footer>
 </body>
-</html>
+</html>   
+
+<script>
+    document.getElementById("changeImageButton").addEventListener("click", function() {
+    const image = document.getElementById("mainImage");
+    if (image.src.includes("/images/pen2.png")) {
+        image.src = "/images/piyo2.png";
+    } else {
+        image.src = "/images/pen2.png";
+    }
+});
+</script>

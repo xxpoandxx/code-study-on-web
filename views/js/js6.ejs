@@ -1,40 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include("_head") %>
-
+    <%- include("_head") %>
 <body>
     <%- include("_header") %>
-
-
     <div class="home">
-        <a href="list">CSSコース一覧へ戻る</a>
+        <a href="list">Javascriptコース一覧へ戻る</a>
     </div>
+
     <div class="talk">
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <pre class="code">
-&lt;html&gt;
- &lt;body&gt;
-  &lt;div class=&quot;wrapper&quot;&gt;
-    &lt;h1&gt;Hello,World!&lt;/h1&gt;
-     &lt;p&gt;Webサイト制作にチャレンジしよう！&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;main&quot;&gt;
-   &lt;h1&gt;HTMLを学ぼう&lt;/h1&gt;
-    &lt;p&gt;まず初めに、HTMLの基礎知識から学んでいきましょう&lt;/p&gt;
-  &lt;/div&gt;
- &lt;/body&gt;
-&lt;html&gt;</pre>
-                <p>上のコードを見てください。</p>
-            </div>
-        </div>
-
-
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -42,295 +15,126 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <div class="preview">
-                    <div class=“wrapper”>
-                        <h1>Hello, World!</h1>
-                        <p style="color:black;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1>HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>このように表示されます。<br>
-                    wrapperというクラスがついているdivタグの中身だけを、違う色にしたいのですが。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>うーん。プロパティにdivを選んでしまうと、下のdivタグにも反映してしまいますね。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうだね。どうするかというと、<br>
-                    特定のタグだけ色を変えたい場合は、<span>適応させたいタグのクラス</span>をセレクタにするんだ。
-                </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>あ！クラスはHTMLの方でやりましたね。<br>これを最初に学んだ時は、いつ使うのかと思ってましたけど…。ここで使うんだ。</p>
-                <a class="review" href="/contents/html/html7">classについて復習する</a>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>ここ以外でも使うけどね笑。だけど、さっきまでの指定の仕方と一つ異なる点があるんだ。
-                </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>なんですか？</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p> クラスをセレクタに用いるときは、<span>セレクタ前に.（ドット）を入力する</span>必要があるということ。<br>
-                    こうしないと、要素が呼び出されているとエディタが思ってしまい、<br>適用されなくなってしまうので注意が必要だよ。
-                </p>
-                <p>CSSファイルの方には、</p>
-                <pre class="css-code">
-  <span>.</span>wrapper{
-            color: red;
-                } </pre>
-                <p>こんなふうに書きます。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>あ、先頭に<span>.</span>がついてる。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>はい。こうすることで、<span>プロパティに要素名だけでなく、クラス名も適用できる</span>ようになりました。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                    <div class=“wrapper” style="color:red;">
-                        <h1>Hello, World!</h1>
-                        <p style="color:red;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1>HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
-                </div>
-                <p>こうなります。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>やりやすいですね！</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>また、今学んだことを活かして、次のやり方もやってみましょう。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>まだあったか。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p><span>wrapperタグの中にあるh1だけにCSSを適用</span>させたい時もあるね。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>h1タグは2つあるから、ただ単にプロパティにh1を選んでしまうとどちらにも適用してしまうね。</p>
-            </div>
-        </div>
-
-
-
-
-
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>適用させたいpタグにクラスをつけたらいいんでしょうか？</p>
-            </div>
-        </div>
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p> 確かに、それも一つの手だね。
-                    <br>だけど、もしCSSに適用したいタグにいちいちclassをつけていると、見にくいコードになってしまうし、
-                    <br>自分でもわかりづらくなってしまうよ。
-                </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>えー。どうしたらいいんですか？</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p> まず、先ほどと同じように、プロパティにwrapperというclass名を選択します。
-                    <br><span>その後ろに、半角スペースを入力してpと入力</span>するんだ。
-                </p>
-                <pre class="css-code">.wrapper p{
-              color: red;
-              }
-</pre>
-                <p>そうすると、</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                    <div class=“wrapper”>
-                        <h1>Hello, World!</h1>
-                        <p style="color:red;">Webサイト制作にチャレンジしよう！</p>
-                    </div>
-                    <div class=“main”>
-                        <h1>HTMLを学ぼう！</h1>
-                        <p style="color:black;">まず初めに、HTMLの基礎から学びましょう。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>こうなります。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>なるほど。複数ある要素のうち、特定の要素だけCSSを適用ためには、<br><span>親要素のクラスを指定したあとに要素を書き込む</span>ことでも可能なんですね。</p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうです。これを活用してよりわかりやすく簡単にWebページを装飾しましょう！</p>
+                <p>せいとくん、前にボタンをクリックして文字を変える方法をやったよね。覚えてる？</p>
             </div>
         </div>
         
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はい、覚えてます。ボタンの<code>onclick</code>イベントを使って、文字を変えるコードを書きましたね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうそう。今回はそれを少し発展させて、「タイマー」を作ってみるよ。<br>
+                    例えば、<span class="img">何秒後に文字を変えたり、カウントダウンを表示したりする</span>んだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>面白そう。タイマーってどうやって作るんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>タイマーにはJavaScriptの<code style="color:red">setTimeout</code>や<code style="color:red;">setInterval</code>っていう関数を使うんだ<br>
+                    まずは<code>setTimeout</code>を試してみようか。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p><code>setTimeout</code>ですか？それは何をする関数なんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><code>setTimeout</code>は、「<span>指定した時間が経ったら、この処理を実行してね</span>」っていう感じ。<br>
+                    例えば、3秒後に「こんにちは！」と表示するには、こんなコードを書けばいい。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                    <pre class="js-code">
+setTimeout(function() {
+    console.log("こんにちは！");
+}, 3000);
+                </pre>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p><code>3000</code>って何ですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>それは時間だよ。<span class="img">JavaScriptではミリ秒で指定</span>するから、<code>3000</code>は3秒を意味するんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど！これで3秒待ってから「こんにちは！」が表示されるんですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そうだね。実際にどのように表示されるか、見てみよう。</p>
+            </div>
+        </div>
 
         <div class="balloon">
             <figure class="balloon-image-right">
@@ -338,21 +142,177 @@
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>はーい。</p>
+                <div class="preview">
+                    <h1>Hello,World!</h1>
+                </div>
             </div>
         </div>
-
-
-
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はい、ちゃんと3秒後に「こんにちは！」が表示されました！これ、使い道がたくさんありそうですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>そう思うでしょ？でも、これだけじゃ「一回だけ実行」なんだ。もし繰り返しタイマーを動かしたいときは、<code>setInterval</code>を使うよ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p><code>setInterval</code>はどう違うんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p><code>setInterval</code>は「指定した間隔ごとに処理を繰り返す」んだよ。例えば、1秒ごとにカウントアップするには、こう書くんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>
+                    <pre class="js-code">
+let count = 0;
+setInterval(function() {
+count++;
+console.log(count);
+}, 1000);
+                    </pre>
+                </p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>おお、これで1秒ごとに<code>count</code>が増えるんですね！でも、これ止める方法はあるんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いい質問だね！止めるには、<code>clearInterval</code>っていう関数を使うよ。<code>setInterval</code>が返すIDを覚えておいて、それを<code>clearInterval</code>に渡すんだ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>IDってどんな感じで取得するんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>例えばこうだね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                    <pre class="js-code">
+let timerId = setInterval(function() {
+count++;
+console.log(count);
+}, 1000);
+        
+setTimeout(function() {
+clearInterval(timerId);
+console.log("タイマーを止めました！");
+}, 5000);
+                </pre>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど！これだと5秒後にタイマーが止まるんですね。便利ですね！</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うん、こうやって<code>setTimeout</code>と<code>setInterval</code>を組み合わせると、いろんなことができるようになるよ。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>へえー。すごいなあ。</p>
+            </div>
+        </div>
+        
+    <div class="balloon">
+        <figure class="balloon-image-left">
+            <img src="/images/piyo.png" alt="せんせい">
+            <figcaption class="balloon-image-description">せんせい</figcaption>
+        </figure>
+        <div class="balloon-text-right">
+            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-1" id="ex1" class="exercise">[演習へ進む]</a></p>
+        </div>
+    </div>
     </div>
     <%- include("_footer") %>
-    
-    <style>
-        .black {
-            color: black;
-            font-family: Arial, Helvetica, sans-serif
-        }
-    </style>
+</footer>
 </body>
+</html> 
 
-</html>
+<script>
+    setTimeout(function() {
+    console.log("こんにちは！");
+}, 3000);
+</script>

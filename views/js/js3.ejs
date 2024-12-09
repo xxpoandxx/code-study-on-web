@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include("_head") %>
-
+    <%- include("_head") %>
 <body>
     <%- include("_header") %>
-
-
     <div class="home">
-        <a href="list">CSSコース一覧へ戻る</a>
+        <a href="list">Javascriptコース一覧へ戻る</a>
     </div>
 
     <div class="talk">
-
-
         <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
-            <div class="balloon-text-left">
-                <p>リンクって、青文字で、下線が引かれてて、いかにも”クリックしてくださーい”って感じですね。</p>
+            <div class="balloon-text-right">
+                <p>前回学んだアラートを、ボタンを押した時だけ出るようにしますよ〜。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>わかりやすいけど、Webページをレイアウトしていくうちに、<span class=img>リンクだけ馴染めてない状態</span>になりそうです。</p>
+                <p>よろしくお願いします。</p>
+            </div>
+        </div>
+        
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>どうやってやるのか、早速教えてください。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>はい。<br>
+                    まず、HTML でボタンを作って、それにJavaScriptで『押したら何をするか』を指示します。<br>
+                    試しに簡単な例を見てみよう！</p>
             </div>
         </div>
 
@@ -40,17 +57,33 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>うんうん。そんな君には、リンクのレイアウトの仕方を教えてあげましょう。</p>
+                <pre class="code">
+&lt;button id=&quot;myButton&quot;&gt;クリックしてね&lt;/button&gt;
+                </pre>
             </div>
         </div>
 
         <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
-            <div class="balloon-text-left">
-                <p>なんでも教えてくれるせんせいだ。</p>
+            <div class="balloon-text-right">
+                <pre class="js-code"><span>
+document.getElementById(&quot;myButton&quot;).addEventListener(&quot;click&quot;, function() { </span>
+    alert(&quot;ボタンが押されました！&quot;);
+  });
+                </pre>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>Webページには、次のように表示されます。</p>
             </div>
         </div>
 
@@ -61,65 +94,50 @@
             </figure>
             <div class="balloon-text-right">
                 <div class="preview">
-                <a href="test-css8.ejs">せんせいのブロマイドはこちら</a>
-            </div>
-                <p>↑これは、aタグで作った別のWebページに飛ぶリンクです。<br>
-                    上のように、何もいじらない状態で、リンクは<span class="img">青文字で表示され、下線が引かれています</span>。<br>
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>そうそう。ちょっとやっぱり、浮いて見えちゃいます。</p>
-            </div>
-        </div>
-
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうだね。でははじめに、リンクの<span>色の変更</span>と<span>下線を消して</span>みましょう。<br>
-                    <span>text-decoration: none;</span>：リンクにもともとついてる下線を消すCSSです。<br>
-                    色を変えるセレクタは、今までと変わらずcolorを使用します。
-                   </p>
+                    <button id="myButton">クリックしてね</button>
                 </div>
             </div>
-
+        </div>
+        
         <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
-            <div class="balloon-text-right">
-                <p>  
-                   <pre class="css-code">
-a{
-   <span>text-decoration: none;</span> 
-    color: green;
-      }
-                   </pre>
+            <div class="balloon-text-left">
+                <p>あ！さっきのページで学んだアラートが、このボタンをクリックした時に表示されましたね。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <div class="preview">
-                <a href="test-css8.ejs" style="text-decoration: none;color:green">せんせいのブロマイドはこちら</a>
+                <p>その通り！<span class="img">addEventListener</span>っていうのが鍵だね。<br>
+                    これで『ボタンがクリックされたときの動き』を指定できるんだ。</p>
             </div>
-            <p>下線が消え、色を変化させることができましたね。
-                   </p>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど。でも addEventListenerの中に何を書けばいいのか、ちょっと難しそうですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>いい質問だね！中には『何をするか』を書くんだけど、<br>
+                    今回は <code>alert</code> でメッセージを表示するようにしてるんだ。</p>
             </div>
         </div>
 
@@ -129,93 +147,71 @@ a{
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>自分のレイアウトに合わせて、リンクも馴染ませることができそうでよかったです。</p>
+                <p></p>
             </div>
         </div>
-
+      
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>もうちょっとおしゃれなレイアウトをしてみましょう。<br>
-                    <span>hover</span>とは、カーソルがリンクの上に乗っている時のことを指します。<br>
-                プロパティを<span>a:hover</span>に指定すると、<span>リンクの上にカーソルがあるときの状態だけのCSS</span><br>
-                を指定することができます。これらはリンクだけではなく、h要素やdiv要素にも適用できます。
+                <p>その通り！こうやって HTML と JavaScript を組み合わせると、画面をいろいろ操作できるんだよ。</p>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>  
-                   <pre class="css-code">
-a<span>:hover</span>{
-              color: red;
-               }
-                   </pre>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                <a id="test" href="test-css8.ejs" style="text-decoration: none;">せんせいのブロマイドはこちら</a>
-            </div>
-            <p>カーソルを置いてみてください。色が変化しますよ！
-                   </p>
-            </div>
-        </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>本当だ。おしゃれ。</p>
+                <p>ちょっとずつ仕組みが分かってきました！でも、間違えるとエラーになりそうで少し心配です。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-            <p>今回のセクションでお教えしたのはほんの一部です。<br>
-                他にも、<span class="img">通常時からhover時の色がゆっくり変わるようにしたり(transition)</span>、<br>
-                <span class="img">リンクをクリックしている時だけにCSSを適用させたり(a:active)</span>することができるんですよ。</p>
+                <p>エラーは誰でも最初は出るものだから、怖がらなくていいよ。<br>
+                    エラーが出たら、コードを見直して直す練習をすればいいのでね。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>こだわることができるんですね。</p>
+                <p>わかりました！まずは今日の例をしっかり試してみます！</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-            <p>自分の納得するまで装飾できるから、Webページ制作は楽しいんですよ。</p>
+                <p>いいね！次回のアクションもお楽しみに。</p>
             </div>
         </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>ありがとうございました。</p>
+            </div>
+        </div>
+        
     </div>
 
     <div class="balloon">
@@ -224,27 +220,16 @@ a<span>:hover</span>{
             <figcaption class="balloon-image-description">せんせい</figcaption>
         </figure>
         <div class="balloon-text-right">
-            <p>それでは、演習問題に取り組んでみましょう！<a href="/contents/css/ex/ex2-7" id="ex1" class="exercise">[演習へ進む]</a></p>
+            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-1" id="ex1" class="exercise">[演習へ進む]</a></p>
         </div>
     </div>
-
-
-</div>
-
-<%- include("_footer") %>
-
-<style>
-    #test{
-        color: green;
-    }
-    #test:visited{
-        color: #2fc2f3;
-    }
-    #test:hover{
-        color:red !important;
-    }
-
-</style>
-
+    <%- include("_footer") %>
+</footer>
 </body>
-</html>
+</html>   
+
+<script>
+document.getElementById("myButton").addEventListener("click", function() { 
+                        alert("ボタンが押されました！");
+                      });
+</script>

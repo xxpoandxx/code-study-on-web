@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include("_head") %>
-
+    <%- include("_head") %>
 <body>
     <%- include("_header") %>
     <div class="home">
-        <a href="list">HTMLコース一覧へ戻る</a>
+        <a href="list">Javascriptコース一覧へ戻る</a>
     </div>
+
     <div class="talk">
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -15,198 +14,179 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>リンクを作成します。</p>
+                <p>さて、せいとくん。これまでHTMLとCSSについて一緒に勉強してきたけど、どうだった？</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>ゼルダ？</p>
+                <p>はい。HTMLではWebページの骨組みを作って、<br>
+                    CSSで見た目を整えるっていうのがだいぶイメージできました。</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>…。<br>
-                   文字をクリックしたら、次のページに飛ぶ、なんて機能は君もよく知っていますね？</p>
+                <p>ちゃんと理解してるみたいで安心です。<br>
+                    HTMLは建物の柱や壁、CSSはその建物に色を塗ったりデザインを加えるような役割だったよね。</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>よく見ますね。次のページに…とか。</p>
+                <p>はい、覚えています！でも、それだとまだ動きのあるページは作れない感じですよね？</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>そうだよね。そんなリンクを作成するためには、<span>a要素</span>を使用します。<br>
-                    aタグだけではリンクを作成したことにはならず、そのリンクをクリックしたときに、<br>
-                    <span class="img">どこのページに飛ぶかを指定</span>しなくてはいけませんね。<br>
-                    そのためには、<span>href属性</span>を指定してあげる必要があります。これは、<span>&lt;a href=&quot;<span class="img" style="font-size: 25px;">url</span>&quot;&gt;</span>と<br>
-                    入力することで、飛び先をそのURL上にすることができるのです。
-                   </p>
+                <p>おっ、いい視点。そのとおり。HTMLとCSSだけだと、Webページは静止画みたいなものです。<br>
+                    動きをつけたり、ユーザーとやり取りしたりするのに必要なのが、今回のテーマ、JavaScriptなんだ。</p>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>気をつけるポイントは、<br>href属性をつける際に<span>ダブルクォーテーション("")で囲う</span>必要があるということ！</p>
-            </div>
-        </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>へえ！やってみたいです。</p>
+                <p>なるほど。じゃあJavaScriptが加わると、Webページがもっと動的になるってことですね？</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>どうぞ。前回のセクションの続きを書いていきましょう。<br>
-                    では、飛び先のテスト用のURL<span class="img">link-test.html</span>を入力してください。</p>
+                <p>そうそう。<br>
+                    例えば、ボタンをクリックしたときに何かが動くとか、フォームに入力した内容をチェックするとか。<br>
+                    そんな『<span class="img">動き</span>』や『<span class="img">反応</span>』を作るのがJavaScriptの役割なんだ。</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <pre class="code">
-&lt;h1&gt;Hello,World!&lt;/h1&gt;
- &lt;h2&gt;Let's challenge yourself to create web pages!&lt;/h2&gt;
- &lt;p&gt;Learn the basics of HTML, CSS, and simple 
-          Javascript to complete your own web page.&lt;/p&gt;
- &lt;<span>a href="link-test.html"</span>&gt;Click here to learn HTML&lt;<span>/a</span>&gt;
-                </pre>
+                <p>それって、HTMLやCSSではできないことなんですか？</p>
             </div>
         </div>
-
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>うん、HTMLやCSSだけじゃそこまでは無理なんだ。<br>
+                    HTMLは基本的に情報を配置するだけだし、CSSはその情報をどう見せるかを決めるだけだからね。<br>
+                    でもJavaScriptは<span class="img">『どう動くか』を指示できる</span>んだよ。</p>
+            </div>
+        </div>
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>どうかな。</p>
+                <p>つまり、HTMLが『<span>何があるか</span>』、<br>
+                    CSSが『<span>どう見えるか</span>』、<br>
+                    JavaScriptが『<span>どう動くか</span>』を担当する感じですね！</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <div class="preview">
-                    <h1>Hello,World!</h1>
-                <h2>Webサイト制作にチャレンジしよう！</h2>
-                <p style="color:black">HTMLの基礎からCSS、簡単なJavascriptまで学んで、自作のWebページを完成させましょう。</p>
-                <a href="html4-test.ejs">HTMLの学習はこちら</a>
-
-                </div>
+                <p>そういうこと！簡潔にまとめられてて素晴らしいね。<br>
+                    さらに言うと、JavaScriptはユーザーの操作に応じて動きを変えたり、サーバーと<br>
+                    通信したりすることもできるんだよ。</p>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>ちゃんとリンクになっていますね〜。大正解です。</p>
-            </div>
-        </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>やった〜！</p>
+                <p>サーバーと通信するっていうのは、どんなときに使うんですか？</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>では、まとめです。<br>
-                    <span class="img">aタグ</span>：他のページに飛ぶために使う要素<br>
-                    <span class="img">href属性</span>：飛び先を指定するために使う属性
-                </p>
+                <p>例えば、ショッピングサイトで商品をカートに追加したり、ログインするときの動作だね。<br>
+                    データを送ったり受け取ったりして、<span class="img">ページの一部だけを更新できる</span>のが<br>
+                    JavaScriptのすごいところなんだ。</p>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>HTMLの基礎を学ぶコースでは、どんなタグ(要素)がどんな働きをするのか、という説明が多いです。<br>
-                    実際に使ってみて覚えていきましょう！
-                </p>
-            </div>
-        </div>
-
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>わかりました。</p>
+                <p>それはすごい。</p>
             </div>
         </div>
-
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>前回のように演習問題を用意しましたよ。<a href="ex/ex2" id="ex1" class="exercise">[演習へ進む]</a></p>
+                <p>ここでは難しい内容を扱うので、こんなのもあるんだなあくらいで知ってくれたら嬉しいかな。</p>
             </div>
         </div>
-
-
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>そうなんだ。より良いWebページを作れるように頑張りたいなあ。</p>
+            </div>
+        </div>
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>その意気だね。じゃあ、次回から具体的にJavaScriptの使い方に入っていこうか！</p>
+            </div>
+        </div>  
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>はーい。</p>
+            </div>
+        </div>
     </div>
-
+    
     <%- include("_footer") %>
-
+</footer>
 </body>
-</html>
+</html>   

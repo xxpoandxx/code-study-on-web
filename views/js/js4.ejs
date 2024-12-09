@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<%- include("_head") %>
-
+    <%- include("_head") %>
 <body>
     <%- include("_header") %>
-
-
     <div class="home">
-        <a href="list">CSSコース一覧へ戻る</a>
+        <a href="list">Javascriptコース一覧へ戻る</a>
     </div>
 
     <div class="talk">
-
-
         <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
-            <div class="balloon-text-left">
-                <p>リンクって、青文字で、下線が引かれてて、いかにも”クリックしてくださーい”って感じですね。</p>
+            <div class="balloon-text-right">
+                <p>さて、前回はボタンをクリックしたときに動きをつける方法を学びました。<br>
+                    今回は、その応用としてボタンをクリックして文字を変更してみようと思います。</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>わかりやすいけど、Webページをレイアウトしていくうちに、<span class=img>リンクだけ馴染めてない状態</span>になりそうです。</p>
+                <p>文字の変更なんてできるんですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>もちろん。前回やったように、ボタンにアクションをつけて、<br>
+                    クリックしたら特定の文字を変える指示をするだけです。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>特定の文字を変えるって、どんな風にやるんですか？</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>まず、HTMLで文字を表示させる部分を作ります。たとえば、こんな感じ。</p>
             </div>
         </div>
 
@@ -40,19 +66,13 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>うんうん。そんな君には、リンクのレイアウトの仕方を教えてあげましょう。</p>
+                <pre class="code">
+&lt;p id=&quot;text&quot;&gt;ここが変わるよ！&lt;/p&gt;
+&lt;button id=&quot;changeTextButton&quot;&gt;文字を変更&lt;/button&gt;
+                </pre>
             </div>
         </div>
 
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>なんでも教えてくれるせんせいだ。</p>
-            </div>
-        </div>
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -61,37 +81,33 @@
             </figure>
             <div class="balloon-text-right">
                 <div class="preview">
-                <a href="test-css8.ejs">せんせいのブロマイドはこちら</a>
-            </div>
-                <p>↑これは、aタグで作った別のWebページに飛ぶリンクです。<br>
-                    上のように、何もいじらない状態で、リンクは<span class="img">青文字で表示され、下線が引かれています</span>。<br>
-                   </p>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>そうそう。ちょっとやっぱり、浮いて見えちゃいます。</p>
-            </div>
-        </div>
-
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>そうだね。でははじめに、リンクの<span>色の変更</span>と<span>下線を消して</span>みましょう。<br>
-                    <span>text-decoration: none;</span>：リンクにもともとついてる下線を消すCSSです。<br>
-                    色を変えるセレクタは、今までと変わらずcolorを使用します。
-                   </p>
+                    <p>ここが変わるよ！</p>
+                    <button>文字を変更</button>
                 </div>
             </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-right">
+                <img src="/images/pen.png" alt="せいとくん">
+                <figcaption class="balloon-image-description">せいとくん</figcaption>
+            </figure>
+            <div class="balloon-text-left">
+                <p>なるほど、最初に表示される文章は 'ここが変わるよ！' なんですね。</p>
+            </div>
+        </div>
+        
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                <p>その通り。<br>
+                    そしてJavaScriptで、ボタンをクリックしたらこの文章を別のものに変えるよう指示します。<br>
+                    コードはこんな感じ。</p>
+            </div>
+        </div>
 
         <div class="balloon">
             <figure class="balloon-image-left">
@@ -99,13 +115,11 @@
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>  
-                   <pre class="css-code">
-a{
-   <span>text-decoration: none;</span> 
-    color: green;
-      }
-                   </pre>
+                <pre class="js-code">
+document.getElementById(&quot;changeTextButton&quot;).addEventListener(&quot;click&quot;, function() {
+    document.getElementById(&quot;text&quot;).textContent = &quot;文字が変わったよ！&quot;;
+      });
+                </pre>
             </div>
         </div>
 
@@ -116,107 +130,73 @@ a{
             </figure>
             <div class="balloon-text-right">
                 <div class="preview">
-                <a href="test-css8.ejs" style="text-decoration: none;color:green">せんせいのブロマイドはこちら</a>
-            </div>
-            <p>下線が消え、色を変化させることができましたね。
-                   </p>
+                    <p id="text">ここが変わるよ！</p>
+                    <button id="changeTextButton">文字を変更</button>
+                </div>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>自分のレイアウトに合わせて、リンクも馴染ませることができそうでよかったです。</p>
+                <p>わ！これだと、ボタンを押すと 'ここが変わるよ！' が '文字が変わったよ！' に変わるんですね！</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>もうちょっとおしゃれなレイアウトをしてみましょう。<br>
-                    <span>hover</span>とは、カーソルがリンクの上に乗っている時のことを指します。<br>
-                プロパティを<span>a:hover</span>に指定すると、<span>リンクの上にカーソルがあるときの状態だけのCSS</span><br>
-                を指定することができます。これらはリンクだけではなく、h要素やdiv要素にも適用できます。
+                <p>その通り！textContentというのがポイントです。<br>
+                    このプロパティを使うと、<span class="img">HTMLの中にある文字を簡単に変えられる</span>んだよ。</p>
             </div>
         </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>  
-                   <pre class="css-code">
-a<span>:hover</span>{
-              color: red;
-               }
-                   </pre>
-            </div>
-        </div>
-
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <div class="preview">
-                <a id="test" href="test-css8.ejs" style="text-decoration: none;">せんせいのブロマイドはこちら</a>
-            </div>
-            <p>カーソルを置いてみてください。色が変化しますよ！
-                   </p>
-            </div>
-        </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>本当だ。おしゃれ。</p>
+                <p>すごく簡単そうですね！でも、ボタンを押した後にもう一度押したら、どうなるんですか？</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-            <p>今回のセクションでお教えしたのはほんの一部です。<br>
-                他にも、<span class="img">通常時からhover時の色がゆっくり変わるようにしたり(transition)</span>、<br>
-                <span class="img">リンクをクリックしている時だけにCSSを適用させたり(a:active)</span>することができるんですよ。</p>
+                <p>いい質問だね！この場合、コードに特に制限を入れていないから、何度押しても同じ文字になります。<br>
+                    もし押すたびに別の文字に変えたいなら、次回にやってみよう！</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>こだわることができるんですね。</p>
+                <p>分かりました！まずはこの例をしっかり試してみます！</p>
             </div>
         </div>
-
+        
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-            <p>自分の納得するまで装飾できるから、Webページ制作は楽しいんですよ。</p>
+                <p>その調子！分からないことがあったら、また聞いてね。</p>
             </div>
-        </div>
-    </div>
+        </div>        
 
     <div class="balloon">
         <figure class="balloon-image-left">
@@ -224,27 +204,18 @@ a<span>:hover</span>{
             <figcaption class="balloon-image-description">せんせい</figcaption>
         </figure>
         <div class="balloon-text-right">
-            <p>それでは、演習問題に取り組んでみましょう！<a href="/contents/css/ex/ex2-7" id="ex1" class="exercise">[演習へ進む]</a></p>
+            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-1" id="ex1" class="exercise">[演習へ進む]</a></p>
         </div>
     </div>
 
-
 </div>
-
-<%- include("_footer") %>
-
-<style>
-    #test{
-        color: green;
-    }
-    #test:visited{
-        color: #2fc2f3;
-    }
-    #test:hover{
-        color:red !important;
-    }
-
-</style>
-
+    <%- include("_footer") %>
+</footer>
 </body>
-</html>
+</html>   
+
+<script>
+    document.getElementById("changeTextButton").addEventListener("click", function() {
+    document.getElementById("text").textContent = "文字が変わったよ！";
+      });
+</script>
