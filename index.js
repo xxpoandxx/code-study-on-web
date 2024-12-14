@@ -3,6 +3,17 @@ const sqlite3 = require('sqlite3'); //sqlite3の読み込み
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const crypto = require('crypto'); // ハッシュ用
+
+// const fs = require('fs');
+// const https = require('https');
+
+// // サーバ証明書と秘密鍵の読み込み
+// const options = {
+//     key: fs.readFileSync('/etc/letsencrypt/live/stadic.mydns.jp/privkey.pem'), // 秘密鍵
+//     cert: fs.readFileSync('/etc/letsencrypt/live/stadic.mydns.jp/cert.pem')    // サーバ証明書
+//   };
+  //↑あとで復活させる2024.12.09
+
 const app = express(); //expressの使う準備ができた状態
 app.set("view engine", "ejs"); //テンプレートエンジンの使用
 app.use(express.static("public"));
@@ -28,6 +39,7 @@ app.use(session({
 //}); 
 
 const database = require('./database.js');
+const { createServer } = require('http');
 
 const DB_USER = "./user.db";
 const DB_EDITOR = "./editor_page.db";
@@ -312,7 +324,11 @@ app.get('/users', (req, res) => {
     res.end("Hello,Users");
 });
 
-app.listen(80, () => { //80はポート番号
+app.listen(8080, () => { //80はポート番号
     console.log("Server Start");
 });
 
+// https.createServer(options, app).listen(443, () => { 
+//     console.log("Server Start");
+// });
+//↑あとで復活させる22024.12.09

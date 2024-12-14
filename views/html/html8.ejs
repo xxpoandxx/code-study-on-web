@@ -77,17 +77,6 @@
                             <figcaption class="balloon-image-description">せんせい</figcaption>
                         </figure>
                         <div class="balloon-text-right">
-                            <p>ボタンを作る方法は、いくつかあるんですよ。<br>
-                                例えば、<span>inputタグ</span>や<span>buttonタグ</span>を使ってボタンを作ることができます。</p>
-                        </div>
-                    </div>
-
-                    <div class="balloon">
-                        <figure class="balloon-image-left">
-                            <img src="/images/piyo.png" alt="せんせい">
-                            <figcaption class="balloon-image-description">せんせい</figcaption>
-                        </figure>
-                        <div class="balloon-text-right">
                             <p>これは、どんな属性をつけるかによって用途が変わってきます。</p>
                         </div>
                     </div>
@@ -98,7 +87,7 @@
                             <figcaption class="balloon-image-description">せいとくん</figcaption>
                         </figure>
                         <div class="balloon-text-left">
-                            <p>なに。
+                            <p>なに！教えてください。
                             </p>
                         </div>
                     </div>
@@ -110,8 +99,7 @@
                                 <figcaption class="balloon-image-description">せんせい</figcaption>
                             </figure>
                             <div class="balloon-text-right">
-                                <p>やる気がありますね。「textbox」はユーザーがテキストを入力できるようにするHTMLの要素です。<br>
-                                    具体的には<span>inputタグ</span>を使うんです。<br>
+                                <p>やる気がありますね。まず<span>inputタグ</span>を使う例を見てみましょう。<br>
                                     例えば、<span>input type="button"</span>と書くだけで簡単なボタンが作れますよ。</p>
                             </div>
                         </div>
@@ -123,7 +111,7 @@
                                 <figcaption class="balloon-image-description">せいとくん</figcaption>
                             </figure>
                             <div class="balloon-text-left">
-                                <p>なるほど！でも、その「type」っていう属性は何なんですか？ほかにも種類があるんですか？</p>
+                                <p>なるほど。でも、その「type」っていう属性は何なんですか？ほかにも種類があるんですか？</p>
                             </div>
                         </div>
 
@@ -134,10 +122,122 @@
                                     <figcaption class="balloon-image-description">せんせい</figcaption>
                                 </figure>
                                 <div class="balloon-text-right">
-                                    <p>そう。<span>type属性</span>は入力の種類を指定する属性だよ。</p>
+                                    <p>そう。<span>type属性</span>は入力の種類を指定する属性だよ。<br>
+                                        例えば、<span>type="text"</span>はテキストを入力するためのボックス、<br>
+                                        <span>type="password"</span>はパスワードを入力するためのボックスになります。<br>
+                                        他にも、type="checkbox"やtype="radio"といった選択肢を用意するためのものもあるんですよ。</p>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <p>用途によって使い分けるんですね。じゃあ、buttonタグを使うのはどんなときですか？</p>
+                            </div>
+                        </div>
+
+                        <div class="talk">
+                            <div class="balloon">
+                                <figure class="balloon-image-left">
+                                    <img src="/images/piyo.png" alt="せんせい">
+                                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                                </figure>
+                                <div class="balloon-text-right">
+                                    <p>いいところに気がつきましたね。buttonタグは汎用性が高く、type属性で役割を変えることができます。
+                                        <br>例えば、<span>button type="button"</span>とすると普通のボタンになり、<br>
+                                        <span>button type="submit"</span>とすると送信ボタンになります。<br>
+                                        さらに、buttonタグの中に<span class="img">文字や画像、アイコンなどを自由に入れられる</span>ので、<br>
+                                        デザイン性の高いボタンを作りたいときに便利です。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <p><span>inputタグはボタン以外の役割もあって、<br>
+                                    buttonタグはボタンの役割をtype属性で決められる</span>って感じですかね。</p>
+                            </div>
+                        </div>
+
+                        <div class="talk">
+                            <div class="balloon">
+                                <figure class="balloon-image-left">
+                                    <img src="/images/piyo.png" alt="せんせい">
+                                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                                </figure>
+                                <div class="balloon-text-right">
+                                    <p>いい感じにまとめられていますね！</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="talk">
+                            <div class="balloon">
+                                <figure class="balloon-image-left">
+                                    <img src="/images/piyo.png" alt="せんせい">
+                                    <figcaption class="balloon-image-description">せんせい</figcaption>
+                                </figure>
+                                <div class="balloon-text-right">
+                                    <p>では、実際に書いてみましょう。<br>
+                                    普通のボタンをinputタグとbuttonタグの両方の場合を使って書いてみてください。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <p>わかりました。</p>
+                            </div>
+                        </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <pre class="code">
+ &lt;input type=&quot;button&quot; value=&quot;inputタグのボタン&quot;&gt;
+&lt;button type=&quot;button&quot;&gt;buttonタグのボタン&lt;/button&gt;
+                                                    </pre>
+                            </div>
+                        </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-right">
+                                <img src="/images/pen.png" alt="せいとくん">
+                                <figcaption class="balloon-image-description">せいとくん</figcaption>
+                            </figure>
+                            <div class="balloon-text-left">
+                                <div class="preview">
+                                    <input type="button" value="inputタグのボタン">
+                                    <button type="button">buttonタグのボタン</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="balloon">
+                            <figure class="balloon-image-left">
+                                <img src="/images/piyo.png" alt="せんせい">
+                                <figcaption class="balloon-image-description">せんせい</figcaption>
+                            </figure>
+                            <div class="balloon-text-right">
+                                <p>完璧ですね。</p>
+                            </div>
+                        </div>
+                    
 
                     <div class="balloon">
                         <figure class="balloon-image-left">
