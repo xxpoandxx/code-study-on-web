@@ -246,3 +246,12 @@ h1 {
     border-radius: 5px;
 }
 
+#api-pesponse {
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}

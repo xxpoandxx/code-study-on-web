@@ -520,8 +520,12 @@
                 return response.text();
             }).then((text)=>{
                 console.log(text);
+                const target = document.getElementById('api-response')
+                target.innerText = text
             }).catch((error)=>{
                 console.log(error);
+                const target = document.getElementById('api-response')
+                target.innerText = 'エラーです！'
             })
         }
         document.getElementById('doJudgement').addEventListener('click',doJudgement);
