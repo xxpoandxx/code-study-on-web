@@ -25,7 +25,7 @@
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>はい、覚えてます。ボタンの<code>onclick</code>イベントを使って、文字を変えるコードを書きましたね。</p>
+                <p>はい、覚えてます。<code>addEventListener</code>とかを使って、文字を変えるコードを書きましたね。</p>
             </div>
         </div>
         
@@ -78,7 +78,21 @@
             </figure>
             <div class="balloon-text-right">
                 <p><code>setTimeout</code>は、「<span>指定した時間が経ったら、この処理を実行してね</span>」っていう感じ。<br>
-                    例えば、3秒後に「こんにちは！」と表示するには、こんなコードを書けばいい。</p>
+                    例えば、ボタンを押した3秒後に「3秒経ちました！」と、ポップアップで表示させてみようか。<br>
+                    こんなコードを書けばいい。
+                </p>
+            </div>
+        </div>
+
+        <div class="balloon">
+            <figure class="balloon-image-left">
+                <img src="/images/piyo.png" alt="せんせい">
+                <figcaption class="balloon-image-description">せんせい</figcaption>
+            </figure>
+            <div class="balloon-text-right">
+                    <pre class="code">
+&lt;button id=&quot;popupButton&quot;&gt;タイマースタート&lt;/button&gt;
+                </pre>
             </div>
         </div>
         
@@ -89,9 +103,13 @@
             </figure>
             <div class="balloon-text-right">
                     <pre class="js-code">
-setTimeout(function() {
-    console.log("こんにちは！");
-}, 3000);
+<span style="color:lightgreen"> // ↓ボタンのクリックイベントを設定</span>
+document.getElementById("popupButton").addEventListener("click", function() {
+<span style="color:lightgreen">// ↓3秒後にポップアップを表示</span>
+<span>setTimeout</span>(function() {
+alert("3秒経ちました！");
+}, 3000); <span style="color:lightgreen">// ←3000ミリ秒（3秒）</span>
+});
                 </pre>
             </div>
         </div>
@@ -143,7 +161,7 @@ setTimeout(function() {
             </figure>
             <div class="balloon-text-left">
                 <div class="preview">
-                    <h1>Hello,World!</h1>
+                    <button id="popupButton">タイマースタート</button>
                 </div>
             </div>
         </div>
@@ -154,145 +172,28 @@ setTimeout(function() {
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p>はい、ちゃんと3秒後に「こんにちは！」が表示されました！これ、使い道がたくさんありそうですね。</p>
+                <p>はい、ちゃんと3秒後に「3秒経ちました！」が表示されました！これ、使い道がたくさんありそうですね。</p>
             </div>
         </div>
-        
+
         <div class="balloon">
             <figure class="balloon-image-left">
                 <img src="/images/piyo.png" alt="せんせい">
                 <figcaption class="balloon-image-description">せんせい</figcaption>
             </figure>
             <div class="balloon-text-right">
-                <p>そう思うでしょ？でも、これだけじゃ「一回だけ実行」なんだ。もし繰り返しタイマーを動かしたいときは、<code>setInterval</code>を使うよ。</p>
+                <p>そうそう。<br>
+                    これを使えば、このポップアップが出る前にクイズを解き終える…なんてシステムも作れますよ。</p>
             </div>
         </div>
-        
+
         <div class="balloon">
             <figure class="balloon-image-right">
                 <img src="/images/pen.png" alt="せいとくん">
                 <figcaption class="balloon-image-description">せいとくん</figcaption>
             </figure>
             <div class="balloon-text-left">
-                <p><code>setInterval</code>はどう違うんですか？</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p><code>setInterval</code>は「指定した間隔ごとに処理を繰り返す」んだよ。例えば、1秒ごとにカウントアップするには、こう書くんだ。</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>
-                    <pre class="js-code">
-let count = 0;
-setInterval(function() {
-count++;
-console.log(count);
-}, 1000);
-                    </pre>
-                </p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>おお、これで1秒ごとに<code>count</code>が増えるんですね！でも、これ止める方法はあるんですか？</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>いい質問だね！止めるには、<code>clearInterval</code>っていう関数を使うよ。<code>setInterval</code>が返すIDを覚えておいて、それを<code>clearInterval</code>に渡すんだ。</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>IDってどんな感じで取得するんですか？</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>例えばこうだね。</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                    <pre class="js-code">
-let timerId = setInterval(function() {
-count++;
-console.log(count);
-}, 1000);
-        
-setTimeout(function() {
-clearInterval(timerId);
-console.log("タイマーを止めました！");
-}, 5000);
-                </pre>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>なるほど！これだと5秒後にタイマーが止まるんですね。便利ですね！</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-left">
-                <img src="/images/piyo.png" alt="せんせい">
-                <figcaption class="balloon-image-description">せんせい</figcaption>
-            </figure>
-            <div class="balloon-text-right">
-                <p>うん、こうやって<code>setTimeout</code>と<code>setInterval</code>を組み合わせると、いろんなことができるようになるよ。</p>
-            </div>
-        </div>
-        
-        <div class="balloon">
-            <figure class="balloon-image-right">
-                <img src="/images/pen.png" alt="せいとくん">
-                <figcaption class="balloon-image-description">せいとくん</figcaption>
-            </figure>
-            <div class="balloon-text-left">
-                <p>へえー。すごいなあ。</p>
+                <p>楽しそう！</p>
             </div>
         </div>
         
@@ -302,7 +203,7 @@ console.log("タイマーを止めました！");
             <figcaption class="balloon-image-description">せんせい</figcaption>
         </figure>
         <div class="balloon-text-right">
-            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-6" id="ex1" class="exercise">[演習へ進む]</a></p>
+            <p>今回も演習問題を用意しましたよ。<a href="ex/ex3-5" id="ex1" class="exercise">[演習へ進む]</a></p>
         </div>
     </div>
     </div>
@@ -312,7 +213,11 @@ console.log("タイマーを止めました！");
 </html> 
 
 <script>
-    setTimeout(function() {
-    console.log("こんにちは！");
-}, 3000);
+    // ↓ボタンのクリックイベントを設定
+document.getElementById("popupButton").addEventListener("click", function() {
+// ↓3秒後にポップアップを表示
+setTimeout(function() {
+alert("3秒経ちました！");
+}, 3000); // ←3000ミリ秒（3秒）
+});
 </script>
