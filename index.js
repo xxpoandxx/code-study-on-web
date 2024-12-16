@@ -136,54 +136,58 @@ app.get('/contents/:type/ex/:id', async (req, res) => {
     const courseType = req.params.type;
     const courseId = req.params.id;
     const uid = req.session.uid;
-    
-        if (uid) {
-            const db = new database.User();
-    
-            // 新しいページのアクセス記録をstudy_recordに追加
-            await db.run(`
-                INSERT INTO study_record (uid, course_type, course_sn, updated)
-                VALUES (?, ?, ?, CURRENT_TIMESTAMP)
-            `, [uid, courseType, courseId]);
 
-            db.close();
-        }
-
-        if (uid) {
-            const db = new database.EditorPage();
-        
-        const data = await db.get(`
-            SELECT * FROM exercise WHERE course_id = ?
-            `, [courseId])
-
-        const talks = await db.all(`
-            SELECT * FROM talks WHERE course_id = ?
-            `, [courseId])
-    
-            db.close();
-
-        // 新しいページのコンテンツを表示
-        res.render(`${courseType}/layout-ex.ejs`, {
-            title: data.title,
-            talks: talks,
-            courseId: courseId,
-            aiPrompt: data.ai_prompt,
-            relations: {
-                back: data.back,
-                next: data.next,
-                talk_url: data.talk_url
-            }
-        });
-        // 学習記録
-        db.run(
-            'INSERT INTO study_record(uid, course_type, course_sn) VALUES(?, ?, ?)',
-            [req.session.uid, courseType, courseId]
-        );
-
-        return;
-        }
+    if (!uid) {
         res.redirect('/');
+        return;
+    }
+    
+    const edb = new database.EditorPage();
+
+    const data = await edb.get(`
+        SELECT * FROM exercise WHERE course_id = ?
+        `, [courseId]);
+
+    if (data === null || data === undefined) {
+        res.end();
+        return;
+    }
+
+    const talks = await edb.all(`
+        SELECT * FROM talks WHERE course_id = ?
+        `, [courseId])
+
+
+    // 新しいページのコンテンツを表示
+    res.render(`${courseType}/layout-ex.ejs`, {
+        title: data.title,
+        talks: talks,
+        courseId: courseId,
+        aiPrompt: data.ai_prompt,
+        relations: {
+            back: data.back,
+            next: data.next,
+            talk_url: data.talk_url
+        }
     });
+        
+    const udb = new database.User();
+
+    // 新しいページのアクセス記録をstudy_recordに追加
+    udb.run(`
+        INSERT INTO study_record (uid, course_type, course_sn, updated)
+        VALUES (?, ?, ?, CURRENT_TIMESTAMP)
+    `, [uid, courseType, courseId]);
+
+    // 学習記録
+    udb.run(
+        'INSERT INTO study_record(uid, course_type, course_sn) VALUES(?, ?, ?)',
+        [uid, courseType, courseId]
+    );
+
+    udb.close();
+    edb.close();
+});
 
 
 // 一時的な　テンプレ作り用
