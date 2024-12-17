@@ -249,7 +249,7 @@ h1 {
 #api-response {
     border: 2px dashed #cccccc;
     border-radius: 10px;
-    width: 670px;
+    width: calc(100% - 44px);
     padding: 20px;
     text-align: center;
     background-color: white;
